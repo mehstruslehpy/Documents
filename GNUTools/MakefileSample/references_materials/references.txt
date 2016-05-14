@@ -1,0 +1,2 @@
+http://mrbook.org/blog/tutorials/make/
+http://www.freesoftwaremagazine.com/books/autotools_a_guide_to_autoconf_automake_libtool
