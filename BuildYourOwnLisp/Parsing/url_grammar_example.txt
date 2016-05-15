@@ -1,0 +1,12 @@
+/*          THIS IS PROBABLY NOT CORRECT            */
+/*?I was trying to make a grammar to describe a url?*/
+//        scheme:[//[user:password@]host[:port]][/]path[?query][#fragment]
+
+"
+protocol: \   "http:\\\" | \"ftp:\\\" | \"https:\\\" | \"sftp:\\\"      \
+host:         "a - z"+                                                  \
+port:         "1-999999999"                                             \   
+path-ascii:   "/" + "a-z" + "A-Z" + "1-9"                               \
+path:<path-ascii>*                                                      \
+url: <protocol><host><port><path-ascii>                                 \
+"

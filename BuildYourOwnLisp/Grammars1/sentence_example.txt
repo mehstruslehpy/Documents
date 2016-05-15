@@ -1,0 +1,9 @@
+the cat sat on the mat.
+
+the [NOUN] sat on the [NOUN]
+
+the [NOUN] [VERB] on the [NOUN]
+
+the [NOUN] [VERB] [PREPOSITION] the [NOUN]
+
+[ARTICLE] [NOUN] [VERB] [PREPOSITION] [ARTICLE] [NOUN]
