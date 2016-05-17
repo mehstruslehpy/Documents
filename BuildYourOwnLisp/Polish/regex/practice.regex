@@ -1,0 +1,39 @@
+
+/*› Write a regular expression matching strings of all a or b such as aababa or bbaa*/
+//                                                      I doubt this would really work..
+
+ap          :    "a"                   ; //primitivea            
+bp          :    "b"                   ; //primitiveb
+phrase1     :  <ap><ap><bp><ap><bp><ap>;
+phrase2     :  <bp><bp><ap><ap>        ; 
+phrase3     :  <ap><bp><ap><bp><ap><bp>;
+phrase4     :  <ap><bp><ap>            ;
+expr        :  /^/[' '<phrase1>' ' |  
+                   ' '<phrase2>' ' |  
+                   ' '<phrase3>' ' |  
+                   ' '<phrase4>' ' |  
+                  ]/+$/;    
+
+/*basically the same idea works for consecutive groups of primitives a and b..*/
+
+ap          :    "aa"                  ;  //primitivea
+bp          :    "bb"                  ;  //primitiveb
+phrase1     :  <ap><ap><bp><ap><bp><ap>;
+phrase2     :  <bp><bp><ap><ap>        ;
+phrase3     :  <ap><bp><ap><bp><ap><bp>;
+phrase4     :  <ap><bp><ap>
+expr        :  /^/[' '<phrase1>' ' |
+                   ' '<phrase2>' ' |
+                   ' '<phrase3>' ' |
+                   ' '<phrase4>' ' |
+                  ]/+$/;
+
+p           : "p"                      ;
+i           : "i"                      ;
+t           : "t"                      ;
+r           : "r"                      ;
+e           : "e"                      ;
+s           : "s"                      ;
+pit         : <p><i><t>                ;
+pot         : <p><o><t>                ;
+respite     : <r><e><s><p><i><t><e>    ;
