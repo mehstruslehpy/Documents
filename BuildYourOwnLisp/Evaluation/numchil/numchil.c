@@ -56,6 +56,32 @@ long eval(mpc_ast_t* t) {
     return x;
 }
 
+long leaves (mpc_ast_t *t) ;
+long branch (mpc_ast_t* t) {
+    //if (t->contents) == NULL we are at a branch
+    if (t->contents == NULL) { return 1; }
+    else {
+        int total = 0;
+        for (int i = 0; i < t->children_num; i++) {
+            total = total + leaves(t->children[i]);
+        }
+        return total;
+    }
+    return 0;
+}
+
+long leaves (mpc_ast_t *t) {
+    if (strstr(t->tag, "number"))   { return 1; }
+    if (strstr(t->tag, "operator")) { return 1; }
+    else {
+        int total = 0;
+        for (int i = 0; i < t->children_num; i++) {
+        total = total + leaves(t->children[i]);
+        }
+        return total;
+    }
+    return 0;
+}
 
 
 

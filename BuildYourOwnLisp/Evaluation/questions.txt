@@ -1,0 +1,17 @@
+#Random QA
+
+› How would you use strstr to see if a node was tagged as an expr?
+    strstr(t->tag,"expr");
+
+› How would you use strcmp to see if a node had the contents '(' or ')'?
+parens(mpc_ast_t* t, int child_index) {
+
+    if ( strcomp(t->children[child_index]->contents, ")" )) == 0) { return 1; }
+    if ( strcomp(t->children[child_index]->contents, "(" )) == 0) { return 1; }  
+    return 0;
+}
+
+› Add the operator %, which returns the remainder of division. For example % 10 6 is 4.
+    I already did this in the main eval.o
+
+
