@@ -1,3 +1,3 @@
 CC=gcc -std=c99 -Wall -pedantic -ledit -lm -g
 Hello: 
-	$(CC) evaluation.c mpc.c -o eval.o
+	$(CC) error.c mpc.c -o error.o
