@@ -1,8 +1,9 @@
 #!/bin/bash
 
 #########################################
+#								        #
 #Not sure if I should add more to this..#
-#I guess it doesn't exactly matter..    #
+#		 						        #
 #########################################
 echo this should probably be run as root..
 echo DO NOT MAKE CHANGES WITHOUT TESTING SAFELY!

@@ -1,0 +1,32 @@
+› Run the previous chapter's code through gdb and crash it. See what happens.
+
+	I used gdb's expression print 'Expr = 0xbadbeef' I did this to all parsers. The program segfaulted inside of one of the functions in mpc.c
+	I thought it was kinda cool because I got used to steps, next, info locals to check variables, bt full to check the stack, and I also found out
+	that the gnu info command has a key ('H') to view keybinds by default	
+
+› How do you give an enum a name?
+
+	enum enumname {
+		int   field1;
+		char *field2;
+		int   arr[12];
+	};
+
+› What are union data types and how do they work?
+	
+	They're like a struct but they can only be of one type at a time and should only occupy the space of the largest data type
+
+› What are the advantages over using a union instead of struct?
+
+	I've heard they can be used for padding out structs.. I'd bet they're more useful as a thing that can be only one thing at a time..
+	Like a 'state' thing? They also have the advantage of being a constant size.. The sizeof the biggest element..
+
+› Can you use a union in the definition of lval?
+	
+	Why couldn't you? an lval should just be a struct
+
+› Extend parsing and evaluation to support the remainder operator %.
+
+	This was done in the previous example I may implement it back into the main code eventually
+
+› Extend parsing and evaluation to support decimal types using a double field.
