@@ -1,0 +1,15 @@
+› Give an example of a variable in our program that lives on The Stack.
+	mpc_result_t r,	line: 298,	func: main()	
+› Give an example of a variable in our program that points to The Heap.
+	v->sym, line: 58, func: lval_sym()
+› What does the strcpy function do?
+	it copies the first parameter of its input into the second parameter of its input:	strcopy(src, dest);
+› What does the realloc function do?
+	changes the size of the memory block pointed to by ptr to size bytes:	realloc(ptr, size;
+› What does the memmove function do?
+	copies n bytes from memory area src to memory area dest:	memmove(dest, src, n)
+› How does memmove differ from memcpy?
+	For memcpy:
+		The areas must not overlap (they can overlap with memmove)
+	For memmove:
+		The areas can overlap. The results from src are first copied into a temporary array that does not overlap src or dest.
