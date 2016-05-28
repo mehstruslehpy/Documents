@@ -28,3 +28,11 @@ I also added the same ability with decimals such as [prefix][number].[number]
 
 this allows my finished program to operate on integers AND decimals. (though they are not cross compatible)
 
+####
+MISC
+####
+
+The whole thing is kind of abstracted into object orientation for the sake of generating the lval tree by using functions such as: 
+lval_sexpr(), lval_sym(), lval_err(), lval_num; as constructors. 
+
+For the four previous constructors we have ONE destructor function called lval_del().

@@ -2,6 +2,6 @@
 #do these things in this order..
 #I think this is right
 
-    git add
+    git add .
     git commit
     git push
