@@ -212,6 +212,57 @@ lval* builtin_join(lval* a) {
 	return x;
 }
 
+lval* builtin_cons(lval* a) {
+
+	//LASSERT(a, a->cell[0]->type == LVAL_EXPR,
+	//		"Function 'cons' passed incorrect type arg 1.");
+	LASSERT(a, a->cell[1]->type == LVAL_QEXPR,
+			"Function 'cons' passed incorrect type arg 2.")
+	//pop the zeroth element (a value) into x
+	lval* x = lval_pop(a, 0);
+	//pop the second element (a qexpr) into y
+	lval* y = lval_pop(a, 0);
+	//add y into the front of x so that ordering is {x then y}
+	x = lval_add(y, x);
+
+	return x;
+}
+
+lval* builtin_len(lval* a) {
+	
+	LASSERT(a, a->cell[0]->type == LVAL_QEXPR,
+			"Function 'len' passed incorrect type.")
+	lval* x = lval_num(a->cell[0]->count);
+	return x;
+}
+// return all qexpr - 1
+lval* builtin_init(lval* a) {
+
+	int countx = a->cell[0]->count;
+	//printf("DEBUG: COUNTX == %d\n", countx);
+	lval* v = NULL;
+	/*BREAK*/
+	v = lval_take(a, 0);
+	lval_del(lval_pop(v, countx - 1));
+  	return v;
+
+}
+
+lval* builtin_frbk(lval* a) {
+
+	LASSERT(a, a->count == 1,
+			"Function 'head' passed too many arguments.");
+
+	LASSERT(a, a->cell[0]->type == LVAL_QEXPR,
+			"Function 'head' passed incorrect type.");
+
+	LASSERT(a, a->cell[0]->count != 0,
+			"Function 'head' passed {}.");
+	lval* v = lval_take(a, 0);
+	while (v->count > 2) { lval_del(lval_pop(v, 1)); } 
+	return v;
+}
+
 lval* builtin_op(lval* a, char* op) {
 
 	for (int i = 0; i < a->count; i++) {
@@ -248,6 +299,10 @@ lval* builtin(lval* a, char* func) {
 	if (strcmp("head", func) == 0) { return builtin_head(a); }
 	if (strcmp("tail", func) == 0) { return builtin_tail(a); }
 	if (strcmp("join", func) == 0) { return builtin_join(a); }
+	if (strcmp("cons", func) == 0) { return builtin_cons(a); }
+	if (strcmp("len",  func) == 0) { return builtin_len(a); }
+	if (strcmp("init", func) == 0) { return builtin_init(a); }
+	if (strcmp("frbk", func) == 0) { return builtin_frbk(a); }
 	if (strcmp("eval", func) == 0) { return builtin_eval(a); }
 	if (strstr("+-/*", func)) { return builtin_op(a, func); }
 	lval_del(a);
@@ -279,7 +334,6 @@ lval* lval_eval_sexpr(lval* v) {
 	lval_del(f);
 	return result;
 }
-
 
 lval* lval_eval(lval* v) {
 	if (v->type == LVAL_SEXPR) { return lval_eval_sexpr(v); }
@@ -327,7 +381,8 @@ int main(int argc, char** argv) {
     	"                                                    \
       		number : /-?[0-9]+/ ;                              \
       		symbol : \"list\" | \"head\" | \"tail\" | \"eval\" \
-         	       | \"join\" | '+' | '-' | '*' | '/' ;        \
+         	       | \"join\" | \"cons\" | \"len\"  | \"frbk\" \ 
+				   | \"init\" |'+' | '-' | '*' | '/' ;		   \
       		sexpr  : '(' <expr>* ')' ;                         \
       		qexpr  : '{' <expr>* '}' ;                         \
       		expr   : <number> | <symbol> | <sexpr> | <qexpr> ; \

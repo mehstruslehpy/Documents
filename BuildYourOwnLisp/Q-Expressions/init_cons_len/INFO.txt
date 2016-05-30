@@ -1,0 +1,13 @@
+####INFO ABOUT LVAL* A STRUCTURE FROM GDB:
+
+(gdb) print a->cell[0]->cell[0]->num
+$23 = 1
+(gdb) print a->cell[0]->cell[1]->num
+$26 = 2
+(gdb) print a->cell[0]->cell[2]->num
+$27 = 3
+(gdb) print a->cell[0]->cell[3]->num
+$28 = 4
+(gdb) print a->cell[0]->cell[4]->num
+Cannot access memory at address 0x8
+
