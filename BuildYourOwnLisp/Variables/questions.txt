@@ -1,0 +1,34 @@
+- Create a Macro to aid specifically with reporting type errors.
+	I don't exactly understand why this is a bonus mark when it's already included in the source text?
+- Create a Macro to aid specifically with reporting argument count errors.
+	seeing as the very first chapter recommends typing THE WHOLE PROGRAM OUT BY HAND
+- Create a Macro to aid specifically with reporting empty list errors.
+	Did I mention I've been typing all this out by hand?
+
+- Change printing a builtin function so that it prints its name.
+
+	I don't understand the goal of this question. Am I supposed to add a builtin that prints the name of the builtin or add to the function	   
+    calling the builtin so that it prints the name of the builtin? 
+
+	I created a macro called PRINTMACRO() that accepts a string of text this could easily be pasted into the builtin functions to print out
+	builtin info for debugging (the version of my program with this "feature" is in a subdir of the current working directory)
+
+	As a feature I would prefer to make the callee of the builtin (lval_eval_sexpr) print the builtin info or have the builtin function 
+	itself print that information
+
+- Write a function for printing out all the named values in an environment.
+	
+	you could call this through lval_eval_sexpr(lenv*, lval*) or lval_eval(lenv*, lval*) I don't think it even needs to be recursive as every 
+	lval does not contain lenvs (but lenvs do contain lvals) 
+	
+	EVERY LVAL gets evaluated with an lenv passed to the evaluating function afaik so it's. Getting evaluated anyway.. Adding a few printfs is
+	fairly trivial
+
+- Redefine one of the builtin variables to something different.
+	I redefined the statement: "a->type = LVAL_QEXPR;" to: "a->type = LVAL_SEXPR" from within the function builtin_list(lenv*, lval*)
+	This ended up inverting the output from a Quoted Expression to a Symbolic Expression
+	This behavior could be easily overridden by enclosing the input value within ()'s or {}'s
+- Change redefinition of one of the builtin variables to something different an error.
+	What?
+- Create an exit function for stopping the prompt and exiting.
+

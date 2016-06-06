@@ -18,7 +18,7 @@ DATE=$(date -I)
 echo Backup date is $DATE
 
 echo Backup starting
-rsync -aAXv --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found","/backups","/home/sleepy/Downloads"} / $BACKUPSDIR/$DATE
+rsync -aAXv --exclude={"/home/sleepy/Documents/Music/*","/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found","/backups","/home/sleepy/Downloads/*"} / $BACKUPSDIR/$DATE
 echo Backup done!
 
 echo Tarring backed up files
