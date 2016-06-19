@@ -1,0 +1,19 @@
+I have ceased typing the full source out by hand. I do not have enough personal time to do that anymore I will instead attempt to solve the 
+questions ending each section after copy/pasting the code and compiling it. I will probably get worse at debugging but I guess that is the price I
+pay?
+
+Apparently the copied and pasted code contains an error in which < > and various similar symbols are considered unbound? The author has a 
+logic error happening as far as I can tell.
+
+it looks like e->par should be non null by the time the program enters lenv_get.. 
+
+not sure if it helps but this is the stack per gdb right before the error:
+
+#0  lenv_get (e=0x6267e0, k=0x6303b0) at conditional.c:347
+#1  0x0000000000403b20 in lval_eval (e=0x6267e0, v=0x6303b0) at conditional.c:738
+#2  0x00000000004039a7 in lval_eval_sexpr (e=0x6267e0, v=0x625860) at conditional.c:715
+#3  0x0000000000403b54 in lval_eval (e=0x6267e0, v=0x625860) at conditional.c:742
+#4  0x0000000000403eff in main (argc=1, argv=0x7fffffffe678) at conditional.c:812
+
+the sources from the webpage do not exactly match the sources that are downloadable in tarball form.. 
+the tarball sources compiled perfectly after removing the readline/history.h and making MPC_LANG_DEFAULT == MPCA_LANG_DEFAULT

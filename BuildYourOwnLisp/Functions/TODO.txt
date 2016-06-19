@@ -1,0 +1,4 @@
+Some sort of error with a realloc in lval_pop iirc
+use gdb and you'll see it
+
+def {add} (\ {x y} {+ x y})

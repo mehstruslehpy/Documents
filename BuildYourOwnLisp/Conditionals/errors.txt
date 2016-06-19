@@ -1,0 +1,6 @@
+__conditionals__.c: In function ‘main’:
+__conditionals__.c:728:13: error: ‘MPC_LANG_DEFAULT’ undeclared (first use in this function)
+   mpca_lang(MPC_LANG_DEFAULT,
+             ^~~~~~~~~~~~~~~~
+__conditionals__.c:728:13: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Makefile:4: Hello] Error 1

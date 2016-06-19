@@ -1,0 +1,119 @@
+My solutions are in the cond_v3.o binary and the questions_testing.c source file
+
+Question 1: NOT
+	
+	I implemented a builtin function that does the following from within the builtin_cmp function:
+
+ 	if (strcmp(op, "!") == 0) {
+   		r = (a->cell[0]->num);
+   		r = !r;
+   		lval_del(a);
+   		return lval_num(r);
+ 	}
+
+	I figured I would implement it like in C.. Where any nonzero number evaluates to true and any zero evaluates to false.
+	My implementation is rather inelegant but it works (r = !r; r = !r seems wasteful..)
+
+Question 1: OR
+
+	I implemented it the same as the previous with a builtin function that evaluates in the following manner
+		if (strcmp(op, "||") == 0) { r = (a->cell[0]->num || a->cell[1]->num); }
+
+Question 1: AND
+
+	Same as prev..
+  		if (strcmp(op, "&&") == 0) { r = (a->cell[0]->num && a->cell[1]->num); }
+
+Question 2: nthfind
+
+	nthfind is a function accepting three inputs:
+		nth: the value to count to
+		i: the counter to be incremented on each count.
+		list: the list to be counted
+
+	nthfind is defined like this:
+		def {nthfind} (\ {nth i list} {(if (== nth i) {head list} { nthfind nth (+ i 1) (tail list) })})
+	
+	nthfind is used like so:
+		nthfind 3 1 {1 2 3 4}
+	
+	which will return 3 from the list
+	
+		nthfind 2 1 {cat dog sam bob}
+	will return dog
+
+Question 3: member
+
+	I do not quite understand how to implement looping in this language but my best guess for how to test this looks something like this
+		def {member} (\ {l cmp}{if (== cmp {##HERE##}) {1} {0} })
+	at the "##HERE##" section I would probably need to be able to iterate thru members.. I know the tail builtin can be used to remove the first 
+	element of a list so I guess recursion would need to play into this solution also?
+
+Question 4: last
+	
+	I made the last function from two functions. I used the reverse function in the text to reverse the input list then I used the head builtin
+	to return the head of the now reversed list. 
+		def {last} (\ {l}{head (reverse l)})
+		def {reverse} (\ {l} {if (== l {}) {{}} {join (reverse (tail l)) (head l)} })
+	
+Question 5: OR
+	
+	this will take inputs x, y. This function returns || x y. This almost like a synonym for the || builtin.
+		def {or} (\ {x y} { || x y})
+
+Question 5: AND
+	
+	this will take inputs x, y. This function returns && x y. This almost like a synonym for the && builtin.
+	def {and} (\ {x y} { && x y})
+
+Question 5: NOT
+
+	this will take an input x and out put "! x". This is almost like a synonym for the "!" builtin
+	def {not} (\ {x} {! x})
+
+Question 6: Bool type
+
+	I did this question slightly different from what was asked. I felt like it made more sense to just let bool work as a sort of 'psuedotype'
+	in which "true" | "false" could be input and parsed into a normal 1 or 0. This allows the usage of math on values like "true" | "false"
+	as well as allowing boolean true or false values to be used in every way a number can be used. 
+	the relevant code:
+	
+	/* the bool 'pseudo-constructor'*/
+	lval* lval_bool(char* x){
+
+    	lval* v = malloc(sizeof(lval));
+    	v->type = LVAL_NUM;
+    	if (strcmp("true", x) == 0) {
+        	v->num = 1;
+    	}
+    		if (strcmp("false", x) == 0) {
+        v->num = 0;
+    	}
+	    return v;
+	}
+
+	/*parsing for bools*/
+	lval* lval_read(mpc_ast_t* t) {
+
+  		if (strstr(t->tag, "bool")) { return lval_bool(t->contents); }
+  		if (strstr(t->tag, "number")) { return lval_read_num(t); }
+  		if (strstr(t->tag, "symbol")) { return lval_sym(t->contents); }
+
+  		lval* x = NULL;
+  		if (strcmp(t->tag, ">") == 0) { x = lval_sexpr(); }
+  		if (strstr(t->tag, "sexpr"))  { x = lval_sexpr(); }
+  		if (strstr(t->tag, "qexpr"))  { x = lval_qexpr(); }
+
+  		for (int i = 0; i < t->children_num; i++) {
+    		if (strcmp(t->children[i]->contents, "(") == 0) { continue; }
+    		if (strcmp(t->children[i]->contents, ")") == 0) { continue; }
+    		if (strcmp(t->children[i]->contents, "}") == 0) { continue; }
+    		if (strcmp(t->children[i]->contents, "{") == 0) { continue; }
+    		if (strcmp(t->children[i]->tag,  "regex") == 0) { continue; }
+    		x = lval_add(x, lval_read(t->children[i]));
+  		}
+  	
+		return x;
+	}
+	
+	All the other changes are in main and are excercises covered in previous chapters.

@@ -1,0 +1,23 @@
+FOR THE SAKE OF HONESTY I HAVE LEFT MY NON WORKING CODE HERE! 
+	I could not find the source of why realloc was causing sigabort I guess I need to get better at tracking that sort of stuff down
+	The stack becomes fairly 'used' and irrelevant by the time I hit my bug. The function lval_pop that contains the realloc that
+	causes the sigabort seems fine which leads me to believe the error is earlier in the execution of the program which could be anywhere..
+	the book didn't do a very good job in explaining the purpose of linking lvals/lenvs into some goofy listy looking structure that transforms
+	mpc_ast_t structures contents. Seems odd.. I may debug further but I'm not sure if I will or not yet..
+
+    › Define a Lisp function that returns the first element from a list.
+		def {first} (\ {list} {head (list)})
+    › Define a Lisp function that returns the second element from a list.
+		def {second} (\ {i & xs} {head xs})
+		will return the second argument? I am not sure if a list is "a b c d", "(a b c d)", or "{a b c d}"
+		example: "second 1 2 3 4" returns two
+    › Define a Lisp function that calls a function with two arguments in reverse order.
+		def {input} (\ {x y} {list x y})
+		def {output} (\ {x y} {input y x})
+    › Define a Lisp function that calls a function with arguments, then passes the result to another function.
+		def {var-mul} (\ {x y} {* x y})
+		def {mul-ten}(\ {x} {var-mul x 10})
+		def {mul-hun}(\ {x} {var-mul 10 (mul-ten x)})
+    › Change variable arguments so at least one extra argument must be supplied before it is evaluated.
+		def {mul-hun}(\ {x y} {var-mul 10 (mul-ten x)})
+
