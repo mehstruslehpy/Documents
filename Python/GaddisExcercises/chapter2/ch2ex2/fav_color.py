@@ -1,0 +1,13 @@
+import time
+color = input("What is your favorite color? ")
+print(color, "is a terrible choice.")
+print("Please leave...")
+print("Just go!")
+time.sleep(0.5)
+print(".")
+time.sleep(0.5)
+print(".")
+time.sleep(0.5)
+print(".")
+time.sleep(0.5)
+print("Fine I'll leave you and your terrible taste in color myself! >:[")
