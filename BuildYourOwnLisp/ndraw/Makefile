@@ -1,3 +1,3 @@
 CC=gcc -std=c99 -Wall -ledit -lm -g -lncurses
 Hi: 
-	$(CC) array.c -o out.o
+	$(CC) ndraw.c -o ndraw.o

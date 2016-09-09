@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
 						attron(COLOR_PAIR(6));
 						break;
 					}
-					case ' ' :	
+					case ' ' /*|| BUTTON1_PRESSED*/ :	
 					{
 						
 						getyx(stdscr, y, x);	
