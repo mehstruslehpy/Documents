@@ -2,15 +2,15 @@
 #include <stdlib.h>
 #include <string.h>
 
-//typedef struct midinote
-//{
-//	int note;
-//	int velocity;
-//	int time;
-//
-//} midinote;
+typedef struct midinote
+{
+	int note;
+	int velocity;
+	int time;
 
-void print_rect(WINDOW *win, int starty, int startx, char *string);
+} midinote;
+
+void print_rect(WINDOW *win, int starty, int startx, int width, char *string);
 
 int main(int argc, char *argv[])
 {      
@@ -28,61 +28,20 @@ int main(int argc, char *argv[])
                 exit(1);
         }
         start_color();                  /* Start color                  */
-        //init_pair(1, COLOR_RED, COLOR_RED);
-        //init_pair(2, COLOR_BLUE, COLOR_BLUE);
+        init_pair(1, COLOR_RED, COLOR_RED);
 
-        //attron(COLOR_PAIR(1));
+        attron(COLOR_PAIR(1));
 		
-			//for( int i = 0; i < 10; i++ )
-			//{
-			//}		
-
-        	//main loop;
+        //repl loop;
 			while(1)
 			{
 				switch(getch())
 				{
-					case '1':
-					{
-        				init_pair(1, COLOR_RED, COLOR_RED);
-						attron(COLOR_PAIR(1));
-						break;
-					}
-					case '2':
-					{
-        				init_pair(2, COLOR_GREEN, COLOR_GREEN);
-						attron(COLOR_PAIR(2));
-						break;
-					}
-					case '3':
-					{
-        				init_pair(3, COLOR_YELLOW, COLOR_YELLOW);
-						attron(COLOR_PAIR(3));
-						break;
-					}
-					case '4':
-					{
-        				init_pair(4, COLOR_BLUE, COLOR_BLUE);
-						attron(COLOR_PAIR(4));
-						break;
-					}
-					case '5':
-					{
-        				init_pair(5, COLOR_WHITE, COLOR_WHITE);
-						attron(COLOR_PAIR(5));
-						break;
-					}
-					case '6' :
-					{
-        				init_pair(6, COLOR_BLACK, COLOR_BLACK);
-						attron(COLOR_PAIR(6));
-						break;
-					}
 					case ' ' :	
 					{
 						
 						getyx(stdscr, y, x);	
-        				print_rect(stdscr, y, x, "0");
+        				print_rect(stdscr, y, x, 0, "0");
 						move(y,x);
 						break;
 					}
@@ -112,11 +71,12 @@ int main(int argc, char *argv[])
 					}
 				}
 				refresh();
+
 			}
         	endwin();
 }
 
-void print_rect(WINDOW *win, int starty, int startx, char *string)
+void print_rect(WINDOW *win, int starty, int startx, int width, char *string)
 {       int x, y;
 
         if(win == NULL)
@@ -126,6 +86,8 @@ void print_rect(WINDOW *win, int starty, int startx, char *string)
                 x = startx;
         if(starty != 0)
                 y = starty;
+        if(width == 0)
+                width = 80;
 
         mvwprintw(win, y, x, "%s", string);
 }

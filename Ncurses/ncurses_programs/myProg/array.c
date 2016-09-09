@@ -10,7 +10,7 @@ typedef struct midinote
 
 } midinote;
 
-void print_rect(WINDOW *win, int starty, int startx, int width, char *string);
+void print_rect(WINDOW *win, int starty, int startx, char *string);
 
 int main(int argc, char *argv[])
 {      
@@ -31,21 +31,20 @@ int main(int argc, char *argv[])
         init_pair(1, COLOR_RED, COLOR_RED);
 
         attron(COLOR_PAIR(1));
-		
-        //repl loop;
+		for( i = 0; i < 10; i++ )
+		{
+			mvprintw(i, 0, i);
+		}		
+        //main loop;
 			while(1)
 			{
-				//if(getch() == 113 || 81)
-				//{
-				//	endwin();
-				//}
 				switch(getch())
 				{
 					case ' ' :	
 					{
 						
 						getyx(stdscr, y, x);	
-        				print_rect(stdscr, y, x, 0, "0");
+        				print_rect(stdscr, y, x, "0");
 						move(y,x);
 						break;
 					}
@@ -75,14 +74,12 @@ int main(int argc, char *argv[])
 					}
 				}
 				refresh();
-
 			}
         	endwin();
 }
 
-void print_rect(WINDOW *win, int starty, int startx, int width, char *string)
-{       int length, x, y;
-        float temp;
+void print_rect(WINDOW *win, int starty, int startx, char *string)
+{       int x, y;
 
         if(win == NULL)
                 win = stdscr;
@@ -91,12 +88,7 @@ void print_rect(WINDOW *win, int starty, int startx, int width, char *string)
                 x = startx;
         if(starty != 0)
                 y = starty;
-        if(width == 0)
-                width = 80;
 
-        length = strlen(string);
-        temp = (width - length)/ 2;
-        //x = startx + (int)temp;
         mvwprintw(win, y, x, "%s", string);
 }
 

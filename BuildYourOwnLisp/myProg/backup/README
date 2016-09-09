@@ -1,0 +1,6 @@
+This is a really poorly made drawing program via ncurses it's sort of like a sketch. I started from somebody elses code 
+that I modified with the help of the ncurses tutorial. The original source was example 9 from here: 
+
+	http://invisible-island.net/ncurses/NCURSES-Programming-HOWTO.html#KEYS
+
+The unused midinote class is a scratch as I plan to try and make midifiles with this at somepoint.. For now you can just draw with it! :]
