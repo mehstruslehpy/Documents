@@ -14,6 +14,17 @@ void print_rect(WINDOW *win, int starty, int startx, char *string);
 
 int main(int argc, char *argv[])
 {      
+		printf("\n");
+		printf("###   ## ####  ####   ####  ##    ## \n");
+		printf("## #  ## ##  # ##  # ##  ## ##    ## \n");
+		printf("##  # ## ##  # ##    ###### ## ## ## \n");
+		printf("##   ### ####  ##    ##  ##  ### ##  \n\n");
+		printf("Welcome to ndraw! :]\n");
+		printf("Press space to fill a box, press 1-6 to choose a color, and Ctrl+c to quit.\n");
+		printf("Press enter to continue.");
+		int c = getchar();
+		while( c != '\n'){}
+
 		int y = 0;
 		int x = 0; 
 		initscr();                      /* Start curses mode            */

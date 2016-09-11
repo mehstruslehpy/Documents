@@ -4,3 +4,7 @@ that I modified with the help of the ncurses tutorial. The original source was e
 	http://invisible-island.net/ncurses/NCURSES-Programming-HOWTO.html#KEYS
 
 The unused midinote class is a scratch as I plan to try and make midifiles with this at somepoint.. For now you can just draw with it! :]
+
+use 1-6 to change color and space to fill a box
+
+this program requires ncurses
