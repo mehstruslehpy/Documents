@@ -1,0 +1,4 @@
+  928  openssl des3 -in file.txt -out encrypted.txt 
+  929  openssl des3 -d -in encrypted.txt -out unencrypted.txt 
+  935  history | grep openssl
+  936  history | grep openssl >> cmds.txt

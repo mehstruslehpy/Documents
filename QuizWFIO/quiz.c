@@ -7,6 +7,10 @@
 const int MAXLENGTH = 100;
 
 int helpMenu();
+//the laziest encryption possibly.. this depends on openssl I will add printfs to state this..
+int awfulEncrypt();
+int awfulDecrypt();
+int initQs(char **qs, int sz);
 int initQs(char **qs, int sz);
 int initAs(char **as, int sz);
 int beginTest(char **qs, char **as, int sz);
@@ -32,11 +36,16 @@ int main()
 		x: clear screen
 		h: help
 		q: quit
-
+etcetcetc...
 NOTE: I'd like to add some more features later, I doubt file input and output would be too crazy.
 */
 	printf("welcome to my quiz program!\n");
 	printf("This program was made by WPV for CISP300!\n");
+	printf("\n!WARNING! !WARNING! !WARNING!\n");
+	printf("The encrypt decrypt commands are an experimental hack\n");
+	printf("done by executing shell commands via calls to 'system(cmds)'\n");
+	printf("They rely on your system having openssl binaries installed\n");
+	printf("You will also probably need it in your PATH env variable\n");
 	helpMenu();
 	replIn = getchar();	
 	//printf("\n");
@@ -54,6 +63,17 @@ NOTE: I'd like to add some more features later, I doubt file input and output wo
 			initQs(questions, size);
 			initAs(answers, size);
 			isLoaded = 1;
+		}
+
+		//encrypt
+		if (replIn == 'e')
+		{
+			awfulEncrypt();
+		}
+		//decrypt
+		if (replIn == 'd')
+		{
+			awfulDecrypt();
 		}
 
 		//print help
@@ -202,6 +222,8 @@ int helpMenu()
 	printf("\nAvailable commands:\n");
 	printf("		q: quit\n");
 	printf("		c: create a quiz\n");
+	printf("		e: encrypt a file (EXPERIMENTAL)\n");
+	printf("		d: decrypt a file (EXPERIMENTAL)\n");
 	printf("		w: write quiz to file\n");
 	printf("		r: read quiz from file\n");
 	printf("		s: start a quiz\n");
@@ -363,4 +385,76 @@ int countlines (FILE *fin)
     }
 
     return nlines;
+}
+
+int awfulEncrypt()
+{
+	//next part is on element 16..
+
+	char cmd1[200];
+	char cmd2[200];
+	char src[64];
+	char dest[64];
+
+	fgets(src, 32, stdin);
+	printf("This feature is experimental and relies on having\n"); 
+	printf("openssl commandline binaries installed.\n");
+	printf("Please use at your own risk!\n\n");
+
+	printf("Enter a source file to encrypt:\n");
+	rewind(stdin);
+	fgets(src, 32, stdin);
+	src[strlen(src)-1] = '\0';	
+
+	printf("Enter a destination file:\n");
+	rewind(stdin);
+	fgets(dest, 32, stdin);
+	dest[strlen(dest)-1] = '\0';	
+
+	snprintf(cmd1, 200, "openssl des3 -in %s -out %s", src, dest);
+	printf("%s\n", cmd1);
+	snprintf(cmd2, 200, "rm  %s", src);
+
+    //perform the shell cmd	
+	system(cmd1);
+	//remove src file
+	printf("%s\n", cmd2);
+	system(cmd2);
+	return 0;
+}
+
+int awfulDecrypt()
+{
+	//next part is on element 16..
+
+	char cmd1[200];
+	char cmd2[200];
+	char src[64];
+	char dest[64];
+
+	fgets(src, 32, stdin);
+	printf("This feature is experimental and relies on having\n"); 
+	printf("openssl commandline binaries installed.\n");
+	printf("Please use at your own risk!\n\n");
+
+	printf("Enter a source file to encrypt:\n");
+	rewind(stdin);
+	fgets(src, 32, stdin);
+	src[strlen(src)-1] = '\0';	
+
+	printf("Enter a destination file:\n");
+	rewind(stdin);
+	fgets(dest, 32, stdin);
+	dest[strlen(dest)-1] = '\0';	
+
+	snprintf(cmd1, 200, "openssl des3 -d -in %s -out %s", src, dest);
+	printf("%s\n", cmd1);
+	snprintf(cmd2, 200, "rm  %s", src);
+
+    //perform the shell cmd	
+	system(cmd1);
+	//remove src file
+	printf("%s\n", cmd2);
+	system(cmd2);
+	return 0;
 }
