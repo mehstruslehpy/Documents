@@ -437,7 +437,7 @@ int awfulDecrypt()
 	printf("openssl commandline binaries installed.\n");
 	printf("Please use at your own risk!\n\n");
 
-	printf("Enter a source file to encrypt:\n");
+	printf("Enter a source file to decrypt:\n");
 	rewind(stdin);
 	fgets(src, 32, stdin);
 	src[strlen(src)-1] = '\0';	
