@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>A basic test page</title>
+</head>
+<body>
+	<h1>Hello!</h1>
+	<p>Hey you!</p>
+</body>
+</html>
+<!-- If I place the script here the script runs after the page loads-->
+<script>
+	var howManyTimes = 5;
+
+	while (howManyTimes != 0) 
+	{
+		alert("Hey!")
+		howManyTimes -= 1;
+		
+	}
+	
+	setTimeout(wakeUpUser, 5000);
+	function wakeUpUser()
+	{
+		alert("Stop being so lazy! Go and be productive!");
+	}
+</script>
