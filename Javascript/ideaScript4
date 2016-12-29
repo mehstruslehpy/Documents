@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Hello</title>
+</head>
+<body>
+	<h1> This is a page </h1>
+	<div>
+		<h2 id="here">I am a good page!</h2>
+		<p alt="get attribute test" id="hello">:)</p>
+		<p>Hmmm</p>
+	</div>
+	<button>click me!</button>
+</head>
+</body>
+</html>
+<script src="scriptPad.js"></script>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<style>
+	html {
+		font-family: sans-serif monospace;
+		font: monospace;
+		color: #ffcc00;
+		background-color: black;
+	}
+	input[type=text] {
+    	color: black;
+    	border: 2px solid green;
+    	border-radius: 4px;
+    	background-color: gray;
+	}
+	input[type=button] {
+		background-color: black;
+		color: #ffcc00;
+    	border: 2px solid #ffcc00;
+    	border-radius: 4px;
+	}
+	#changeme {
+		border: 2px solid #ffcc00;
+    	border-radius: 4px;
+	}
+</style>
+<head>
+	<meta charset="utf-8">
+	<title>Hello</title>
+</head>
+<body>
+	<h1> This is an event handler </h1>
+	<div>
+		<h2 id="here">Try the text box</h2>
+		<p id="changeme"> *change this part*</p>
+	</div>
+	<form>
+		<input type="text" id="textInput" placeholder="Hi!">
+		<input type="button" id="button" value="submit">
+	</form>
+</head>
+</body>
+</html>
+<script src="simpleEvent.js"></script>

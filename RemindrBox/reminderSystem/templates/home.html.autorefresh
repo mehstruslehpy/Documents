@@ -1,0 +1,35 @@
+<html>
+<body onload="JavaScript:timeRefresh(10000);">
+	<link href="../static/css/style.css" rel="stylesheet" type="text/css">
+	<head>
+		<title>Text Storage</title>
+	</head>
+	<h1>Store Text</h1>
+	
+	<!-- submission fields -->
+	<form action="/add" method="POST">
+		<!-- the name values here are used in our sources-->
+		<input type="text" placeholder="input your name here.." name="username">
+		<input type="text" placeholder="input your text here.." name="userinput">
+		<input type="submit" value="submit">
+	</form>
+	<form action="/enduser" method="POST">
+		<input type="submit" value="change user">
+	</form>
+	
+	<!-- clear button -->
+	<a href="/clear">Clear Text</a>
+
+	<!-- jinja2 generated output data -->
+	{% for userinput in strs %}
+		<p>{{userinput}}</p>
+	{% endfor %}
+</body>
+</html>
+
+<script type="text/JavaScript">
+function timeRefresh(timeoutPeriod) 
+{
+	setTimeout("location.reload(true);",timeoutPeriod);
+}
+</script>

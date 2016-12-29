@@ -1,0 +1,72 @@
+  a:link {color:white; background-color:black; text-decoration:none;}
+  a:visited {color:darkgray; background-color:black; text-decoration:none;}
+  a:hover {color:red; background-color:black; text-decoration:none;}
+  html {
+		font-family: sans-serif monospace;
+		font: monospace;
+		color: #ffcc00;
+		background-color: black;
+	}
+	input[type=text] {
+    	color: black;
+    	border: 2px solid green;
+    	border-radius: 4px;
+    	background-color: gray;
+	}
+	input[type=size] {
+    	color: black;
+    	border: 2px solid green;
+    	border-radius: 4px;
+    	background-color: gray;
+	}
+	input[type=button] {
+		background-color: black;
+		color: #ffcc00;
+    border: 2px solid #ffcc00;
+    border-radius: 4px;
+	}
+	#orderSummary {
+		display:inline;
+		border: 2px solid #ffcc00;
+    border-radius: 4px;
+		padding-bottom: 2px;
+		padding-top: 2px;
+		padding-left: 4px;
+		padding-right: 4px;
+	}
+	#priceSummary{
+		display:inline;
+		border: 2px solid #ffcc00;
+    border-radius: 4px;
+		padding-bottom: 2px;
+		padding-top: 2px;
+		padding-left: 4px;
+		padding-right: 4px;
+	}
+	input[type=submit],input[type=text]{
+    color: #ffcc00;
+    border: 2px solid #ffcc00;
+    border-radius: 4px;
+    background-color: black;
+	}
+  input[type=submit]:hover,input[type=text]:hover{
+    color: red;
+    border: 2px solid red;
+    border-radius: 4px;
+    background-color: black;
+	}
+  select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    color: #ffcc00;
+    border: 2px solid #ffcc00;
+    border-radius: 4px;
+    background-color: black;
+	}
+  select:hover{
+    color: red;
+    border: 2px solid red;
+    border-radius: 4px;
+    background-color: black;
+	}
