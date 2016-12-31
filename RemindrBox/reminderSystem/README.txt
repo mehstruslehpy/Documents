@@ -6,6 +6,9 @@ of concept this app is not secure! I created it from a
 heavily modified version of an example from the book 
 'flask by example'
 
+a running instance can be accessed via: 
+http://mehstruslehpy.pythonanywhere.com/
+
 on mysql from the book:
 	
 	Keep in mind that neither our setup of MySQL nor the data we store
