@@ -1,0 +1,11 @@
+<html>
+<h1>Places</h1>
+<link type="text/css" rel="stylesheet" href="/static/css/style.css" />
+
+<p>Places count: {{placeLen}}</p><br>
+
+{% for i in range(0, placeLen) %}
+<a href="/places/{{places[i].name}}.html">{{i + 1}}: {{places[i].name}}</a></a><br>
+{% endfor %}
+
+<br><a href="/">...back...</a><br>

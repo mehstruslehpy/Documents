@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- <link href="../static/css/style.css" rel="stylesheet" type="text/css"> -->
+<!-- google maps scripts and header -->
+<head>
+
+<link type="text/css" rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}" />
+
+	<script type="text/javascript"
+		src="https://maps.googleapis.com/maps/api/js">
+	</script>
+
+	<script type="text/javascript">
+		var marker;
+		var map;
+
+		function initialize() {
+			var mapOptions = {
+				center: new google.maps.LatLng(38.581572, -121.4944),
+				zoom: 11
+			};
+			map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+			google.maps.event.addListener(map,
+				'click',
+				function(event) { placeMarker(event.latLng); }
+			);
+			populatePlaces({{places | safe}});
+		}
+
+		function populatePlaces(places) {
+			for (i=0; i<places.length; i++) {
+					place = new google.maps.Marker( {
+						//see here: https://stackoverflow.com/questions/16985867/adding-an-onclick-event-to-google-map-marker
+						name: places[i].name,
+						placeDate: places[i].date,
+						url: '/static/html/places/' + places[i].name + places[i].date + '.html',
+						position: new google.maps.LatLng(places[i].latitude, places[i].longitude),
+						map: map,
+						title: "date: " + places[i].date + "\n" + "name: " + places[i].name + "\n" + places[i].description
+						}
+					);
+			}
+		}
+
+		function placeMarker(location) {
+			if (marker) {
+				marker.setPosition(location);
+			} else {
+				marker = new google.maps.Marker({
+					position: location,
+					map: map
+				});
+			}
+			//after the marker is placed enter the lat and lon into the form
+			document.getElementById('latitude').value = location.lat();
+			document.getElementById('longitude').value = location.lng();
+		}
+
+		//google.maps.event.addDomListener(window, 'load', initialize);
+		//google.maps.event.addListener(marker, 'click', function() {console.log("Changing location..");window.location.href = place.url;});
+	</script>
+</head>
+<!-- end of google maps scripts and header -->
+
+<body onload="initialize()">
+	<h1>Location Database</h1>
+	<div id="map-canvas"></div>
+	<div id="newplaceform">
+		<a href="/place_index">Places</a><br>
+		<a href="./static/html/info.html">Info</a>
+		<h2>Submit New place</h2>
+		<form action="/submitplace" method="POST">
+			<label for="name">Name&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+			<input name="name" id="name" type="text"><br>
+            <!-- I don't like the idea of artificially-->
+            <!-- limiting the users for this bit -->
+			<!--<select name="name" id="name">
+				<option value="mugging">Mugging</option>
+				<option value="breakin">Break-in</option>
+			</select><br>-->
+			<label for="date">Date&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+			<input name="date" id="date" type="date" placeholder="YYYY-MM-DD"><br>
+			<label for="latitude">Latitude&nbsp&nbsp&nbsp</label>
+			<input name="latitude" id="latitude" type="text"><br>
+			<label for="longitude">Longitude</label>
+			<input name="longitude" id="longitude" type="text"><br><br>
+			<label for="description">Description</label><textarea name="description" id="description" placeholder="A brief but detailed description of the place"></textarea>
+			<input type="submit" value="Submit">
+			<p>(hover to view info about a location)</p>
+		</form>
+	</div>
+</body>
+</html>
+
