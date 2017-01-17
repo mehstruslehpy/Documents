@@ -1,0 +1,11 @@
+(defvar *arch-enemy*)
+(defun pudding-eater (person)
+	(case person
+		((henry)	(setf *arch-enemy* 'stupid-lisp-alien)
+					'(curse you lisp alien - you ate my pudding))
+		((stroustrup)(setf *arch-enemy* 'sillyc++guy)
+					'(dang it stroustrup that isnt oop pudding))
+		((johnny)	(setf *arch-enemy* 'useless-old-johnny)
+					'(i hope you choke on my udding johnny))
+		(otherwise 	(setf *arch-enemy* person )
+					'(why you eat my pudding stranger?))))

@@ -1,0 +1,4 @@
+SOME TIPS ON DEBUGGING
+	http://www.cliki.net/TutorialClispDebugger
+SOME MORE TIPS
+	http://cs.gmu.edu/~sean/lisp/LispTutorial.html

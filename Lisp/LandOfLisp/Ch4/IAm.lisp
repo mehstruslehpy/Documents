@@ -1,0 +1,33 @@
+;;outputs I am true or I am false depending on input to the if
+;;() an empty list is false
+;;(1) this will be true
+(print "")
+(princ "Statement 1 is false: ")
+( if '()
+	(princ 'i-am-true)
+	(princ 'i-am-false))
+(print "")
+(princ "Statement 2 is true: ")
+( if '(1)
+	(princ 'i-am-true)
+	(princ 'i-am-false))
+
+(print "")
+(princ "The function my-length takes a list and returns its length: ")
+(defun my-length (list)
+	(if list
+		(1+ (my-length (cdr list)))
+		0))
+(print "")
+(princ " Like this: (my-length '(list with four symbols)) == ")
+(princ (my-length '(list with four symbols)))
+(print "Here's a helpful display comparing various empty lists to each other")
+(print "")
+(princ "(eq '() nil) ==>: ")
+(princ (eq '() nil))
+(print "")
+(princ "(eq '() ()) ==>: ")
+(princ (eq '() ()))
+(print "")
+(princ "(eq '() nil) ==>: ")
+(princ (eq '() 'nil))

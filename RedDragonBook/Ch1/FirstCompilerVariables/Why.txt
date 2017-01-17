@@ -1,0 +1,2 @@
+I accidently deleted the program I had in here but I had some of the output of a simple expression left over from it in stdout
+so I copied that into a file. I should be able to modify the emitter of the pseudocode program to recreate it fairly simply

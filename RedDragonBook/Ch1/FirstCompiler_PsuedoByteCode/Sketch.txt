@@ -1,0 +1,10 @@
+Please enter an infix expression:
+(1 + 2)
+Push 1 to stack
+Push 2 to stack
+Pop top of stack into Register A;
+Pop top of stack into Register B;
+Apply + to Register B and A, store the result into Register A;
+Push Register A to stack;
+^C
+

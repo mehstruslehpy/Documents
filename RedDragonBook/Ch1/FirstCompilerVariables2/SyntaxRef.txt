@@ -1,0 +1,38 @@
+OUTPUT-COMMENTS:
+	examples: ;in our output code
+			  ;anything starting with a semi-colon is a comment
+
+IF STATEMENTS:
+	examples:	if (1+2) then (3+4);
+				if (1+2) then 3+4; 5 * 6;
+				if 1+2 then (3+4); 5 * 6;
+				etc...
+
+	//the test expression needs to have parenthesis but the expression after it does not
+	template:	if (expr1) then (expr2); ...
+				if (expr1) then expr2; ...
+				if expr1 then (expr2); ...
+				if expr1 then expr2; ...
+
+	outputcode
+
+WHILE STATEMENTS:
+	examples:	while (1+2) do (3+4);
+				while (1+2) do 3+4;
+				while 1+2 do (3+4);
+				while 1+2 do 3+4;
+	
+	template:
+				while (expr1) do (expr2);
+				while (expr1) do expr2;
+				while expr1 do (expr2);
+				while expr1 do expr2;
+			
+ASSIGNMENT STATEMENTS:
+	examples:	x := 1 + 2;		
+	
+	template:
+				x := expr;
+			
+
+I am not entirely sure if I did or did not break anything by implementing things this way..			

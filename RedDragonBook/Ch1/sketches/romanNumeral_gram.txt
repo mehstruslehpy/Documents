@@ -1,0 +1,17 @@
+#from github fool2fish
+
+romanNum -> thousand hundred ten digit
+
+thousand -> M | MM | MMM | ε
+
+hundred -> smallHundred | C D | D smallHundred | C M
+
+smallHundred -> C | CC | CCC | ε
+
+ten -> smallTen | X L | L smallTen | X C
+
+smallTen -> X | XX | XXX | ε
+
+digit -> smallDigit | I V | V smallDigit | I X
+
+smallDigit -> I | II | III | ε

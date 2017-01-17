@@ -2,10 +2,11 @@
 
 <h1>Welcome to my repository!<h1>
 
-I'm just using github to host my projects and practice remotely offsite
+I use this repo as storage for various code projects.
 
 Not all of this is my code..
 
-I won't claim to be any good..
+I am doing my best to mark where I am using somebody elses code, so just get in contact if you feel
+you are improperly creditted.
 
-Part of why I made this is because I think programming is fun.
+The organization is semi-random. I just make new directories for different endeavours, lisp is for lisp, reddragonbook is for a book etc..

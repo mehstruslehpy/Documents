@@ -1,0 +1,172 @@
+;;;player stats
+(defparameter *player-health* nil)		;when 0 the player dies
+(defparameter *player-agility* nil)		;how many attacks can perform in a round
+(defparameter *player-strength* nil)	;how strong each attack is
+
+;;;we will store monsters in an array called *monsters*
+;;;it will be heterogeneous meaning it can store different types of monsters
+;;;monsters
+(defparameter *monsters* nil)
+(defparameter *monster-builders* nil)
+(defparameter *monsters-num* 12)
+
+;;;### main game functions ###;;;
+
+;;;orc-battle initialize monsters 
+;;;initialize player
+;;;and start the game loop
+;;;once the battle ends print the appropriate ending message for the game
+
+(defun orc-battle ()
+  (init-monsters)
+  (init-player)
+  (game-loop)
+  (when (player-dead)
+    (princ "You have been killed. Game over."))
+  (when (monsters-dead)
+    (princ "Congratulations! You have vanquished all of your foes.")))
+
+
+;;;game-loop
+;;;handle a round then call self recursively
+
+(defun game-loop ()
+  (unless (or (player-dead) (monsters-dead))						;unless player or all monsters are dead
+    (show-player)													;show player info
+	(dotimes (k (1+ (truncate (/ (max 0 *player-agility*) 15))))	;calculate how many times the player attacks
+	  (unless (monsters-dead)										;unless the monster is dead
+	    (show-monsters)												;show the monsters
+		(player-attack)))											;player gets to attack
+	(fresh-line)
+	(map 'list														;map returning a list..													
+	     (lambda(m)													;this lambda function:
+		    (or (monster-dead m) (monster-attack m)))				;do monster-dead m or monster-attack m
+		 *monsters*)												;for each monster
+	(game-loop)))
+
+;;;### player management functions ###;;;
+
+;;;initialize a player
+(defun init-player ()
+    (setf *player-health* 30)
+	(setf *player-agility* 30)
+	(setf *player-strength* 30))
+
+;;;check if the player is dead
+(defun player-dead ()
+    (<= *player-health* 0))
+
+;;;show the players info
+(defun show-player ()
+    (fresh-line)
+	(princ "You are a valiant knight with a health of ")
+    (princ *player-health*)	
+    (princ ", an agility of ")	
+    (princ *player-agility*)	
+    (princ ", and a strength of ")	
+    (princ *player-strength*))
+
+;;;player attack function
+(defun player-attack ()
+  (fresh-line)
+  (princ "Attack style: [s]tab [d]ouble swing [r]oundhouse:")				 ;prompt user for attack type
+  (case (read)
+    (s (monster-hit (pick-monster)											 ;hit monster for 2 + randval(player-strength / 2)
+	                  (+ 2(randval (ash *player-strength* -1)))))
+	(d (let ((x randval (truncate (/ *player-strength* 6)))))				 ;x = randval(player-strength / 6) truncated..
+			(princ "Your double swing has a strength of ")
+			(fresh-line)
+			(monster-hit (pick-monster) x)									 ;hit monsters..
+			(unless (monsters-dead)
+			  (monster-hit (pick-monster) x))))
+	(otherwise (dotimes (x (1+ (randval (truncate (/ *player-strength* 3)))));do a roundhouse attack on a random monster 
+			     (unless (monsters-dead)
+				   (monster-hit (random-monster 1))))))
+
+;;;a helper rng function generates from 1 to n
+(defun randval (n)
+  (1+ (random (max 1 n))))
+
+;;;helper functions for the player attacks
+(defun random-monster ()
+  (let ((m (aref *monsters* (random (length *monsters)))))			;define a local var m by picking a random monster from the array of monsters
+    (if (monster-dead m)											;if that monster is dead
+	    (random-monster)											;pick another
+		m)))														;else just return that monster
+
+;;;dialogue for the player to choose a monster
+(defun pick-monster ()												
+  (fresh-line)							
+  (princ "Monster #:")											;prompt the player
+  (let ((x (read)))												;read an input
+    (if (not (and (intergerp x) (>= x 1) (<= x *monster-num*)	;if not (an integer & >= 1 & <= *monster-num*) 
+		(progn (princ "That is not a valid onster number.")		;print error text and retry recursively
+			   (pick-monster))							
+		(let ((m (aref *monsters* (1- x))))						;else index into the array of monsters by the users choice - 1 (zero indexing)
+		  (if (monster-dead m)									;if that monster is dead
+		      (progn (princ "that monster is alread dead.")		;tell the user and prompt for a new input recursively
+			         (pick-monster))				
+			  m)))))))											;else return the monster
+
+;;;### monster management functions ###;;;
+
+;;;initialize the monsters
+(defun init-monsters ()
+  (setf *monsters*													;we will set the global monsters variable 
+        (map 'vector												;map to a vector
+		     (lambda (x)											;the lambda function
+			   (funcall (nth (random (length *monster-builders*))	;funcall a random function from *monster-builders*
+			   			*monster-builders*)))
+			 (make-array *monster-num*))))							;on each value of the array
+
+;;;check if a monster is dead
+(defun monster-dead (m) 
+  (<= (monster-health m) 0))	;check if input monsters health is greater or equal to 0
+
+(defun monsters-dead ()
+  (every #'monster-dead *monsters*))	;do prev function on all monsters
+
+;;;show all monsters
+(defun show-monsters ()									;
+  (fresh-line)											;	
+  (princ "Your foes:")									;output text
+  (let ((x 0))											;set x = 0
+    (map 'list											;map returning a list
+	     (lambda (m)									;lambda function with input m
+		     (fresh-line)								;
+			 (princ "   ")								;
+			 (princ (incf x))							;print x = x + 1
+			 (princ ". ")								;
+			 (if (monster-dead m)						;if monster is dead prepend with **DEAD**
+			     (princ "**DEAD**")						;
+				 (progn (princ "(Health=")				;print monsters health
+				        (princ (monster-health m))		;
+						(princ ") ")					;
+						(monster-show m))))				;show the monster
+	*monsters*)))										;for all monsters
+
+;;;definition for creating generic monsters
+;;;with hlth from 1 to 10
+(defstruct monster (health (randval 10)))
+
+;;;a method for when a monster gets hit
+(defmethod monster-hit (m x)
+  (decf (monster-health m) x)					;decrement the monsters health by x
+  (if (monster-dead m)							;if the monster is dead
+      (progn (princ "You killed the ")			;print kill text
+	         (princ (type-of m))
+	  		 (princ "! ")
+	  (progn (princ "You hit the ")				;else print how much damage you did
+	         (princ (type-of m))
+			 (princ ", knocking off ")
+			 (princ x)
+			 (princ " health points! ")))))
+
+(defmethod monster-show (m)
+  (princ "A fierce")
+  (princ (type-of m)))
+
+(defmethod monster-attack (m))
+
+;;;a separate file for monsters..
+(load "MonsterList")
