@@ -1,0 +1,3 @@
+#this is not a real makefile
+#compile this program with this cmd
+g++ main.cpp caretPow.cpp

@@ -1,0 +1,13 @@
+this is a translator/preprocessor for caret style exponentiations into functional form
+for example:
+	x^y will be translated to pow(x, y)
+it searches every line in a file for the caret symbol when it finds a caret it iterates over that line replacing instances
+of the caret notation for the function notation
+
+you can escape translation of caret symbols by using the comment //bitwise directly above lines that you do not want to get translated
+
+//any other line that does not have a caret symbol should just get copied directly as is into the translated file
+
+the demo_expressions.cpp sample file will not compile using g++ on its own
+but if you translate it with my preprocessor/translator it will output a file called translated.cpp that will compile perfectly into a working
+program
