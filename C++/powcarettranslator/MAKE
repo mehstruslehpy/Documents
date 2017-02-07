@@ -1,3 +1,5 @@
 #this is not a real makefile
 #compile this program with this cmd
+#you will need the boost c++ libraries
+#installed and setup
 g++ main.cpp caretPow.cpp

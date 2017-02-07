@@ -11,3 +11,9 @@ you can escape translation of caret symbols by using the comment //bitwise direc
 the demo_expressions.cpp sample file will not compile using g++ on its own
 but if you translate it with my preprocessor/translator it will output a file called translated.cpp that will compile perfectly into a working
 program
+
+you really only need these files:
+
+	main.cpp, caretPow.cpp, caretPow.h
+
+and boost installed..
