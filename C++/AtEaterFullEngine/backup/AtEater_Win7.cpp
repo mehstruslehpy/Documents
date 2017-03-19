@@ -432,6 +432,7 @@ void initBoard(vector<vector<char>> &grid, string fileName)
     grid.erase(grid.end());
     grid.erase(grid.end());
     grid.erase(grid.end());
+    cout << "WARNING THE MAPPING PROGRAM OUT PUTS AN OFF" << endl << "BY ONE ROW COUNT" << endl;
     ROWS = grid.size();
     COLS = grid[0].size();
     cout << "ROWS DEBUG: " << ROWS << endl;

@@ -57,6 +57,6 @@ int main(int argc, char *argv[])
     outMap = outMap + "};";
     cout << outMap << endl;
     cout << "Rows: " << numRows - 1 << endl; ///minus two because the single e
-    cout << "Cols: " << numCols - 1 << endl;
+    cout << "Cols: " << numCols << endl;
     inputFile.close();
 }

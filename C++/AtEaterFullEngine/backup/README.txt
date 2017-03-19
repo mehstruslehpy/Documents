@@ -13,22 +13,14 @@ it removed please contact me and I will do so.
 I originally made this in codeblocks during lab time for the aforementioned class.
 you will need to compile with c11 support due to the nested vectors. 
 
-(before c11 c++ had issues with >> << in nested vectors looking like stream operators)
-
-It should be noted that this is really dirty and hackish so this really probably won't compile for you
+(before c11 c++ had issues with >> << in nested vectorsa looking like stream operators)
 
 ####STARTING A GAME####
-To run the game on linux do:
+To run the game either do:
 
-AtEater.exe yourMap.src 5
+AtEater.exe yourMap.src
 
-where 5 is a number between 1-5 signifying a choice in difficulty/game speed
-
-to run the game on windows do:
-
-AtEater.exe yourMap.src 5
-
-or on either system to choose manually just type:
+or just type:
 
 ArEater.exe
 
@@ -63,5 +55,3 @@ The M tiles on the map need room to move around
 or the game engine will infinitely loop trying to 
 reposition the monsters.
 You also need to leave coordinate (0,0) free for the player character to be drawn
-
-currently the Linux version supports variable difficulty levels 

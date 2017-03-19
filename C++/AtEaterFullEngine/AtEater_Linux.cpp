@@ -5,17 +5,26 @@
 #include <ctime>
 ///needed for Sleep possibly
 ///conio is not portable you should use pdcurses/ncurses instead
-#include <conio.h>
+///#include <conio.h>
 ///need vectors because I'm lazy
 #include <vector>
 #include <fstream>
 #include <string>
-#include <windows.h>
+///#include <windows.h>
+///#include <curses.h>
+///stuff for keyboard input
+#include <termios.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <assert.h>
+#include <string.h>
+#include <sys/ioctl.h>
 using namespace std;
 
 //globals for convenience
 int ROWS = 0;
 int COLS = 0;
+int difficulty = 99999;
 ///globals for current position on board
 int playerRow = 0;
 int playerCol = 0;
@@ -23,7 +32,6 @@ int playerCol = 0;
 //to display the board
 void dispBoard(vector<vector<char>>);
 ///clear the previous board..
-void refreshBoard();
 void ClearScreen();
 ///move every monster on the board
 int moveMonsters(vector<vector<char>>&);
@@ -37,7 +45,9 @@ int moveSpot(vector<vector<char>>&);
 
 ///an input wrapper
 char getinput();
-
+int getch(void);
+int kbhit(void);
+void changemode(int);
 //check for a win
 int checkBoard(vector<vector<char>>&);
 
@@ -50,20 +60,65 @@ int main(int argc, char *argv[])
     ///the game board to use will be stored in this vector
     vector<vector<char>> board;
     string mapName;
-
     ///find out which map file to load
-    if (argc==2)
+    if (argc==3)
     {
         ///if they specified a map via standard input
         initBoard(board, argv[1]);
+		difficulty = stoi(argv[2],NULL);
+		switch (difficulty)
+		{
+			case 1:
+				difficulty = 90000;
+				break;
+			case 2:
+				difficulty = 100000;
+				break;
+			case 3:
+				difficulty = 120000;
+				break;
+			case 4:
+				difficulty = 159000;
+				break;
+			case 5:
+				difficulty = 162000;
+				break;
+			default:
+				difficulty = 159000;
+				break;	
+		}
+
     }
     else
     {
         cout << "Please specify a map to load: " << endl;
         getline(cin, mapName);
         initBoard(board, mapName);
+        cout << "Please specify a difficulty level[1-5]: " << endl;
+        getline(cin, mapName);
+		difficulty = stoi(mapName.c_str(),NULL);
+			switch (difficulty)
+		{
+			case 1:
+				difficulty = 90000;
+				break;
+			case 2:
+				difficulty = 100000;
+				break;
+			case 3:
+				difficulty = 120000;
+				break;
+			case 4:
+				difficulty = 159000;
+				break;
+			case 5:
+				difficulty = 162000;
+				break;
+			default:
+				difficulty = 159000;
+				break;	
+		}
     }
-
     ///the game loop
     do
     {
@@ -78,7 +133,7 @@ int main(int argc, char *argv[])
         endFlag = checkBoard(board);
     }
     while (endFlag == 0);
-    system("PAUSE");
+    ///endwin();
     return 0;
 }
 
@@ -106,11 +161,10 @@ int moveSpot(vector<vector<char>>& arr)
 
         do
         {
-            ///choice = _getch();
             choice = getinput();
             ///these can be used to change game-refresh rate
             goodInput = true;
-            Sleep(100);
+            usleep(difficulty);
             if (choice == 's' && playerRow == (ROWS - 1))
             {
                 goodInput = false;
@@ -154,7 +208,6 @@ int moveSpot(vector<vector<char>>& arr)
         {
             ClearScreen();
             cout << "OOPS YOU'RE DEAD!" << endl;
-            system("PAUSE");
             return -1;
         }
     }
@@ -196,7 +249,6 @@ int checkBoard(vector<vector<char>>& arr)
     }
     ClearScreen();
     cout << "GOOD JOB, YOU WON!" << endl;
-    system("PAUSE");
     return 1;
 }
 
@@ -250,7 +302,6 @@ int moveMonsters(vector<vector<char>>& arr)
     {
         ClearScreen();
         cout << "OM NOM YOU GOT EATEN!" << endl;
-        system("PAUSE");
 
     }
     return eatenFlag;
@@ -317,64 +368,24 @@ int moveMonster(vector<vector<char>>& arr, int row, int col, int direction, int 
 
 }
 
-///from here
-///http://www.cplusplus.com/forum/windows/1126/
+///this was rewritten by me based on the windows version and the new functions
 char getinput()
 {
-    if (_kbhit())
-    {
-        ///_getch(); // edit : if you want to check the arrow-keys you must call getch twice because special-keys have two values
-        ///return _getch();
-        return _getch();
-    }
-    return 0; // if no key is pressed
+	changemode(1);
+	char c = 0;
+	if (kbhit())
+	{
+		c = getch();
+	}
+		changemode(0);
+		return c;
 }
 
-///from here
-///http://www.cplusplus.com/articles/4z18T05o/
 void ClearScreen()
 {
-    HANDLE                     hStdOut;
-    CONSOLE_SCREEN_BUFFER_INFO csbi;
-    DWORD                      count;
-    DWORD                      cellCount;
-    COORD                      homeCoords = { 0, 0 };
-
-    hStdOut = GetStdHandle( STD_OUTPUT_HANDLE );
-    if (hStdOut == INVALID_HANDLE_VALUE) return;
-
-    /* Get the number of cells in the current buffer */
-    if (!GetConsoleScreenBufferInfo( hStdOut, &csbi )) return;
-    cellCount = csbi.dwSize.X *csbi.dwSize.Y;
-
-    /* Fill the entire buffer with spaces */
-    if (!FillConsoleOutputCharacter(
-                hStdOut,
-                (TCHAR) ' ',
-                cellCount,
-                homeCoords,
-                &count
-            )) return;
-
-    /* Fill the entire buffer with the current colors and attributes */
-    if (!FillConsoleOutputAttribute(
-                hStdOut,
-                csbi.wAttributes,
-                cellCount,
-                homeCoords,
-                &count
-            )) return;
-
-    /* Move the cursor home */
-    SetConsoleCursorPosition( hStdOut, homeCoords );
+	system("clear");
 }
 
-///we could use this to refresh the screen but pdcurses/ncurses is a better choice
-void refreshBoard()
-{
-    for (int i = 0; i < 20; i++)
-        cout << endl;
-}
 ///inspiration for this comes from here:
 ///https://stackoverflow.com/questions/33108785/reading-characters-from-a-file-one-at-a-time-c-and-storing-to-a-2d-array
 ///https://stackoverflow.com/questions/30445200/passing-vector-of-vectors-to-function
@@ -439,3 +450,57 @@ void initBoard(vector<vector<char>> &grid, string fileName)
 
     file.close();
 }
+///stolen from here
+///http://www.unix.com/programming/20438-unbuffered-streams.html
+int getch(void) {
+      int c=0;
+
+      struct termios org_opts, new_opts;
+      int res=0;
+          //-----  store old settings -----------
+      res=tcgetattr(STDIN_FILENO, &org_opts);
+      assert(res==0);
+          //---- set new terminal parms --------
+      memcpy(&new_opts, &org_opts, sizeof(new_opts));
+      new_opts.c_lflag &= ~(ICANON | ECHO | ECHOE | ECHOK | ECHONL | ECHOPRT | ECHOKE | ICRNL);
+      tcsetattr(STDIN_FILENO, TCSANOW, &new_opts);
+      c=getchar();
+          //------  restore old settings ---------
+      res=tcsetattr(STDIN_FILENO, TCSANOW, &org_opts);
+      assert(res==0);
+      return(c);
+}
+///stolen from here
+///https://cboard.cprogramming.com/c-programming/63166-kbhit-linux.html
+int kbhit (void)
+{
+  struct timeval tv;
+  fd_set rdfs;
+ 
+  tv.tv_sec = 0;
+  tv.tv_usec = 0;
+ 
+  FD_ZERO(&rdfs);
+  FD_SET (STDIN_FILENO, &rdfs);
+ 
+  select(STDIN_FILENO+1, &rdfs, NULL, NULL, &tv);
+  return FD_ISSET(STDIN_FILENO, &rdfs);
+ 
+}
+///stolen from here
+///https://cboard.cprogramming.com/c-programming/63166-kbhit-linux.html
+void changemode(int dir)
+{
+  static struct termios oldt, newt;
+ 
+  if ( dir == 1 )
+  {
+    tcgetattr( STDIN_FILENO, &oldt);
+    newt = oldt;
+    newt.c_lflag &= ~( ICANON | ECHO );
+    tcsetattr( STDIN_FILENO, TCSANOW, &newt);
+  }
+  else
+    tcsetattr( STDIN_FILENO, TCSANOW, &oldt);
+}
+ 
