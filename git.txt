@@ -1,7 +1,8 @@
 #I might actually script this..
 #do these things in this order..
 #I think this is right
-
+#I should remember that I have 
+#a gitignore in this directory
     git add .
     git commit
     git push
