@@ -1,0 +1,67 @@
+html {
+  font-family: "Courier New";
+  font: monospace;
+  color: #8B7AAE;
+  background-color: #17063A;
+
+}
+body {
+  margin-top: 50px;
+  background: #2B1650;
+}
+
+#Blocks {
+  width: 960px;
+  height: 100px;
+  background: #2B1657;
+  margin: 0 auto;
+  padding: 10px;
+  border: 2px solid #655091;
+  border-radius: 4px;
+}
+
+#bigwelcome {
+  font-size: 150%;
+  font-weight: bolder;
+  width: 960px;
+  height: 45px;
+  background: #2B1660;
+  margin: 0 auto;
+  padding: 10px;
+  border: 2px solid #655091;
+  border-radius: 4px;
+}
+
+.tile {
+  font-weight: bold;
+  width: 100px;
+  height: 100px;
+  background: #17063A;
+  margin: 0px 10px 10px 0px;
+  display: inline-block;
+}
+
+a:link {
+  color: #8B7AAE;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #8B7AAE;
+  text-decoration: none;
+}
+
+a:hover {
+  color: red;
+  text-decoration: none;
+}
+#extra
+{
+  color: #2B1657;
+  text-decoration: none;
+}
+#extra:hover
+{
+  color: #17063A;
+  text-decoration: none;
+}
