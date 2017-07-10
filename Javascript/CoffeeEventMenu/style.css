@@ -1,0 +1,48 @@
+	html {
+		font-family: sans-serif monospace;
+		font: monospace;
+		color: #ffcc00;
+		background-color: black;
+	}
+	input[type=text] {
+    	color: black;
+    	border: 2px solid green;
+    	border-radius: 4px;
+    	background-color: gray;
+	}
+	input[type=size] {
+    	color: black;
+    	border: 2px solid green;
+    	border-radius: 4px;
+    	background-color: gray;
+	}
+	input[type=button] {
+		background-color: black;
+		color: #ffcc00;
+    	border: 2px solid #ffcc00;
+    	border-radius: 4px;
+	}
+	#orderSummary {
+		display:inline;
+		border: 2px solid #ffcc00;
+    	border-radius: 4px;
+		padding-bottom: 2px;
+		padding-top: 2px;
+		padding-left: 4px;
+		padding-right: 4px;
+	}
+	#priceSummary{
+		display:inline;
+		border: 2px solid #ffcc00;
+    	border-radius: 4px;
+		padding-bottom: 2px;
+		padding-top: 2px;
+		padding-left: 4px;
+		padding-right: 4px;
+	}
+	/*#orderDiv {
+		display:inline;
+		border: 2px solid #ffcc00;
+    	border-radius: 4px;
+		padding-bottom: 2px;
+	}*/

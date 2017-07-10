@@ -1,5 +1,8 @@
 #!/usr/bin/wish -f
 
+#you can change to the working directory fairly easily
+cd /home/sleepy/Documents/Programming/C++/gui/tcl_tk/DB_CMD
+
 #the main gui
 proc screen {} {
 
