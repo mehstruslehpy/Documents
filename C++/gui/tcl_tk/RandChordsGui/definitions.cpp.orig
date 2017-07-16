@@ -1,0 +1,122 @@
+#include "definitions.h"
+
+using namespace std;
+
+Chord genChord()
+{
+	//cout << endl;
+	Chord outChord;
+	outChord.root = rand() % 7;
+	//cout << "Root note: "<< outChord.root << endl;
+	outChord.type = rand() % 5;
+	//cout << "Type: "<< outChord.type << endl;
+	outChord.extraTones = rand() % 3;
+	//cout << "Extra tones: "<< outChord.extraTones << endl;
+	//cout << endl;
+	return outChord;
+}
+
+int printChord(Chord& inChord)
+{
+	cout << "----" << endl;
+	emitNote(inChord);
+	emitType(inChord);
+	emitTones(inChord);
+	return 0;
+}
+
+int emitNote(Chord& inChord)
+{
+	int sharpFlat = 0;
+	sharpFlat = rand() % 3;
+
+	switch (inChord.root)
+	{
+		case 0:
+			cout << "A ";
+			break;
+		case 1:
+			cout << "B ";
+			break;
+		case 2:
+			cout << "C ";
+			break;
+		case 3:
+			cout << "D ";
+			break;
+		case 4:
+			cout << "E ";
+			break;
+		case 5:
+			cout << "F ";
+			break;
+		case 6:
+			cout << "G ";
+			break;
+		default:
+			cout << "A ";
+	}
+
+	if (sharpFlat == 1)
+	{
+		cout << "Flat ";
+	}
+	else if (sharpFlat == 2)
+	{
+		cout << "Sharp ";
+	}
+
+	return 0;
+}
+int emitType(Chord& inChord)
+{
+	switch (inChord.root)
+	{
+		case 0:
+			cout << "Maj ";
+			break;
+		case 1:
+			cout << "Min ";
+			break;
+		case 2:
+			cout << "Dim ";
+			break;
+		case 3:
+			cout << "Aug ";
+			break;
+		case 4:
+			cout << "Sus2 ";
+			break;
+		case 5:
+			cout << "Sus4 ";
+			break;
+		default:
+			cout << " 5 ";
+	}
+	
+}
+int emitTones(Chord& inChord)
+{
+	int sharpFlat = 0;
+	int curTone = 0;
+
+	for (int i = inChord.extraTones)
+	{
+		sharpFlat = rand % 3;
+		curTone = rand % 7;
+
+		
+cout << curTone;
+	if (sharpFlat == 1)
+	{
+		cout << "Flat ";
+	}
+	else if (sharpFlat == 2)
+	{
+		cout << "Sharp ";
+	}
+
+		
+		
+	}
+}
