@@ -1,0 +1,2 @@
+a simple launcher menu in tcl/tk this is not technically a c++ app I made this to use as a launcher with dwm
+specify button titles in ProgramName.txt and the path to the program binary in ProgramBinary.txt
