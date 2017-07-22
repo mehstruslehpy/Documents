@@ -1,0 +1,20 @@
+What is sleepy_help.sh?
+
+	sleepy_help.sh is a system for a local help menu created by the local user.
+
+How do I use it?
+
+	On line 8 specify a help directory for sleepy help to operate out of, then
+	populate the directory with self written help files ending in .txt extensions. 
+	When you run sleepy_help.sh the script selects and displays all of the .txt
+	files and populates a repl menu from which you can select whichever help page
+	that you would like to read.
+
+	When you select a help page sleepy menu opens it using the linux unix less cmd
+	this can be changed on line 41 if you prefer a different file viewer.
+
+	You can also use the spawn_sleepy_help.sh script to open the program inside
+	a new instance of xterm. 
+
+	I currently use another self created tool called qm (stands for quickmenu) to
+	make the spawn_sleepy_help.sh quickly accessible via a gui launcher

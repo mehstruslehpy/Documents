@@ -33,7 +33,7 @@ proc screen {} {
 		#	quitProg
 		#}
 
-		ttk::button .top.$buttonName -text $buttonName -command [list exec $cmdName] 
+		ttk::button .top.$buttonName -text $buttonName -command [list exec -ignorestderr $cmdName] 
 		pack .top.$buttonName -side bottom
 
 		incr number
