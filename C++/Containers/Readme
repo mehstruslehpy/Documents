@@ -1,0 +1,14 @@
+The following code contains several different container classes based off of
+a class I implemented from a course I took.
+
+CARRAY:
+	-an array that uses dynamic memory to grow as needed
+LList: 
+	-a linked list the supports all the features of a carray except virtual indices
+CStack:
+	-a stack implemented in terms of a carray
+LStack:
+	-a stack implemented in terms of an llist 
+CList: 
+	-a list implemented in terms of a carray
+

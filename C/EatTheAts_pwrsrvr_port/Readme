@@ -1,0 +1,37 @@
+'Eat the Ats' is a really ugly command line game I've been working on.
+
+You run it like this:
+
+EatTheAts SampleMap1.src 5
+
+Where SampleMap1.src is a map, and 5 is the game speed from 5-1 with 5 being the slowest.
+
+I also created a map maker program all it really does is take the user created map file and
+translates it into a plain text notation that looks a teensy bit like those odd init-lists 
+for multidimensional arrays. It's probably not the greatest design but whatever it works
+if you use it right.
+
+It outputs to stdout so use your shell redirect operators:
+
+mapMaker myCoolMap.txt > myCoolMap.src
+
+I would also recommend not believing the ROW and COL counts at the end of the .src file
+I added that in then realized I did not need it but was too lazy to take it out.
+
+To make maps use these characters in your favorite text editor:
+    # <= this is a wall.
+    @ <= this is an at, the player character must eat all of these in your map to win.
+    M <= this is a monster, it will try to eat the player character.
+
+    l <= use this to end a row
+    e <= use this on a separate line to signify the end of your map
+
+The monsters need whitespace to move or the engine will freeze.
+
+I don't recall testing this with nonrectangular maps, if you want that sort of thing you
+should use walls creatively.
+
+The map editor is whitespace sensitive don't leave whitespace after an 'l' or 'e' don't 
+leave whitespaces that you don't want.
+
+Sometimes monsters disappear I should probably figure out why at some point

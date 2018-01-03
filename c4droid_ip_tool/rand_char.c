@@ -4,12 +4,12 @@
 
 int main(){
 
-char a;
+unsigned char a;
 time_t t;
 
-for (int i = 0; i < 4; ++i){
 srand((unsigned) time(&t));
-a = rand() % 26;
+for (int i = 0; i < 4; ++i){
+a = rand() % 256;
 printf("%d",a);
 
     if (i < 3) {

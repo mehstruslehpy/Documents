@@ -1,6 +1,6 @@
-I made this on my phone using c4droid originally so I apologize for the poor syntax.
-The program is wrong, it generates an ip with 4 matching octets. I think I would need to reseed rand using srand() for each iteration of my loop
-for this program to work correctly.
-Right now I am too busy
+I made this on my phone using c4droid originally so I apologize for any problems 
+you may notice.
+The program does not work correctly 
+Right now I am too busy to fix it entirely
 
 I'm mostly just committing this to keep it somewhere so I can someday fix it.

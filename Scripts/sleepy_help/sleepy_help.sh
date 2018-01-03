@@ -5,7 +5,7 @@ import glob                                 #for retrieving a list of only txt f
 from subprocess import call                 #for calling less on any given file
 
 #move to the info file directory; this will need modified for other machines
-os.chdir('/home/sleepy/info')
+os.chdir('/home/sleepy/Info')
 
 print("Help files in: ")
 print(os.getcwd())
