@@ -2,11 +2,11 @@
 
 int main()
 {
-    initscr();          /* Start curses mode        */
-    raw();              /* Line buffering disabled  */
-    noecho();           /* Don't echo() while we do getch */
+    initscr();          // Start curses mode        
+    raw();              // Line buffering disabled  
+    noecho();           // Don't echo() while we do getch 
 
-    start_color();          /* Start color          */
+    start_color();          // Start color          
     init_pair(1, COLOR_RED, COLOR_RED);
     attron(COLOR_PAIR(1));
     curs_set(0);		//hide the cursor

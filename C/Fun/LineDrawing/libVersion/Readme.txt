@@ -1,10 +1,5 @@
 SUMMARY:
 This library draws various equations and shapes via the ncurses library
-This is the library version
-
-Because each (x,y) element in the plane needs to be a discrete integer there is a loss of 'resolution'
-in certain lines. Essentially as the slope gets steeper more points are lost due to the nature of drawing with
-discrete 'cells'
 
 Things to note:
 	-The origin is centered at the top left
@@ -21,3 +16,24 @@ Model of the drawing coordinate plane:
      |...
      |...
      |...
+
+BUILDING AND USING:
+
+The various functions are currently documented via comments in the Shapes.h file though I intend to add a more
+permanent set of documentation in the future.
+
+Shapes.c is an example program 
+exampleProj is another example but this time via a static library
+the outer makefile can be used either to build the Shapes.c program via running make or to build libShapes.a via
+running make MAIN-LIB
+
+BUGS:
+Because each (x,y) element in the plane needs to be a discrete integer there is a loss of 'resolution'
+in certain lines. Essentially as the slope gets steeper more points are lost due to the nature of drawing with
+discrete 'cells'
+
+This effect can be noticed in Line Segments and also in Triangles
+
+I have fixed it for perfectly vertical lines hence why Rectangles and Squares work fine
+
+
