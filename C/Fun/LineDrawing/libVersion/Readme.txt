@@ -1,5 +1,5 @@
 SUMMARY:
-Theis library draws various equations and shapes via the ncurses library
+This library draws various equations and shapes via the ncurses library
 This is the library version
 
 Because each (x,y) element in the plane needs to be a discrete integer there is a loss of 'resolution'
@@ -20,5 +20,4 @@ Model of the drawing coordinate plane:
      |[(0,3)(1,3)(2,3)(3,3)]...
      |...
      |...
-     |
-*
+     |...
