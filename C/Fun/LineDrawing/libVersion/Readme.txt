@@ -4,7 +4,7 @@ This library draws various equations and shapes via the ncurses library
 Things to note:
 	-The origin is centered at the top left
 	-y values count from the orgin POSITIVELY downward
-
+	
 Model of the drawing coordinate plane:
 
      |
@@ -19,17 +19,17 @@ Model of the drawing coordinate plane:
 
 BUILDING AND USING:
 
-The various functions are currently documented via comments in the Shapes.h file though I intend to add a more
-permanent set of documentation in the future.
+The functions are currently documented either by browsing the Shapes.h source yourself or viewing the documentation included
+inside of the html subdirectory
 
 Shapes.c is an example program 
-
 exampleProj is another example but this time via a static library
+test contains some test programs and scripts, these might be good for checking out what this library can do
 
 the outer makefile can be used either to build the Shapes.c program via running make or to build libShapes.a via
 running: make library
-
 running: make test will build the testing tools and programs inside of ./test
+running: make clean cleans out any build files and rebuilds the documentation
 
 BUGS:
 Because each (x,y) element in the plane needs to be a discrete integer there is a loss of 'resolution'
