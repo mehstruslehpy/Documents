@@ -52,13 +52,6 @@ void fillLine(double x_1, double x_2, double y_1, double m)
     */
     return;
 }
-bool checkPair(double x,double y)
-{
-    if (y >= 0 && y <= ROWBOUND &&
-            x >= 0 && x <= COLBOUND) return true;
-
-    return false;
-}
 void drawLSeg(double x_1, double y_1, double x_2, double y_2)
 {
     double m  = (y_2-y_1)/(x_2-x_1);

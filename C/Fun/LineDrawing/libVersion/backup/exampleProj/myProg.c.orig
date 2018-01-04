@@ -1,0 +1,40 @@
+#include "Shapes.h"
+
+int main()
+{
+    initscr();          /* Start curses mode        */
+    raw();              /* Line buffering disabled  */
+    noecho();           /* Don't echo() while we do getch */
+
+    start_color();          /* Start color          */
+    init_pair(1, COLOR_RED, COLOR_RED);
+    attron(COLOR_PAIR(1));
+    curs_set(0);		//hide the cursor
+	for (int i = 0 i < 5; i++)
+	{
+    drawRect(5,5,20,20); //draw stuff
+    drawCircle(3,10,10); //draw stuff
+    drawCircle(3,19,10); //draw stuff
+    drawLSeg(11,22,20,22); //draw stuff
+    drawCircle(15,15,15); //draw stuff
+    getch();            //wait for user input to quit
+	clear();
+	refresh();          //refresh the screen now that it has been drawn on
+
+    getch();            //wait for user input to quit
+	drawRect(10,5,20,20); //draw stuff
+    drawCircle(3,15,10); //draw stuff
+    drawCircle(3,24,10); //draw stuff
+    drawLSeg(16,22,25,22); //draw stuff
+    drawCircle(15,20,15); //draw stuff
+    getch();            //wait for user input to quit
+	//clear();
+	refresh();          //refresh the screen now that it has been drawn on
+	}
+
+    getch();            //wait for user input to quit
+    endwin();           // End curses mode
+
+    return 0;
+}
+

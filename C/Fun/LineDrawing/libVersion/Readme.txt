@@ -23,9 +23,13 @@ The various functions are currently documented via comments in the Shapes.h file
 permanent set of documentation in the future.
 
 Shapes.c is an example program 
+
 exampleProj is another example but this time via a static library
+
 the outer makefile can be used either to build the Shapes.c program via running make or to build libShapes.a via
-running make MAIN-LIB
+running: make library
+
+running: make test will build the testing tools and programs inside of ./test
 
 BUGS:
 Because each (x,y) element in the plane needs to be a discrete integer there is a loss of 'resolution'
