@@ -1,7 +1,7 @@
 //this file will be for collecting things not suitable for their own separate file
 #include "Shapes.h"
 
-//I realized I should probably write this after writing a large amount of code
+//These might be better as macros or using inline rather than normal functions
 void drawSinglePoint(double x, double y)
 {
     if(!checkPair(x,y)) return;

@@ -4,9 +4,8 @@ int main(int argc, char *argv[])
 {
     if (argc != 5 || !strncmp(argv[1],"-h",2))
     {
-        puts("NElli: draw an ellipse based on the standard form");
-        puts("Usage:\n\tFor the equations: y=sqrt(b*b*(1-pow(i-h,2)/(a*a)))+k\n\tand y=sqrt(b*b*(1-pow(i-h,2)/(a*a)))+k\n\tDo: NElli.o a b h k");
-        puts("\tPrint this help: NElli.o -h");
+        puts("DrawEllipse: draw an ellipse based on the standard form");
+        puts("USAGE: ./DrawEllipse x x x x");
         return 0;
     }
 

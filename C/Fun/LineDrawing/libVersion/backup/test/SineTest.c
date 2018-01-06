@@ -4,9 +4,8 @@ int main(int argc, char *argv[])
 {
     if (argc != 5 || !strncmp(argv[1],"-h",2))
     {
-        puts("NSine: Prints a sinewave based on the standard from");
-        puts("Usage:\n\tFor the equation: y = a*sin(b(x+c))+d\n\tDo: NSine.o a b c d");
-        puts("\tPrint this help: NSine.o -h");
+        puts("DrawSine: Prints a sinewave based on the standard form");
+        puts("USAGE: ./DrawSine x x x x");
         return 0;
     }
 

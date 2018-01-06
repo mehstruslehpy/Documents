@@ -7,15 +7,11 @@ void drawLine(double m, double b)
     for (int i = 0; i < COLBOUND; i++)
     {
         y = m*i + b;
-        if (i > COLBOUND)
-        {
-            break;
-        }
-        if (y > ROWBOUND)
+        if (i > COLBOUND || y > ROWBOUND)
         {
             break;
         }
         move(y, i);
-        addch('0');
+        if (checkPair(i,y)) addch('0');
     }
 }

@@ -1,8 +1,8 @@
 CC= gcc 
 LIB= -lm -lncurses -ltinfo
 FLAG= -Wall -Wextra -pedantic -fPIC 
-RULES= NLine NQuad NSine NCircle NElli NLSeg NLSqr NLTri NLRect Misc 
-OBJ= NLine.o NQuad.o NSine.o NCircle.o NElli.o NLSeg.o NLSqr.o NLTri.o NLRect.o Misc.o
+RULES= NLine NQuad NSine NCos NTan NCsc NCircle NElli NLSeg NLSqr NLTri NLRect Misc NLQuad 
+OBJ= NLine.o NQuad.o NSine.o NCos.o NTan.o NCsc.o NCircle.o NElli.o NLSeg.o NLSqr.o NLTri.o NLRect.o Misc.o NLQuad.o
 
 #build as a single program
 MAIN-PROG: Shapes.c $(RULES)	
@@ -19,10 +19,19 @@ test: MAIN-PROG
 	$(CC) $(LIB) $(FLAG) -g -pg test/LineSegmentTest.c Misc.o NLSeg.o -o test/DrawLineSegment.o
 	$(CC) $(LIB) $(FLAG) -g -pg test/LineTest.c Misc.o NLine.o -o test/DrawLine.o
 	$(CC) $(LIB) $(FLAG) -g -pg test/QuadraticTest.c Misc.o NQuad.o -o test/DrawQuadratic.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/ParabolaTest.c Misc.o NQuad.o -o test/DrawParabola.o
 	$(CC) $(LIB) $(FLAG) -g -pg test/RectangleTest.c Misc.o NLSeg.o NLRect.o -o test/DrawRectangle.o
 	$(CC) $(LIB) $(FLAG) -g -pg test/SineTest.c Misc.o NSine.o -o test/DrawSine.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/CosineTest.c Misc.o NCos.o NSine.o -o test/DrawCosine.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/TanTest.c Misc.o NTan.o -o test/DrawTan.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/CosecantTest.c Misc.o NCsc.o -o test/DrawCosecant.o
 	$(CC) $(LIB) $(FLAG) -g -pg test/SquareTest.c Misc.o NLSeg.o NLSqr.o -o test/DrawSquare.o
 	$(CC) $(LIB) $(FLAG) -g -pg test/TriangleTest.c Misc.o NLSeg.o NLTri.o -o test/DrawTriangle.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/QuadrilateralTest.c Misc.o NLSeg.o NLQuad.o -o test/DrawQuadrilateral.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/MidpointTest.c Misc.o NLSeg.o -o test/MidpointTest.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/RotateDPointTest.c Misc.o NLSeg.o -o test/RotateDPointTest.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/FanRotate.c Misc.o NLSeg.o -o test/FanRotate.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/4ShapeRotate.c Misc.o NLSeg.o NLQuad.o -o test/4ShapeRotate.o
 
 #build the object files
 NLine: NLine.c
@@ -31,6 +40,12 @@ NQuad: NQuad.c
 	$(CC) $(LIB) $(FLAG) NQuad.c -o NQuad.o -c
 NSine: NSine.c
 	$(CC) $(LIB) $(FLAG) NSine.c -o NSine.o -c
+NCos: NCos.c 
+	$(CC) $(LIB) $(FLAG) NCos.c -o NCos.o -c
+NTan: NTan.c
+	$(CC) $(LIB) $(FLAG) NTan.c -o NTan.o -c
+NCsc: NCsc.c
+	$(CC) $(LIB) $(FLAG) NCsc.c -o NCsc.o -c
 NCircle: NCircle.c
 	$(CC) $(LIB) $(FLAG) NCircle.c -o NCircle.o -c
 NElli: NElli.c
@@ -45,6 +60,9 @@ NLRect: NLSeg NLRect.c
 	$(CC) $(LIB) $(FLAG) NLRect.c -o NLRect.o -c
 Misc: Misc.c
 	$(CC) $(LIB) $(FLAG) Misc.c -o Misc.o -c
+NLQuad: NLQuad.c
+	$(CC) $(LIB) $(FLAG) NLQuad.c -o NLQuad.o -c
+
 clean:
 	doxygen Doxyfile
 	test/clean.sh

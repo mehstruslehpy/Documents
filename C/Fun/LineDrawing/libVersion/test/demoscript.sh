@@ -1,10 +1,14 @@
 #!/bin/sh
 clear
 read  -n 1 -p "[ --press space to continue-- ]"
-./DrawSine.o 5 0.2 0 5
-./DrawSine.o 10 0.1 0 10
-./DrawSine.o 3 0.3 3 10
+./DrawSine.o 5 0.2 0 10
+./DrawSine.o 10 0.1 0 20
+./DrawSine.o 3 0.3 3 20
 ./DrawSine.o 10 0.01 0 20
+./DrawCosecant.o 1 0.1 1 1
+./DrawCosecant.o 1 0.2 1 1
+./DrawTan.o 5 0.08099 20 4
+./DrawTan.o 5 .17346 6 6
 ./DrawLine.o 0 7
 ./DrawLine.o 2 10
 ./DrawQuadratic.o -.01 0 30
@@ -28,4 +32,6 @@ read  -n 1 -p "[ --press space to continue-- ]"
 ./DrawTriangle.o 6 24 32 20 40 5
 ./DrawRectangle.o 7 11 11 12
 ./DrawRectangle.o 16 4 4 7 
+./4shape_test.sh
+./fan_rotate_test.sh
 clear

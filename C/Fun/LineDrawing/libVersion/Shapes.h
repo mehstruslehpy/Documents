@@ -1,6 +1,6 @@
 /*! \file Shapes.h
-*	This file contains the interface functions to use with ncurses. In addition to the functions specified
-*	This file contains two doubles ROWBOUND and COLBOUND for specifying the bounds of your screen.
+*
+*	This file contains the functions to use with ncurses.
 */
 #ifndef NSHAPES_MEH
 #define NSHAPES_MEH
@@ -13,8 +13,16 @@
 #include <math.h>
 
 //feel free to change these to match your hardware
-static const double ROWBOUND = 42; /**< The Row Bounds of the screen */
-static const double COLBOUND = 42; /**< The Column Bounds of the screen */
+/** \brief ROWBOUND The Row Bounds of the screen
+*
+*	This is used in the included functions to limit the screen space being drawn to
+*/
+static const double ROWBOUND = 42;
+/** \brief COLBOUND The Column Bounds of the screen
+*
+*	This is used in the included functions to limit the screen space being drawn to
+*/
+static const double COLBOUND = 100;
 
 /** Draw a Circle via the equation: \f$ (x-h)^2+(y-k)^2=r^2 \f$
 *		@param r is the radius
@@ -79,7 +87,7 @@ void drawSqr(double x, double y, double l);
 *		@param y the y coordinate
 *		@return true if the pair is within the (inclusive) interval [0,ROWBOUND] and [0,COLBOUND] false if not
 */
-bool checkPair(double x,double y);
+bool checkPoint(double x,double y);
 
 /** Draw a Triangle: using the three specified vertices
 *		@param x1 x coordinate for vertex 1
@@ -91,6 +99,22 @@ bool checkPair(double x,double y);
 */
 void drawTri(double x1, double y1, double x2, double y2, double x3, double y3);
 
+/** Draw a Quadrilateral: using the four specified vertices
+*		@param x1 x coordinate for vertex 1
+*		@param y1 y coordinate for vertex 1
+*		@param x2 x coordinate for vertex 2
+*		@param y2 y coordinate for vertex 2
+*		@param x3 x coordinate for vertex 3
+*		@param y3 y coordinate for vertex 3
+*		@param x4 x coordinate for vertex 4
+*		@param y4 y coordinate for vertex 4
+*
+*		The drawn shape is subject to the same restrictions as the rest of the system, more vertical data means more data loss
+*		Since this function results in six lines being drawn the resulting image will often be fairly busy a small quadrilateral
+*		look pretty ugly
+*/
+void drawQuadrilateral(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4);
+
 /** Draw a Sine Wave: for the equation \f$ y=asin(b(x+c)+d) \f$
 *		@param a amplitude (vertical stretch)
 *		@param b frequency (horizontal stretch)
@@ -99,11 +123,38 @@ void drawTri(double x1, double y1, double x2, double y2, double x3, double y3);
 */
 void drawSine(double a, double b, double c, double d);
 
-//
-//TODO: Functions beyond this line are new or modified and new more testing
-//
+/** Draw a Cosine Wave: for the equation \f$ y=acos(b(x+c)+d) \f$
+*		@param a amplitude (vertical stretch)
+*		@param b frequency (horizontal stretch)
+*		@param c phase shift (horizontal shift)
+*		@param d vertical shift
+*
+*		This function just calls DrawSine(a,b,c+3*M_PI/2,d) to yield the corresponding cosine
+*/
+void drawCosine(double a, double b, double c, double d);
 
-/** Draw a single point given an x and a y if within the bounds of the screen
+/** Draw a Tangent function: for the equation \f$ y=atan(b(x+c)+d) \f$
+*		@param a amplitude (vertical stretch)
+*		@param b frequency (horizontal stretch)
+*		@param c phase shift (horizontal shift)
+*		@param d vertical shift
+*
+*		Due to the vertical asymptotes in a Tangent and issues in drawing near vertical lines in this library Tangents often don't look very pretty
+*/
+void drawTan(double a, double b, double c, double d);
+
+
+/** Draw a Cosecant: for the equation \f$ y=a\frac{1}{sin(b(x+c))}+d \f$
+*		@param a amplitude (vertical stretch)
+*		@param b frequency (horizontal stretch)
+*		@param c phase shift (horizontal shift)
+*		@param d vertical shift
+*
+*		Due to the vertical asymptotes in a Cosecant and issues in drawing near vertical lines in this library Cosecants often don't look very pretty
+*/
+void drawCosecant(double a, double b, double c, double d);
+
+/** Draw a single point given an x and a y only draw if the point is within the bounds of the screen
 *		@param x the x coordinate to draw
 *		@param y the y coordinate to draw
 */
@@ -122,5 +173,101 @@ void drawParab(double a, double h, double k);
 *		@param a the third coefficient in the standard form
 */
 void drawQuad(double a, double b, double c);
+
+//TODO: add testing for Pairs, midpoint and distance
+
+/** @struct Pair
+*
+*	This is not intended to be used as an argument to functions, that sort of interface seems too complicated for this use case.
+*
+*	@brief Pair is a C-Struct intended to be used to return ordered pairs from functions
+*	@var Pair::x
+*	the x coordinate of the pair
+*	@var Pair::y
+*	the y coordinate of the pair
+*/
+typedef struct Pair
+{
+    double x;
+    double y;
+} Pair;
+
+/** Return the midpoint of (x1,y1) and (x2,y2) as a pair
+*	@param x1 the x coordinate of (x1,y1)
+*	@param y1 the y coordinate of (x1,y1)
+*	@param x2 the x coordinate of (x2,y2)
+*	@param y2 the y coordinate of (x2,y2)
+*	@return a pair representing the midpoint of the given coordinates
+*
+*	this function uses the formula \f$ ( \frac{x_1+x_2}{2}, \frac{y_1+y_2}{2}) \f$
+*/
+Pair midPoint(double x1, double y1, double x2, double y2);
+
+/** Returns the distance between (x1,y1) and (x2,y2)
+*	@param x1 the x coordinate of (x1,y1)
+*	@param y1 the y coordinate of (x1,y1)
+*	@param x2 the x coordinate of (x2,y2)
+*	@param y2 the y coordinate of (x2,y2)
+*	@return a double representing the distance between the given coordinates
+*
+*	this function uses the formula \f$ \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2} \f$ for \f$ x_2 > x_1 \f$  and \f$ y_2 > y_1 \f$
+*/
+double distance(double x1, double x2, double y1, double y2);
+
+/** Convert the input deg in degrees to a double in radians
+*	@param deg a value in degrees to be converted to a corresponding value in radians
+*	@return a double in radians corresponding to the input value
+*/
+double degToRad(double deg);
+
+/** Convert the input rad in radians to a double in degrees
+*	@param rad a value in radians to be converted to a corresponding value in degrees
+*	@return a double in degrees corresponding to the input value
+*/
+double radToDeg(double rad);
+
+/** Returns a Pair corresponding to the rotation of (x,y) by rad in radians about the point (cx,cy)
+*	@param cx the x value of the center to be rotated around
+*	@param cy the y value of the center to be rotated around
+*	@param x the x value of the point to be rotated
+*	@param y the y value of the point to be rotated
+*	@param rad the angle in radians to rotate
+*	@return a pair corresponding to the rotatation of (x,y) around (cx,cy)
+*
+*	to rotate around the origin do rotateRPoint(0,0,x,y,rad)
+*/
+Pair rotateRPoint(double cx, double cy, double x,double y, double rad);
+
+/** Returns a Pair corresponding to the rotation of (x,y) by deg in degrees about the point (cx,cy)
+*	@param cx the x value of the center to be rotated around
+*	@param cy the y value of the center to be rotated around
+*	@param x the x value of the point to be rotated
+*	@param y the y value of the point to be rotated
+*	@param deg the angle in degrees to rotate
+*	@return a pair corresponding to the rotatation of (x,y) around (cx,cy)
+*
+*	to rotate around the origin do rotateDPoint(0,0,x,y,deg)
+*	to avoid duplication this is just a wrapper to rotateRPoint() which converts deg to radians
+*/
+Pair rotateDPoint(double cx, double cy, double x,double y, double deg);
+
+/** Returns a Pair corresponding to (x+tx,x+ty)
+*	@param x the x value of the point to be translated
+*	@param y the y value of the point to be translated
+*	@param tx the translation amount in the x direction
+*	@param ty the translation amount in the y direction
+*	@return a pair with the values (x+tx,y+ty)
+*
+*	This function is largely untested at this time
+*/
+Pair xlatPoint(double tx, double ty, double x, double y);
+
+/** Draws the pair p if p is within the bounds of the screen
+*	@param p a pair to draw
+*
+*	This will only draw if p is within the screen space
+*/
+void drawPair(Pair p);
+
 
 #endif

@@ -5,9 +5,8 @@ int main(int argc, char *argv[])
 
     if (argc != 5 || !strncmp(argv[1],"-h",2))
     {
-        puts("NLSqr: Prints a square");
-        puts("Usage:\n\tFor the points upper left coordinate (x,y) and length l\n\tDo: NLSqr.o x y l h");
-        puts("\tPrint this help: NLSqr.o -h");
+        puts("DrawRectangle: Prints a rectangle");
+        puts("USAGE: ./DrawSquare x x x x");
         return 0;
     }
 

@@ -4,9 +4,8 @@ int main(int argc, char *argv[])
 {
     if (argc != 3 || !strncmp(argv[1],"-h",2))
     {
-        puts("NLine: Prints a line based on the standard from");
-        puts("Usage:\n\tFor the equation: y = m*x+b\n\tDo: NLine.o m b");
-        puts("\tPrint this help: NLine.o -h");
+        puts("DrawLine: Prints a line based on the standard from");
+        puts("USAGE: ./DrawLine x x");
         return 0;
     }
 

@@ -5,9 +5,8 @@ int main(int argc, char *argv[])
 
     if (argc != 4 || !strncmp(argv[1],"-h",2))
     {
-        puts("NQuad: Prints a quadratic based on the standard from");
-        puts("Usage:\n\tFor the equation: y = a*x^2+bx+c\n\tDo: NQuad.o a b c");
-        puts("\tPrint this help: NQuad.o -h");
+        puts("DrawQuadratic: Prints a quadratic based on the standard form");
+        puts("USAGE: ./DrawQuadratic x x x ");
         return 0;
     }
 

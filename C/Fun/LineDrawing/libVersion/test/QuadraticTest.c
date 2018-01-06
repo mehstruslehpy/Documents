@@ -5,7 +5,7 @@ int main(int argc, char *argv[])
 
     if (argc != 4 || !strncmp(argv[1],"-h",2))
     {
-        puts("DrawQuadratic: Prints a quadratic based on the standard from");
+        puts("DrawQuadratic: Prints a quadratic based on the standard form");
         puts("USAGE: ./DrawQuadratic x x x ");
         return 0;
     }

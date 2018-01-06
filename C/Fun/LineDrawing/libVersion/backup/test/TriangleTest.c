@@ -5,10 +5,8 @@ int main(int argc, char *argv[])
 
     if (argc != 7 || !strncmp(argv[1],"-h",2))
     {
-        puts("NLSeg: Prints a line through two given points");
-        puts("Usage:\n\tFor the points (x1,y1) and (x2,y2)\n\tDo: NLSeg.o x1 y1 x2 y2");
-        puts("\tPrint this help: NLSeg.o -h");
-        printf("argc=%di\n",argc);
+        puts("DrawTriangle: prints a triangle through the 3 given points");
+        puts("USAGE: ./DrawTriangle.o x x x x x x");
         return 0;
     }
 

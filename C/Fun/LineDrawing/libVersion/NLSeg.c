@@ -7,7 +7,7 @@ void fillVert(double x_1, double y_1, double y_2)
 
     for (double i = 0; i <= count; i++)
     {
-        if (checkPair(x_1,start+i))
+        if (checkPoint(x_1,start+i))
         {
             move(start+i, x_1);
             addch('0');
@@ -26,7 +26,7 @@ void fillLine(double x_1, double x_2, double y_1, double m)
     for (double i = 0; i <= count; i++)
     {
         y = m*(start+i - x_1)+y_1;
-        if (checkPair(start+i,y))
+        if (checkPoint(start+i,y))
         {
             move(y, start+i);
             addch('0');
@@ -43,7 +43,7 @@ void fillLine(double x_1, double x_2, double y_1, double m)
     {
         x = floor((start+i-y_1)/m + x_1);
         //x = (start+i-y_1)/m + x_1;
-        if (checkPair(x,start+i))
+        if (checkPoint(x,start+i))
         {
             move(start+i,x);
             addch('0');
@@ -56,13 +56,13 @@ void drawLSeg(double x_1, double y_1, double x_2, double y_2)
 {
     double m  = (y_2-y_1)/(x_2-x_1);
 
-    if (checkPair(x_1,y_1))
+    if (checkPoint(x_1,y_1))
     {
         move(y_1,x_1);
         addch('0');
     }
 
-    if (checkPair(x_2,y_2))
+    if (checkPoint(x_2,y_2))
     {
         move(y_2,x_2);
         addch('0');

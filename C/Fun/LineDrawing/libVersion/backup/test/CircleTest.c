@@ -4,9 +4,8 @@ int main(int argc, char *argv[])
 {
     if (argc != 4 || !strncmp(argv[1],"-h",2))
     {
-        puts("NCircle: Prints a circle based on the standard form");
-        puts("Usage:\n\tFor the equations: y=+sqrt(r^2-(x-h)^2)+k\n\t    and y=-sqrt(r^2-(x-h)^2)+k\n\tDo: NCircle.o r h k");
-        puts("\tPrint this help: NCircle.o -h");
+        puts("DrawCircle: Prints a circle based on the standard form");
+        puts("USAGE: ./DrawCircle x x x");
         return 0;
     }
 

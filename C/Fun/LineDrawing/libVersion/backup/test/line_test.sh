@@ -1,0 +1,6 @@
+#!/bin/sh 
+#this is not a very good test
+A=$(( ( RANDOM % 40 )  + 1 ))
+B=$(( ( RANDOM % 40 )  + 1 ))
+echo $A $B 
+./DrawLine.o $A $B

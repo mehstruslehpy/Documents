@@ -1,21 +1,30 @@
 var indexSectionsWithContent =
 {
-  0: "cdfs",
-  1: "s",
-  2: "cdf"
+  0: "cdfmprsxy",
+  1: "p",
+  2: "s",
+  3: "cdfmrx",
+  4: "crxy",
+  5: "s"
 };
 
 var indexSectionNames =
 {
   0: "all",
-  1: "files",
-  2: "functions"
+  1: "classes",
+  2: "files",
+  3: "functions",
+  4: "variables",
+  5: "pages"
 };
 
 var indexSectionLabels =
 {
   0: "All",
-  1: "Files",
-  2: "Functions"
+  1: "Classes",
+  2: "Files",
+  3: "Functions",
+  4: "Variables",
+  5: "Pages"
 };
 

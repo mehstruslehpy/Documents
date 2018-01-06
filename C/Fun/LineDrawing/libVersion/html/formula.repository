@@ -8,3 +8,14 @@
 \form#7:$ \frac{(x-h)^2}{a}+\frac{(y-k)^2}{b}=1 $
 \form#8:$ y=asin(b(x+c)+d) $
 \form#9:$ \frac{(x-h)^2}{a^2}+\frac{(y-k)^2}{b^2}=1 $
+\form#10:$ y=a\frac{1}{sin(b(x+c))}+d $
+\form#11:$ y=acos(b(x+c)+d) $
+\form#12:$ y=atan(b(x+c)+d) $
+\form#13:$ (frac{x_1+x_2}{2},frac{y_1+y_2}{2}) $
+\form#14:$ ( frac{x_1+x_2}{2}, frac{y_1+y_2}{2}) $
+\form#15:$ ( \frac{x_1+x_2}{2}, \frac{y_1+y_2}{2}) $
+\form#16:$ ( sqrt((x_2-x_1)^2 + (y_2-y_1)^2) for x_2 > x_1 and y_2 > y_1$
+\form#17:$ \sqrt((x_2-x_1)^2 + (y_2-y_1)^2) $
+\form#18:$ x_2 > x_1 $
+\form#19:$ y_2 > y_1 $
+\form#20:$ \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2} $

@@ -6,6 +6,17 @@
 {\ttfamily \#include $<$string.\+h$>$}\newline
 {\ttfamily \#include $<$unistd.\+h$>$}\newline
 {\ttfamily \#include $<$math.\+h$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structPair}{Pair}
+\begin{DoxyCompactList}\small\item\em \hyperlink{structPair}{Pair} is a C-\/\+Struct intended to be used to return ordered pairs from functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{Shapes_8h_aad44cef3f6fd0dbe77a43e471247617d}\label{Shapes_8h_aad44cef3f6fd0dbe77a43e471247617d}} 
+typedef struct \hyperlink{structPair}{Pair} {\bfseries Pair}
+\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -25,29 +36,60 @@ void \hyperlink{Shapes_8h_a89c9fb73dd94a28e78fa00c307f4034c}{fill\+Vert} (double
 \item 
 void \hyperlink{Shapes_8h_a0621daf2f530a9844a1be33d596f6015}{draw\+Sqr} (double x, double y, double l)
 \item 
-bool \hyperlink{Shapes_8h_a27079062a75d1f66eb30766c4980ebb0}{check\+Pair} (double x, double y)
+bool \hyperlink{Shapes_8h_ae67095c295f881d999b11157679b2e22}{check\+Point} (double x, double y)
 \item 
 void \hyperlink{Shapes_8h_ac1273bd9874dc51afbf1fe9e2de4d694}{draw\+Tri} (double x1, double y1, double x2, double y2, double x3, double y3)
 \item 
+void \hyperlink{Shapes_8h_a5ab93c05291f9c4d65c0875516886fd1}{draw\+Quadrilateral} (double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
+\item 
 void \hyperlink{Shapes_8h_a4153131f17a98909e06ae7b721031df7}{draw\+Sine} (double a, double b, double c, double d)
+\item 
+void \hyperlink{Shapes_8h_a5625446b9bddce3956b756c32a911934}{draw\+Cosine} (double a, double b, double c, double d)
+\item 
+void \hyperlink{Shapes_8h_a565ea3768bbb272ddf970855eb12ed57}{draw\+Tan} (double a, double b, double c, double d)
+\item 
+void \hyperlink{Shapes_8h_a5371ef6df157f83eecdc8437e331c36d}{draw\+Cosecant} (double a, double b, double c, double d)
 \item 
 void \hyperlink{Shapes_8h_a93ba21c1cde9968680caff98a7ba4cc3}{draw\+Single\+Point} (double x, double y)
 \item 
 void \hyperlink{Shapes_8h_ae8c6eccfcb6ede5f38f801111a539d65}{draw\+Parab} (double a, double h, double k)
 \item 
 void \hyperlink{Shapes_8h_a461591143c5272cfad8530973747a516}{draw\+Quad} (double a, double b, double c)
+\item 
+\hyperlink{structPair}{Pair} \hyperlink{Shapes_8h_adf2e7ed230dc6fbbdd12de938ce7a5c1}{mid\+Point} (double x1, double y1, double x2, double y2)
+\item 
+double \hyperlink{Shapes_8h_a592b11618f0db05409367da99c9dd5b9}{distance} (double x1, double x2, double y1, double y2)
+\item 
+double \hyperlink{Shapes_8h_a7ffcbaffd00f005db97cc34773deabc9}{deg\+To\+Rad} (double deg)
+\item 
+double \hyperlink{Shapes_8h_a8c5d659efc6a6551cc816de045b4b9df}{rad\+To\+Deg} (double rad)
+\item 
+\hyperlink{structPair}{Pair} \hyperlink{Shapes_8h_ad9c16bc6995432bd18ceedbc24942425}{rotate\+R\+Point} (double cx, double cy, double x, double y, double rad)
+\item 
+\hyperlink{structPair}{Pair} \hyperlink{Shapes_8h_a5354ece4846b0a2c43cff2843164b185}{rotate\+D\+Point} (double cx, double cy, double x, double y, double deg)
+\item 
+\hyperlink{structPair}{Pair} \hyperlink{Shapes_8h_aeff31112f5fb131ae3c5311fc7b2824e}{xlat\+Point} (double tx, double ty, double x, double y)
+\item 
+void \hyperlink{Shapes_8h_a0d5e52bb0ca1c4ddb15e6a7c8df360a4}{draw\+Pair} (\hyperlink{structPair}{Pair} p)
 \end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const double \hyperlink{Shapes_8h_a62f38f3826f7a23dc91ada9366d5c6a1}{R\+O\+W\+B\+O\+U\+ND} = 42
+\begin{DoxyCompactList}\small\item\em R\+O\+W\+B\+O\+U\+ND The Row Bounds of the screen. \end{DoxyCompactList}\item 
+static const double \hyperlink{Shapes_8h_a873f4afbf2ad5b2407d10ae0c8253b96}{C\+O\+L\+B\+O\+U\+ND} = 100
+\begin{DoxyCompactList}\small\item\em C\+O\+L\+B\+O\+U\+ND The Column Bounds of the screen. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-This file contains the interface functions to use with ncurses. In addition to the functions specified This file contains two doubles R\+O\+W\+B\+O\+U\+ND and C\+O\+L\+B\+O\+U\+ND for specifying the bounds of your screen. 
+This file contains the functions to use with ncurses. 
 
 \subsection{Function Documentation}
-\mbox{\Hypertarget{Shapes_8h_a27079062a75d1f66eb30766c4980ebb0}\label{Shapes_8h_a27079062a75d1f66eb30766c4980ebb0}} 
-\index{Shapes.\+h@{Shapes.\+h}!check\+Pair@{check\+Pair}}
-\index{check\+Pair@{check\+Pair}!Shapes.\+h@{Shapes.\+h}}
-\subsubsection{\texorpdfstring{check\+Pair()}{checkPair()}}
-{\footnotesize\ttfamily bool check\+Pair (\begin{DoxyParamCaption}\item[{double}]{x,  }\item[{double}]{y }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{Shapes_8h_ae67095c295f881d999b11157679b2e22}\label{Shapes_8h_ae67095c295f881d999b11157679b2e22}} 
+\index{Shapes.\+h@{Shapes.\+h}!check\+Point@{check\+Point}}
+\index{check\+Point@{check\+Point}!Shapes.\+h@{Shapes.\+h}}
+\subsubsection{\texorpdfstring{check\+Point()}{checkPoint()}}
+{\footnotesize\ttfamily bool check\+Point (\begin{DoxyParamCaption}\item[{double}]{x,  }\item[{double}]{y }\end{DoxyParamCaption})}
 
 Check if the given (x,y) point is within the bounds of the screen 
 \begin{DoxyParams}{Parameters}
@@ -59,7 +101,41 @@ Check if the given (x,y) point is within the bounds of the screen
 \begin{DoxyReturn}{Returns}
 true if the pair is within the (inclusive) interval \mbox{[}0,R\+O\+W\+B\+O\+U\+ND\mbox{]} and \mbox{[}0,C\+O\+L\+B\+O\+U\+ND\mbox{]} false if not 
 \end{DoxyReturn}
-\mbox{\Hypertarget{Shapes_8h_a73ecaee981fb5d6a003dc048dea76956}\label{Shapes_8h_a73ecaee981fb5d6a003dc048dea76956}} 
+\mbox{\Hypertarget{Shapes_8h_a7ffcbaffd00f005db97cc34773deabc9}\label{Shapes_8h_a7ffcbaffd00f005db97cc34773deabc9}} 
+\index{Shapes.\+h@{Shapes.\+h}!deg\+To\+Rad@{deg\+To\+Rad}}
+\index{deg\+To\+Rad@{deg\+To\+Rad}!Shapes.\+h@{Shapes.\+h}}
+\subsubsection{\texorpdfstring{deg\+To\+Rad()}{degToRad()}}
+{\footnotesize\ttfamily double deg\+To\+Rad (\begin{DoxyParamCaption}\item[{double}]{deg }\end{DoxyParamCaption})}
+
+Convert the input deg in degrees to a double in radians 
+\begin{DoxyParams}{Parameters}
+{\em deg} & a value in degrees to be converted to a corresponding value in radians \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a double in radians corresponding to the input value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Shapes_8h_a592b11618f0db05409367da99c9dd5b9}\label{Shapes_8h_a592b11618f0db05409367da99c9dd5b9}} 
+\index{Shapes.\+h@{Shapes.\+h}!distance@{distance}}
+\index{distance@{distance}!Shapes.\+h@{Shapes.\+h}}
+\subsubsection{\texorpdfstring{distance()}{distance()}}
+{\footnotesize\ttfamily double distance (\begin{DoxyParamCaption}\item[{double}]{x1,  }\item[{double}]{x2,  }\item[{double}]{y1,  }\item[{double}]{y2 }\end{DoxyParamCaption})}
+
+Returns the distance between (x1,y1) and (x2,y2) 
+\begin{DoxyParams}{Parameters}
+{\em x1} & the x coordinate of (x1,y1) \\
+\hline
+{\em y1} & the y coordinate of (x1,y1) \\
+\hline
+{\em x2} & the x coordinate of (x2,y2) \\
+\hline
+{\em y2} & the y coordinate of (x2,y2) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a double representing the distance between the given coordinates
+\end{DoxyReturn}
+this function uses the formula $ \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2} $ for $ x_2 > x_1 $ and $ y_2 > y_1 $ \mbox{\Hypertarget{Shapes_8h_a73ecaee981fb5d6a003dc048dea76956}\label{Shapes_8h_a73ecaee981fb5d6a003dc048dea76956}} 
 \index{Shapes.\+h@{Shapes.\+h}!draw\+Circle@{draw\+Circle}}
 \index{draw\+Circle@{draw\+Circle}!Shapes.\+h@{Shapes.\+h}}
 \subsubsection{\texorpdfstring{draw\+Circle()}{drawCircle()}}
@@ -74,7 +150,41 @@ Draw a Circle via the equation\+: $ (x-h)^2+(y-k)^2=r^2 $
 {\em k} & is the y coordinate of the center \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{Shapes_8h_a8a1429da272888449118d1d703e8ecde}\label{Shapes_8h_a8a1429da272888449118d1d703e8ecde}} 
+\mbox{\Hypertarget{Shapes_8h_a5371ef6df157f83eecdc8437e331c36d}\label{Shapes_8h_a5371ef6df157f83eecdc8437e331c36d}} 
+\index{Shapes.\+h@{Shapes.\+h}!draw\+Cosecant@{draw\+Cosecant}}
+\index{draw\+Cosecant@{draw\+Cosecant}!Shapes.\+h@{Shapes.\+h}}
+\subsubsection{\texorpdfstring{draw\+Cosecant()}{drawCosecant()}}
+{\footnotesize\ttfamily void draw\+Cosecant (\begin{DoxyParamCaption}\item[{double}]{a,  }\item[{double}]{b,  }\item[{double}]{c,  }\item[{double}]{d }\end{DoxyParamCaption})}
+
+Draw a Cosecant\+: for the equation $ y=a\frac{1}{sin(b(x+c))}+d $ 
+\begin{DoxyParams}{Parameters}
+{\em a} & amplitude (vertical stretch) \\
+\hline
+{\em b} & frequency (horizontal stretch) \\
+\hline
+{\em c} & phase shift (horizontal shift) \\
+\hline
+{\em d} & vertical shift\\
+\hline
+\end{DoxyParams}
+Due to the vertical asymptotes in a Cosecant and issues in drawing near vertical lines in this library Cosecants often don\textquotesingle{}t look very pretty \mbox{\Hypertarget{Shapes_8h_a5625446b9bddce3956b756c32a911934}\label{Shapes_8h_a5625446b9bddce3956b756c32a911934}} 
+\index{Shapes.\+h@{Shapes.\+h}!draw\+Cosine@{draw\+Cosine}}
+\index{draw\+Cosine@{draw\+Cosine}!Shapes.\+h@{Shapes.\+h}}
+\subsubsection{\texorpdfstring{draw\+Cosine()}{drawCosine()}}
+{\footnotesize\ttfamily void draw\+Cosine (\begin{DoxyParamCaption}\item[{double}]{a,  }\item[{double}]{b,  }\item[{double}]{c,  }\item[{double}]{d }\end{DoxyParamCaption})}
+
+Draw a Cosine Wave\+: for the equation $ y=acos(b(x+c)+d) $ 
+\begin{DoxyParams}{Parameters}
+{\em a} & amplitude (vertical stretch) \\
+\hline
+{\em b} & frequency (horizontal stretch) \\
+\hline
+{\em c} & phase shift (horizontal shift) \\
+\hline
+{\em d} & vertical shift\\
+\hline
+\end{DoxyParams}
+This function just calls Draw\+Sine(a,b,c+3$\ast$\+M\+\_\+\+P\+I/2,d) to yield the corresponding cosine \mbox{\Hypertarget{Shapes_8h_a8a1429da272888449118d1d703e8ecde}\label{Shapes_8h_a8a1429da272888449118d1d703e8ecde}} 
 \index{Shapes.\+h@{Shapes.\+h}!draw\+Ellipse@{draw\+Ellipse}}
 \index{draw\+Ellipse@{draw\+Ellipse}!Shapes.\+h@{Shapes.\+h}}
 \subsubsection{\texorpdfstring{draw\+Ellipse()}{drawEllipse()}}
@@ -121,7 +231,18 @@ Draw a Line Segment through two points
 {\em y\+\_\+2} & the second points y coordinate \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{Shapes_8h_ae8c6eccfcb6ede5f38f801111a539d65}\label{Shapes_8h_ae8c6eccfcb6ede5f38f801111a539d65}} 
+\mbox{\Hypertarget{Shapes_8h_a0d5e52bb0ca1c4ddb15e6a7c8df360a4}\label{Shapes_8h_a0d5e52bb0ca1c4ddb15e6a7c8df360a4}} 
+\index{Shapes.\+h@{Shapes.\+h}!draw\+Pair@{draw\+Pair}}
+\index{draw\+Pair@{draw\+Pair}!Shapes.\+h@{Shapes.\+h}}
+\subsubsection{\texorpdfstring{draw\+Pair()}{drawPair()}}
+{\footnotesize\ttfamily void draw\+Pair (\begin{DoxyParamCaption}\item[{\hyperlink{structPair}{Pair}}]{p }\end{DoxyParamCaption})}
+
+Draws the pair p if p is within the bounds of the screen 
+\begin{DoxyParams}{Parameters}
+{\em p} & a pair to draw\\
+\hline
+\end{DoxyParams}
+This will only draw if p is within the screen space \mbox{\Hypertarget{Shapes_8h_ae8c6eccfcb6ede5f38f801111a539d65}\label{Shapes_8h_ae8c6eccfcb6ede5f38f801111a539d65}} 
 \index{Shapes.\+h@{Shapes.\+h}!draw\+Parab@{draw\+Parab}}
 \index{draw\+Parab@{draw\+Parab}!Shapes.\+h@{Shapes.\+h}}
 \subsubsection{\texorpdfstring{draw\+Parab()}{drawParab()}}
@@ -151,7 +272,32 @@ Draw a Quadratic using the standard form\+: $ y=ax^2+bx+c $
 {\em a} & the third coefficient in the standard form \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{Shapes_8h_a11dd69ee62d674dcaec7e97502e25f71}\label{Shapes_8h_a11dd69ee62d674dcaec7e97502e25f71}} 
+\mbox{\Hypertarget{Shapes_8h_a5ab93c05291f9c4d65c0875516886fd1}\label{Shapes_8h_a5ab93c05291f9c4d65c0875516886fd1}} 
+\index{Shapes.\+h@{Shapes.\+h}!draw\+Quadrilateral@{draw\+Quadrilateral}}
+\index{draw\+Quadrilateral@{draw\+Quadrilateral}!Shapes.\+h@{Shapes.\+h}}
+\subsubsection{\texorpdfstring{draw\+Quadrilateral()}{drawQuadrilateral()}}
+{\footnotesize\ttfamily void draw\+Quadrilateral (\begin{DoxyParamCaption}\item[{double}]{x1,  }\item[{double}]{y1,  }\item[{double}]{x2,  }\item[{double}]{y2,  }\item[{double}]{x3,  }\item[{double}]{y3,  }\item[{double}]{x4,  }\item[{double}]{y4 }\end{DoxyParamCaption})}
+
+Draw a Quadrilateral\+: using the four specified vertices 
+\begin{DoxyParams}{Parameters}
+{\em x1} & x coordinate for vertex 1 \\
+\hline
+{\em y1} & y coordinate for vertex 1 \\
+\hline
+{\em x2} & x coordinate for vertex 2 \\
+\hline
+{\em y2} & y coordinate for vertex 2 \\
+\hline
+{\em x3} & x coordinate for vertex 3 \\
+\hline
+{\em y3} & y coordinate for vertex 3 \\
+\hline
+{\em x4} & x coordinate for vertex 4 \\
+\hline
+{\em y4} & y coordinate for vertex 4\\
+\hline
+\end{DoxyParams}
+The drawn shape is subject to the same restrictions as the rest of the system, more vertical data means more data loss Since this function results in six lines being drawn the resulting image will often be fairly busy a small quadrilateral look pretty ugly \mbox{\Hypertarget{Shapes_8h_a11dd69ee62d674dcaec7e97502e25f71}\label{Shapes_8h_a11dd69ee62d674dcaec7e97502e25f71}} 
 \index{Shapes.\+h@{Shapes.\+h}!draw\+Rect@{draw\+Rect}}
 \index{draw\+Rect@{draw\+Rect}!Shapes.\+h@{Shapes.\+h}}
 \subsubsection{\texorpdfstring{draw\+Rect()}{drawRect()}}
@@ -191,7 +337,7 @@ Draw a Sine Wave\+: for the equation $ y=asin(b(x+c)+d) $
 \subsubsection{\texorpdfstring{draw\+Single\+Point()}{drawSinglePoint()}}
 {\footnotesize\ttfamily void draw\+Single\+Point (\begin{DoxyParamCaption}\item[{double}]{x,  }\item[{double}]{y }\end{DoxyParamCaption})}
 
-Draw a single point given an x and a y if within the bounds of the screen 
+Draw a single point given an x and a y only draw if the point is within the bounds of the screen 
 \begin{DoxyParams}{Parameters}
 {\em x} & the x coordinate to draw \\
 \hline
@@ -211,7 +357,24 @@ Draw a Square\+: this works the same as \hyperlink{Shapes_8h_a11dd69ee62d674dcae
 {\em y} & the y coordinate of the top left corner \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{Shapes_8h_ac1273bd9874dc51afbf1fe9e2de4d694}\label{Shapes_8h_ac1273bd9874dc51afbf1fe9e2de4d694}} 
+\mbox{\Hypertarget{Shapes_8h_a565ea3768bbb272ddf970855eb12ed57}\label{Shapes_8h_a565ea3768bbb272ddf970855eb12ed57}} 
+\index{Shapes.\+h@{Shapes.\+h}!draw\+Tan@{draw\+Tan}}
+\index{draw\+Tan@{draw\+Tan}!Shapes.\+h@{Shapes.\+h}}
+\subsubsection{\texorpdfstring{draw\+Tan()}{drawTan()}}
+{\footnotesize\ttfamily void draw\+Tan (\begin{DoxyParamCaption}\item[{double}]{a,  }\item[{double}]{b,  }\item[{double}]{c,  }\item[{double}]{d }\end{DoxyParamCaption})}
+
+Draw a Tangent function\+: for the equation $ y=atan(b(x+c)+d) $ 
+\begin{DoxyParams}{Parameters}
+{\em a} & amplitude (vertical stretch) \\
+\hline
+{\em b} & frequency (horizontal stretch) \\
+\hline
+{\em c} & phase shift (horizontal shift) \\
+\hline
+{\em d} & vertical shift\\
+\hline
+\end{DoxyParams}
+Due to the vertical asymptotes in a Tangent and issues in drawing near vertical lines in this library Tangents often don\textquotesingle{}t look very pretty \mbox{\Hypertarget{Shapes_8h_ac1273bd9874dc51afbf1fe9e2de4d694}\label{Shapes_8h_ac1273bd9874dc51afbf1fe9e2de4d694}} 
 \index{Shapes.\+h@{Shapes.\+h}!draw\+Tri@{draw\+Tri}}
 \index{draw\+Tri@{draw\+Tri}!Shapes.\+h@{Shapes.\+h}}
 \subsubsection{\texorpdfstring{draw\+Tri()}{drawTri()}}
@@ -264,3 +427,125 @@ Fill in a vertical Line Segment\+: this is also a utility function for \hyperlin
 {\em y\+\_\+2} & same as above \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{Shapes_8h_adf2e7ed230dc6fbbdd12de938ce7a5c1}\label{Shapes_8h_adf2e7ed230dc6fbbdd12de938ce7a5c1}} 
+\index{Shapes.\+h@{Shapes.\+h}!mid\+Point@{mid\+Point}}
+\index{mid\+Point@{mid\+Point}!Shapes.\+h@{Shapes.\+h}}
+\subsubsection{\texorpdfstring{mid\+Point()}{midPoint()}}
+{\footnotesize\ttfamily \hyperlink{structPair}{Pair} mid\+Point (\begin{DoxyParamCaption}\item[{double}]{x1,  }\item[{double}]{y1,  }\item[{double}]{x2,  }\item[{double}]{y2 }\end{DoxyParamCaption})}
+
+Return the midpoint of (x1,y1) and (x2,y2) as a pair 
+\begin{DoxyParams}{Parameters}
+{\em x1} & the x coordinate of (x1,y1) \\
+\hline
+{\em y1} & the y coordinate of (x1,y1) \\
+\hline
+{\em x2} & the x coordinate of (x2,y2) \\
+\hline
+{\em y2} & the y coordinate of (x2,y2) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pair representing the midpoint of the given coordinates
+\end{DoxyReturn}
+this function uses the formula $ ( \frac{x_1+x_2}{2}, \frac{y_1+y_2}{2}) $ \mbox{\Hypertarget{Shapes_8h_a8c5d659efc6a6551cc816de045b4b9df}\label{Shapes_8h_a8c5d659efc6a6551cc816de045b4b9df}} 
+\index{Shapes.\+h@{Shapes.\+h}!rad\+To\+Deg@{rad\+To\+Deg}}
+\index{rad\+To\+Deg@{rad\+To\+Deg}!Shapes.\+h@{Shapes.\+h}}
+\subsubsection{\texorpdfstring{rad\+To\+Deg()}{radToDeg()}}
+{\footnotesize\ttfamily double rad\+To\+Deg (\begin{DoxyParamCaption}\item[{double}]{rad }\end{DoxyParamCaption})}
+
+Convert the input rad in radians to a double in degrees 
+\begin{DoxyParams}{Parameters}
+{\em rad} & a value in radians to be converted to a corresponding value in degrees \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a double in degrees corresponding to the input value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Shapes_8h_a5354ece4846b0a2c43cff2843164b185}\label{Shapes_8h_a5354ece4846b0a2c43cff2843164b185}} 
+\index{Shapes.\+h@{Shapes.\+h}!rotate\+D\+Point@{rotate\+D\+Point}}
+\index{rotate\+D\+Point@{rotate\+D\+Point}!Shapes.\+h@{Shapes.\+h}}
+\subsubsection{\texorpdfstring{rotate\+D\+Point()}{rotateDPoint()}}
+{\footnotesize\ttfamily \hyperlink{structPair}{Pair} rotate\+D\+Point (\begin{DoxyParamCaption}\item[{double}]{cx,  }\item[{double}]{cy,  }\item[{double}]{x,  }\item[{double}]{y,  }\item[{double}]{deg }\end{DoxyParamCaption})}
+
+Returns a \hyperlink{structPair}{Pair} corresponding to the rotation of (x,y) by deg in degrees about the point (cx,cy) 
+\begin{DoxyParams}{Parameters}
+{\em cx} & the x value of the center to be rotated around \\
+\hline
+{\em cy} & the y value of the center to be rotated around \\
+\hline
+{\em x} & the x value of the point to be rotated \\
+\hline
+{\em y} & the y value of the point to be rotated \\
+\hline
+{\em deg} & the angle in degrees to rotate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pair corresponding to the rotatation of (x,y) around (cx,cy)
+\end{DoxyReturn}
+to rotate around the origin do rotate\+D\+Point(0,0,x,y,deg) to avoid duplication this is just a wrapper to \hyperlink{Shapes_8h_ad9c16bc6995432bd18ceedbc24942425}{rotate\+R\+Point()} which converts deg to radians \mbox{\Hypertarget{Shapes_8h_ad9c16bc6995432bd18ceedbc24942425}\label{Shapes_8h_ad9c16bc6995432bd18ceedbc24942425}} 
+\index{Shapes.\+h@{Shapes.\+h}!rotate\+R\+Point@{rotate\+R\+Point}}
+\index{rotate\+R\+Point@{rotate\+R\+Point}!Shapes.\+h@{Shapes.\+h}}
+\subsubsection{\texorpdfstring{rotate\+R\+Point()}{rotateRPoint()}}
+{\footnotesize\ttfamily \hyperlink{structPair}{Pair} rotate\+R\+Point (\begin{DoxyParamCaption}\item[{double}]{cx,  }\item[{double}]{cy,  }\item[{double}]{x,  }\item[{double}]{y,  }\item[{double}]{rad }\end{DoxyParamCaption})}
+
+Returns a \hyperlink{structPair}{Pair} corresponding to the rotation of (x,y) by rad in radians about the point (cx,cy) 
+\begin{DoxyParams}{Parameters}
+{\em cx} & the x value of the center to be rotated around \\
+\hline
+{\em cy} & the y value of the center to be rotated around \\
+\hline
+{\em x} & the x value of the point to be rotated \\
+\hline
+{\em y} & the y value of the point to be rotated \\
+\hline
+{\em rad} & the angle in radians to rotate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pair corresponding to the rotatation of (x,y) around (cx,cy)
+\end{DoxyReturn}
+to rotate around the origin do rotate\+R\+Point(0,0,x,y,rad) \mbox{\Hypertarget{Shapes_8h_aeff31112f5fb131ae3c5311fc7b2824e}\label{Shapes_8h_aeff31112f5fb131ae3c5311fc7b2824e}} 
+\index{Shapes.\+h@{Shapes.\+h}!xlat\+Point@{xlat\+Point}}
+\index{xlat\+Point@{xlat\+Point}!Shapes.\+h@{Shapes.\+h}}
+\subsubsection{\texorpdfstring{xlat\+Point()}{xlatPoint()}}
+{\footnotesize\ttfamily \hyperlink{structPair}{Pair} xlat\+Point (\begin{DoxyParamCaption}\item[{double}]{tx,  }\item[{double}]{ty,  }\item[{double}]{x,  }\item[{double}]{y }\end{DoxyParamCaption})}
+
+Returns a \hyperlink{structPair}{Pair} corresponding to (x+tx,x+ty) 
+\begin{DoxyParams}{Parameters}
+{\em x} & the x value of the point to be translated \\
+\hline
+{\em y} & the y value of the point to be translated \\
+\hline
+{\em tx} & the translation amount in the x direction \\
+\hline
+{\em ty} & the translation amount in the y direction \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pair with the values (x+tx,y+ty)
+\end{DoxyReturn}
+This function is largely untested at this time 
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{Shapes_8h_a873f4afbf2ad5b2407d10ae0c8253b96}\label{Shapes_8h_a873f4afbf2ad5b2407d10ae0c8253b96}} 
+\index{Shapes.\+h@{Shapes.\+h}!C\+O\+L\+B\+O\+U\+ND@{C\+O\+L\+B\+O\+U\+ND}}
+\index{C\+O\+L\+B\+O\+U\+ND@{C\+O\+L\+B\+O\+U\+ND}!Shapes.\+h@{Shapes.\+h}}
+\subsubsection{\texorpdfstring{C\+O\+L\+B\+O\+U\+ND}{COLBOUND}}
+{\footnotesize\ttfamily const double C\+O\+L\+B\+O\+U\+ND = 100\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+C\+O\+L\+B\+O\+U\+ND The Column Bounds of the screen. 
+
+This is used in the included functions to limit the screen space being drawn to \mbox{\Hypertarget{Shapes_8h_a62f38f3826f7a23dc91ada9366d5c6a1}\label{Shapes_8h_a62f38f3826f7a23dc91ada9366d5c6a1}} 
+\index{Shapes.\+h@{Shapes.\+h}!R\+O\+W\+B\+O\+U\+ND@{R\+O\+W\+B\+O\+U\+ND}}
+\index{R\+O\+W\+B\+O\+U\+ND@{R\+O\+W\+B\+O\+U\+ND}!Shapes.\+h@{Shapes.\+h}}
+\subsubsection{\texorpdfstring{R\+O\+W\+B\+O\+U\+ND}{ROWBOUND}}
+{\footnotesize\ttfamily const double R\+O\+W\+B\+O\+U\+ND = 42\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+R\+O\+W\+B\+O\+U\+ND The Row Bounds of the screen. 
+
+This is used in the included functions to limit the screen space being drawn to 

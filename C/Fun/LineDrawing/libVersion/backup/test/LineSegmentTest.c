@@ -5,9 +5,8 @@ int main(int argc, char *argv[])
 
     if (argc != 5 || !strncmp(argv[1],"-h",2))
     {
-        puts("NLSeg: Prints a line through two given points");
-        puts("Usage:\n\tFor the points (x1,y1) and (x2,y2)\n\tDo: NLSeg.o x1 y1 x2 y2");
-        puts("\tPrint this help: NLSeg.o -h");
+        puts("DrawLineSegment: Prints a line through two given points");
+        puts("USAGE: ./DrawLineSegment x x x x");
         return 0;
     }
 

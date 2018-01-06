@@ -6,7 +6,6 @@ void drawQuad(double a, double b, double c)
     {
         y = a*i*i+b*i+c;
 
-        //if (i > COLBOUND || y > ROWBOUND) break;
         if (checkPair(i,y))
         {
             move( y, i);
@@ -24,7 +23,6 @@ void drawParab(double a, double h, double k)
     {
         y = a*(i-h)*(i-h)+k;
 
-        //if (i > COLBOUND || y > ROWBOUND) break;
         if (checkPair(i,y))
         {
             move( y, i);

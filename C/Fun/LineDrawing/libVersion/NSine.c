@@ -6,18 +6,11 @@ void drawSine(double a, double b, double c, double d)
 
     for (int i = 0; i < COLBOUND; i++)
     {
-        y = a*sin(b*(i+c)+d);
-        if (i > COLBOUND)
+        y = a*sin(b*(i+c))+d;
+        if (checkPoint(i,y))
         {
-            break;
+            move( y, i);	//point (x, a*sin(b*(x+c))+d)
+            addch('0');
         }
-        if ( y > ROWBOUND)
-        {
-            break;
-        }
-
-        move( y, i);	//point (x, a*sin(b*(x+c))+d)
-        addch('0');
-
     }
 }
