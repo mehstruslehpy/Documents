@@ -1,5 +1,5 @@
 #!/bin/sh
 cd test
-astyle *.c
-rm *.o *.out *.orig
+astyle testSources/*.c
+rm testObjects/*.o testObjects/*.out testScripts/*.out testSources/*.orig
 cd ..

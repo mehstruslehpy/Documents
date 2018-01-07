@@ -15,7 +15,10 @@ bool checkPoint(double x,double y)
 
     return false;
 }
-
+bool checkPair(Pair p)
+{
+    return checkPoint(p.x,p.y);
+}
 //the midpoint formula
 Pair midPoint(double x1, double y1, double x2, double y2)
 {

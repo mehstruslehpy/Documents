@@ -14,3 +14,22 @@ void drawSine(double a, double b, double c, double d)
         }
     }
 }
+//rotation version
+void drawRSine(double a, double b, double c, double d, double cx, double cy, double deg)
+{
+    Pair rpair = {.x=0,.y=0};
+    double y = 0;
+    for (int i = 0; i < COLBOUND; i++)
+    {
+        y = a*sin(b*(i+c))+d;
+        //the pair after rotating about the origin
+        rpair = rotateDPoint(cx,cy,i,y,deg);
+        if (checkPair(rpair))
+        {
+            drawPair(rpair);
+            //move( y, i);
+            //addch('0');
+        }
+    }
+}
+

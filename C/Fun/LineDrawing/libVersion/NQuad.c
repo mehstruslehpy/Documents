@@ -30,3 +30,36 @@ void drawParab(double a, double h, double k)
         }
     }
 }
+
+void drawRQuad(double a, double b, double c, double cx, double cy, double deg)
+{
+    Pair rpair = {.x=0,.y=0};
+    double y = 0;
+    for (int i = 0; i < COLBOUND; i++)
+    {
+        y = a*i*i+b*i+c;
+        rpair = rotateDPoint(cx,cy,i,y,deg);
+        if (checkPair(rpair))
+        {
+            drawPair(rpair);
+        }
+    }
+}
+
+//this is the vertex form
+//y = a(x-h)^2+k
+void drawRParab(double a, double h, double k, double cx, double cy, double deg)
+{
+    Pair rpair = {.x=0,.y=0};
+    double y = 0;
+    for (int i = 0; i < COLBOUND; i++)
+    {
+        y = a*(i-h)*(i-h)+k;
+        rpair = rotateDPoint(cx,cy,i,y,deg);
+        if (checkPair(rpair))
+        {
+            drawPair(rpair);
+        }
+    }
+}
+

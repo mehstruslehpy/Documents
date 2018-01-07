@@ -1,6 +1,7 @@
 /*! \file Shapes.h
 *
-*	This file contains the functions to use with ncurses.
+*	This file contains the functions to use with ncurses. Please note that all functions involving rotations except rotateRPoint()
+*	and rotateDPoint() are experimental, use them at your own risk
 */
 #ifndef NSHAPES_MEH
 #define NSHAPES_MEH
@@ -79,13 +80,14 @@ void fillVert(double x_1, double y_1, double y_2);
 /** Draw a Square: this works the same as drawRect() but only needs one length since all sides of a square are the same length
 *		@param x the x coordinate of the top left corner
 *		@param y the y coordinate of the top left corner
+*		@param l the length of each side
 */
 void drawSqr(double x, double y, double l);
 
 /** Check if the given (x,y) point is within the bounds of the screen
 *		@param x the x coordinate
 *		@param y the y coordinate
-*		@return true if the pair is within the (inclusive) interval [0,ROWBOUND] and [0,COLBOUND] false if not
+*		@return true if the coordinates are within the (inclusive) interval [0,ROWBOUND] and [0,COLBOUND] false if not
 */
 bool checkPoint(double x,double y);
 
@@ -169,12 +171,10 @@ void drawParab(double a, double h, double k);
 
 /** Draw a Quadratic using the standard form: \f$ y=ax^2+bx+c \f$
 *		@param a the first coefficient in the standard form
-*		@param a the second coefficient in the standard form
-*		@param a the third coefficient in the standard form
+*		@param b the second coefficient in the standard form
+*		@param c the third coefficient in the standard form
 */
 void drawQuad(double a, double b, double c);
-
-//TODO: add testing for Pairs, midpoint and distance
 
 /** @struct Pair
 *
@@ -268,6 +268,149 @@ Pair xlatPoint(double tx, double ty, double x, double y);
 *	This will only draw if p is within the screen space
 */
 void drawPair(Pair p);
+/** Check if the given pair is within the bounds of the screen
+*		@param p a pair with coordinates to check
+*		@return true if the pair contains coordinates within the (inclusive) interval [0,ROWBOUND] and [0,COLBOUND] false if not
+*/
+bool checkPair(Pair p);
 
+//TODO: test and document for Pairs, midpoint distance and rotation functions
+//animated tests are probably the best way to test these
+
+//has some issues with verticality
+/** Draw a rotated Sine Wave: for the unrotated equation \f$ y=asin(b(x+c)+d) \f$
+*		@param a amplitude (vertical stretch)
+*		@param b frequency (horizontal stretch)
+*		@param c phase shift (horizontal shift)
+*		@param d vertical shift
+*		@param cx x value for the center of rotation
+*		@param cy y value for the center of rotation
+*		@param deg the amount to rotate in degrees
+*/
+void drawRSine(double a, double b, double c, double d, double cx, double cy, double deg);
+
+//has some issues if the ellipse is not fully on the screen
+/** Draw a rotated Ellipse via the unrotated equation: \f$ \frac{(x-h)^2}{a^2}+\frac{(y-k)^2}{b^2}=1 \f$
+*		@param h is the x coordinate of the center
+*		@param k is the y coordinate of the center
+*		@param a is the width of the ellipse
+*		@param b is the height of the ellipse
+*		@param cx x value for the center of rotation
+*		@param cy y value for the center of rotation
+*		@param deg the amount to rotate in degrees
+*/
+void drawREllipse(double a, double b, double h, double k, double cx, double cy, double deg);
+
+
+//need way better line segment drawing functions to make output look better
+/** Draw a rotated Rectangle
+*		@param x is the top left corners x coordinate
+*		@param y is the top left corners y coordinate
+*		@param l is the length
+*		@param h is the height
+*		@param cx x value for the center of rotation
+*		@param cy y value for the center of rotation
+*		@param deg the amount to rotate in degrees
+*/
+void drawRRect(double x, double y, double l, double h, double cx, double cy, double deg);
+
+//same as RRect
+/** Draw a rotated Square: this works the same as drawRRect() but only needs one length since all sides of a square are the same length
+*		@param x the x coordinate of the top left corner
+*		@param y the y coordinate of the top left corner
+*		@param l the length of each side
+*		@param cx x value for the center of rotation
+*		@param cy y value for the center of rotation
+*		@param deg the amount to rotate in degrees
+*/
+void drawRSqr(double x, double y, double l, double cx, double cy, double deg);
+
+/** Draw a rotated Triangle: using the three specified vertices
+*		@param x1 x coordinate for vertex 1
+*		@param y1 y coordinate for vertex 1
+*		@param x2 x coordinate for vertex 2
+*		@param y2 y coordinate for vertex 2
+*		@param x3 x coordinate for vertex 3
+*		@param y3 y coordinate for vertex 3
+*		@param cx x value for the center of rotation
+*		@param cy y value for the center of rotation
+*		@param deg the amount to rotate in degrees
+*/
+void drawRTri(double x1, double y1, double x2, double y2, double x3, double y3, double cx, double cy, double deg);
+
+//this is a really ugly function signature
+//but it seems to work I might remove this later
+/** Draw a rotated Quadrilateral: using the four specified vertices (prerotation)
+*		@param x1 x coordinate for vertex 1
+*		@param y1 y coordinate for vertex 1
+*		@param x2 x coordinate for vertex 2
+*		@param y2 y coordinate for vertex 2
+*		@param x3 x coordinate for vertex 3
+*		@param y3 y coordinate for vertex 3
+*		@param x4 x coordinate for vertex 4
+*		@param y4 y coordinate for vertex 4
+*		@param cx x value for the center of rotation
+*		@param cy y value for the center of rotation
+*		@param deg the amount to rotate in degrees
+*
+*		Same as the previous drawQuadrilateral
+*/
+void drawRQuadrilateral(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4, double cx, double cy, double deg);
+
+/** Draw a rotated Cosine Wave: for the unrotated equation \f$ y=acos(b(x+c)+d) \f$
+*		@param a amplitude (vertical stretch)
+*		@param b frequency (horizontal stretch)
+*		@param c phase shift (horizontal shift)
+*		@param d vertical shift
+*		@param cx x value for the center of rotation
+*		@param cy y value for the center of rotation
+*		@param deg the amount to rotate in degrees
+*
+*		as before this is a wrapper to drawRSine()
+*/
+void drawRCosine(double a, double b, double c, double d, double cx, double cy, double deg);
+
+/** Draw a rotated Tangent function: for the unrotated equation \f$ y=atan(b(x+c)+d) \f$
+*		@param a amplitude (vertical stretch)
+*		@param b frequency (horizontal stretch)
+*		@param c phase shift (horizontal shift)
+*		@param d vertical shift
+*		@param cx x value for the center of rotation
+*		@param cy y value for the center of rotation
+*		@param deg the amount to rotate in degrees
+*/
+void drawRTan(double a, double b, double c, double d, double cx, double cy, double deg);
+
+/** Draw a rotated Cosecant: for the unrotated equation \f$ y=a\frac{1}{sin(b(x+c))}+d \f$
+*		@param a amplitude (vertical stretch)
+*		@param b frequency (horizontal stretch)
+*		@param c phase shift (horizontal shift)
+*		@param d vertical shift
+*		@param cx x value for the center of rotation
+*		@param cy y value for the center of rotation
+*		@param deg the amount to rotate in degrees
+*/
+void drawRCosecant(double a, double b, double c, double d,double cx, double cy, double deg);
+
+/** Draw a rotated Quadratic using the vertex form: using the unrotated equation \f$ y=a(x-h)^2+k \f$
+*		@param a the horizontal stretch
+*		@param h the x coodinate of the vertex
+*		@param k the y coodinate of the vertex
+*		@param cx x value for the center of rotation
+*		@param cy y value for the center of rotation
+*		@param deg the amount to rotate in degrees
+*/
+void drawRParab(double a, double h, double k, double cx, double cy, double deg);
+
+//has issues with the portion normally drawn off the screen in the unrotated version of this function
+/** Draw a rotated Quadratic using the unrotated standard form: \f$ y=ax^2+bx+c \f$
+*		@param a the first coefficient in the standard form
+*		@param b the second coefficient in the standard form
+*		@param c the third coefficient in the standard form
+*		@param cx x value for the center of rotation
+*		@param cy y value for the center of rotation
+*		@param deg the amount to rotate in degrees
+*/
+void drawRQuad(double a, double b, double c, double cx, double cy, double deg);
 
 #endif

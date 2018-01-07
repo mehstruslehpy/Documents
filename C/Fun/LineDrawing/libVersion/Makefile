@@ -14,24 +14,40 @@ library: MAIN-PROG
 
 #build test programs
 test: MAIN-PROG
-	$(CC) $(LIB) $(FLAG) -g -pg test/CircleTest.c Misc.o NCircle.o -o test/DrawCircle.o
-	$(CC) $(LIB) $(FLAG) -g -pg test/EllipseTest.c Misc.o NElli.o -o test/DrawEllipse.o
-	$(CC) $(LIB) $(FLAG) -g -pg test/LineSegmentTest.c Misc.o NLSeg.o -o test/DrawLineSegment.o
-	$(CC) $(LIB) $(FLAG) -g -pg test/LineTest.c Misc.o NLine.o -o test/DrawLine.o
-	$(CC) $(LIB) $(FLAG) -g -pg test/QuadraticTest.c Misc.o NQuad.o -o test/DrawQuadratic.o
-	$(CC) $(LIB) $(FLAG) -g -pg test/ParabolaTest.c Misc.o NQuad.o -o test/DrawParabola.o
-	$(CC) $(LIB) $(FLAG) -g -pg test/RectangleTest.c Misc.o NLSeg.o NLRect.o -o test/DrawRectangle.o
-	$(CC) $(LIB) $(FLAG) -g -pg test/SineTest.c Misc.o NSine.o -o test/DrawSine.o
-	$(CC) $(LIB) $(FLAG) -g -pg test/CosineTest.c Misc.o NCos.o NSine.o -o test/DrawCosine.o
-	$(CC) $(LIB) $(FLAG) -g -pg test/TanTest.c Misc.o NTan.o -o test/DrawTan.o
-	$(CC) $(LIB) $(FLAG) -g -pg test/CosecantTest.c Misc.o NCsc.o -o test/DrawCosecant.o
-	$(CC) $(LIB) $(FLAG) -g -pg test/SquareTest.c Misc.o NLSeg.o NLSqr.o -o test/DrawSquare.o
-	$(CC) $(LIB) $(FLAG) -g -pg test/TriangleTest.c Misc.o NLSeg.o NLTri.o -o test/DrawTriangle.o
-	$(CC) $(LIB) $(FLAG) -g -pg test/QuadrilateralTest.c Misc.o NLSeg.o NLQuad.o -o test/DrawQuadrilateral.o
-	$(CC) $(LIB) $(FLAG) -g -pg test/MidpointTest.c Misc.o NLSeg.o -o test/MidpointTest.o
-	$(CC) $(LIB) $(FLAG) -g -pg test/RotateDPointTest.c Misc.o NLSeg.o -o test/RotateDPointTest.o
-	$(CC) $(LIB) $(FLAG) -g -pg test/FanRotate.c Misc.o NLSeg.o -o test/FanRotate.o
-	$(CC) $(LIB) $(FLAG) -g -pg test/4ShapeRotate.c Misc.o NLSeg.o NLQuad.o -o test/4ShapeRotate.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/testSources/CircleTest.c Misc.o NCircle.o -o test/testObjects/DrawCircle.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/testSources/EllipseTest.c Misc.o NElli.o -o test/testObjects/DrawEllipse.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/testSources/REllipseTest.c Misc.o NElli.o -o test/testObjects/DrawREllipse.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/testSources/LineSegmentTest.c Misc.o NLSeg.o -o test/testObjects/DrawLineSegment.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/testSources/LineTest.c Misc.o NLine.o -o test/testObjects/DrawLine.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/testSources/QuadraticTest.c Misc.o NQuad.o -o test/testObjects/DrawQuadratic.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/testSources/RQuadraticTest.c Misc.o NQuad.o -o test/testObjects/DrawRQuadratic.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/testSources/ParabolaTest.c Misc.o NQuad.o -o test/testObjects/DrawParabola.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/testSources/RParabolaTest.c Misc.o NQuad.o -o test/testObjects/DrawRParabola.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/testSources/RectangleTest.c Misc.o NLSeg.o NLRect.o -o test/testObjects/DrawRectangle.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/testSources/RRectangleTest.c Misc.o NLSeg.o NLRect.o -o test/testObjects/DrawRRectangle.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/testSources/SineTest.c Misc.o NSine.o -o test/testObjects/DrawSine.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/testSources/RSineTest.c Misc.o NSine.o -o test/testObjects/DrawRSine.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/testSources/CosineTest.c Misc.o NCos.o NSine.o -o test/testObjects/DrawCosine.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/testSources/RCosineTest.c Misc.o NCos.o NSine.o -o test/testObjects/DrawRCosine.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/testSources/TanTest.c Misc.o NTan.o -o test/testObjects/DrawTan.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/testSources/RTanTest.c Misc.o NTan.o -o test/testObjects/DrawRTan.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/testSources/CosecantTest.c Misc.o NCsc.o -o test/testObjects/DrawCosecant.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/testSources/RCosecantTest.c Misc.o NCsc.o -o test/testObjects/DrawRCosecant.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/testSources/SquareTest.c Misc.o NLSeg.o NLSqr.o -o test/testObjects/DrawSquare.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/testSources/RSquareTest.c Misc.o NLSeg.o NLSqr.o -o test/testObjects/RDrawSquare.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/testSources/TriangleTest.c Misc.o NLSeg.o NLTri.o -o test/testObjects/DrawTriangle.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/testSources/RTriangleTest.c Misc.o NLSeg.o NLTri.o -o test/testObjects/DrawRTriangle.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/testSources/QuadrilateralTest.c Misc.o NLSeg.o NLQuad.o -o test/testObjects/DrawQuadrilateral.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/testSources/RQuadrilateralTest.c Misc.o NLSeg.o NLQuad.o -o test/testObjects/DrawRQuadrilateral.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/testSources/MidpointTest.c Misc.o NLSeg.o -o test/testObjects/MidpointTest.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/testSources/RotateDPointTest.c Misc.o NLSeg.o -o test/testObjects/RotateDPointTest.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/testSources/FanRotate.c Misc.o NLSeg.o -o test/testObjects/FanRotate.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/testSources/4ShapeRotate.c Misc.o NLSeg.o NLQuad.o -o test/testObjects/4ShapeRotate.o
+	$(CC) $(LIB) $(FLAG) -g -pg test/testSources/XlatTest.c Misc.o -o test/testObjects/XlatTest.o
+
+#build the docs
+doc:
+	doxygen Doxyfile
 
 #build the object files
 NLine: NLine.c
@@ -64,7 +80,8 @@ NLQuad: NLQuad.c
 	$(CC) $(LIB) $(FLAG) NLQuad.c -o NLQuad.o -c
 
 clean:
-	doxygen Doxyfile
+	rm -rf latex/
+	rm -rf html/
 	test/clean.sh
 	astyle *.c *.h
 	rm $(OBJ) Shapes.o *.a *.orig
