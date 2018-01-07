@@ -1,0 +1,10 @@
+#!/bin/bash
+./spinning_cosecant_demo.sh 
+./spinning_cosine_demo.sh 
+./spinning_ellipse_demo.sh
+./spinning_parabola_demo.sh
+./spinning_quadrilateral_demo.sh
+./spinning_rectangle_demo.sh
+./spinning_sine_demo.sh
+./spinning_tangent_demo.sh 
+./spinning_triangle_demo.sh

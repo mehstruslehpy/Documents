@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 while :
 do
 	A=$(( ( RANDOM % 40 )  + 1 ))
@@ -9,5 +9,5 @@ do
 	F=$(( ( RANDOM % 40 )  + 1 ))
 	G=$(( ( RANDOM % 40 )  + 1 ))
 	H=$(( ( RANDOM % 40 )  + 1 ))
-	$(sleep 1; echo "\n")| ../testObjects/DrawQuadrilateral.o $A $B $C $D $E $F $G $H
+	cat <(sleep 1; echo "\n") | ../testObjects/DrawQuadrilateral.o $A $B $C $D $E $F $G $H
 done
