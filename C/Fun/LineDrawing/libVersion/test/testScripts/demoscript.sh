@@ -1,6 +1,6 @@
 #!/bin/sh
 clear
-read  -n 1 -p "[ --press space to continue-- ]"
+read  -n 1 -p "[ --press enter to continue-- ]"
 ../testObjects /DrawSine.o 5 0.2 0 10
 ../testObjects/DrawSine.o 10 0.1 0 20
 ../testObjects/DrawSine.o 3 0.3 3 20
@@ -35,4 +35,7 @@ read  -n 1 -p "[ --press space to continue-- ]"
 ../testObjects/DrawRSine.o 5 0.2 0 30 -15
 ./4shape_test.sh
 ./fan_rotate_test.sh
+clear
+read  -n 1 -p "[ --Ctrl-c to quit or enter for more randomized moving demos-- ]"
+./all_spinning_demos.sh
 clear
