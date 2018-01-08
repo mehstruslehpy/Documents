@@ -1,0 +1,59 @@
+/** \mainpage Shapes
+
+<B>Summary:</B> 
+
+This library draws various equations and shapes in your terminal by using the ncurses library
+
+<B>Things To Note:</B>
+	
+The origin is centered at the top left.
+
+Y values count from the orgin POSITIVELY downward.
+
+All functions involving rotations except rotateRPoint() and rotateDPoint() are experimental, use them at your own risk.
+
+Every rotation function that I have written follows the same format as its original version but takes extra arguments. For example if \f$ f(x,y) \f$ is a function then its rotating counterpart is \f$ rf(x,y,cx,cy,deg) \f$ which will rotate about center \f$ (cx,cy) \f$ by \f$ deg \f$ degrees.
+	
+<B>Model Of The Coordinate Plane:</B>
+<!-- This is not an ideal way to display this --> 
+__|x________________________<BR>
+&nbsp;y|[(0,0)(1,0)(2,0)(3,0)]&nbsp;...<BR>
+&nbsp;&nbsp;&nbsp;|[(0,1)(1,1)(2,1)(3,1)]&nbsp;...<BR>
+&nbsp;&nbsp;&nbsp;|[(0,2)(1,2)(2,2)(3,2)]&nbsp;...<BR>
+&nbsp;&nbsp;&nbsp;|[(0,3)(1,3)(2,3)(3,3)]&nbsp;...<BR>
+&nbsp;&nbsp;&nbsp;|&nbsp;...<BR>
+&nbsp;&nbsp;&nbsp;|&nbsp;...<BR>
+&nbsp;&nbsp;&nbsp;|&nbsp;...<BR>
+
+<B>Building And Using</B>
+
+The functions are currently documented either by browsing the Shapes.h source yourself or viewing this documentation included here inside of the html subdirectory.
+
+Shapes.c is an example program.
+
+exampleProj is another example but this time via a static library.
+
+Test contains some test programs and scripts, these might be good for checking out what this library can do. Many of the test scripts use randomly generated values so try running them more than once.
+
+The outer makefile can be used either to build the Shapes.c program via running make or to build libShapes.a via
+
+running: 'make' by itself builds the Shapes.c program and all the object files in the folder containing the Makefile. 
+
+running: 'make library' will build libshapes.a for using shapes as a library.
+
+running: 'make test' will build the testing tools and programs inside of ./test
+
+running: 'make clean' cleans out any build files.
+
+running: 'make doc' rebuilds this documentation.
+
+<B>Known Bugs:</B>
+
+Because each (x,y) element in the plane needs to be a discrete integer there is a loss of 'resolution' in certain lines. Essentially as the slope gets steeper more points are lost due to the nature of drawing with discrete 'cells'
+
+This effect can be noticed in Line Segments, Quadrilaterals, Triangles, and more. You will probably recognize it when you see it.
+
+I have fixed it for perfectly vertical lines hence why Rectangles and Squares work fine.
+
+I am sure there are more, I need to think of more thorough ways to test this program.
+*/

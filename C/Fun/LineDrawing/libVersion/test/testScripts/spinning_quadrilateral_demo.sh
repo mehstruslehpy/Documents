@@ -10,6 +10,7 @@ H=$(( ( RANDOM % 20 )  + 1 ))
 I=$(( ( RANDOM % 20 )  + 1 ))
 J=$(( ( RANDOM % 20 )  + 1 ))
 K=0
+echo $A $B $C $D $E $F $G $H $I $J $K
 until [ $K -gt 360 ]; do
 	cat <(sleep 0.02s; echo "\n") | ../testObjects/DrawRQuadrilateral.o $A $B $C $D $E $F $G $H $I $J $K
 	let K=K+1

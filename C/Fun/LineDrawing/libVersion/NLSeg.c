@@ -16,6 +16,7 @@ void fillVert(double x_1, double y_1, double y_2)
     return;
 }
 
+
 void fillLine(double x_1, double x_2, double y_1, double m)
 {
     double count = (x_2>x_1)?(x_2-x_1):(x_1-x_2);
@@ -33,29 +34,30 @@ void fillLine(double x_1, double x_2, double y_1, double m)
         }
     }
 
-    /*
     //vertical fill
-    double x = 0;
-    double y_2 = m*(x_2-x_1)+y_1;
-    count = (y_2>y_1)?(y_2-x_1):(y_1-y_2);
-    start = (y_2>y_1)?(y_1):(y_2);
-    for (double i = 0; i <= count; i++)
-    {
-        x = floor((start+i-y_1)/m + x_1);
-        //x = (start+i-y_1)/m + x_1;
-        if (checkPoint(x,start+i))
-        {
-            move(start+i,x);
-            addch('0');
-        }
-    }
-    */
-    return;
+    //double x = 0;
+    //double y_2 = m*(x_2-x_1)+y_1;
+    //count = (y_2>y_1)?(y_2-x_1):(y_1-y_2);
+    //start = (y_2>y_1)?(y_1):(y_2);
+    //for (double i = 0; i <= count; i++)
+    //{
+    //    x = floor((start+i-y_1)/m + x_1);
+    //    //x = (start+i-y_1)/m + x_1;
+    //    if (checkPoint(x,start+i))
+    //    {
+    //        move(start+i,x);
+    //        addch('0');
+    //    }
+    //}
+    //
+    //return;
 }
+
 void drawLSeg(double x_1, double y_1, double x_2, double y_2)
 {
     double m  = (y_2-y_1)/(x_2-x_1);
 
+    /*
     if (checkPoint(x_1,y_1))
     {
         move(y_1,x_1);
@@ -66,7 +68,9 @@ void drawLSeg(double x_1, double y_1, double x_2, double y_2)
     {
         move(y_2,x_2);
         addch('0');
-    }
+    }*/
+    drawSinglePoint(x_1,y_1);
+    drawSinglePoint(x_2,y_2);
 
     if((x_2-x_1) == 0)
     {

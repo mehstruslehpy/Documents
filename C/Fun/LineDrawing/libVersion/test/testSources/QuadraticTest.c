@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
     initscr();			/* Start curses mode 		*/
     raw();				/* Line buffering disabled	*/
     noecho();			/* Don't echo() while we do getch */
+    curs_set(0);
 
     start_color();			/* Start color 			*/
     init_pair(1, COLOR_RED, COLOR_RED);

@@ -13,4 +13,4 @@ running: 'make' alone will build the .c files in this directory
 running: 'make library' will build the library as a .a file
 running: 'make test' will build the testing tools and programs inside of test
 running: 'make clean' cleans out any build files
-running: 'make doc' will build doxygen the documentation
+running: 'make doc' will build the doxygen documentation

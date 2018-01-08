@@ -1,4 +1,5 @@
 #!/bin/bash
+clear
 ./spinning_ellipse_demo.sh
 ./spinning_quadrilateral_demo.sh
 ./spinning_rectangle_demo.sh
