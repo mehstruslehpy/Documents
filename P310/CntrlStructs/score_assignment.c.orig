@@ -1,0 +1,34 @@
+/*
+**	Score Assignment: This is a simple programming
+**	Exercise that I will translate to C from a given
+**	PseudoCode then I will translate it to ttpasm
+*/
+
+#include <stdio.h>
+
+int main()
+{
+    int score = 0;
+
+    if (score < 60)
+    {
+        printf("A");	//ascii 65
+    }
+    if (score < 70)
+    {
+        printf("B");	//ascii 65
+    }
+    if (score < 80)
+    {
+        printf("B");	//ascii 65
+    }
+    if (score < 90)
+    {
+        printf("B");	//ascii 65
+    }
+
+else
+        {
+            printf("B");	//ascii 65
+        }
+}

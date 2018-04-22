@@ -1,0 +1,8 @@
+Your Number:
+	!!!Mantissa: 1213521919598484006
+	Mantissa(hex): a0d15a26
+	Base-10 exponent: 0
+	Base-10 exponent(hex): 0
+	!!!Base-2 exponent: -100
+	Base-2 exponent(hex): ffffff9c
+	Base-2 exponent(hex) + 1023 offset: ffffff9c

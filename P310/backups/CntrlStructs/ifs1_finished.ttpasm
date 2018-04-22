@@ -1,0 +1,46 @@
+Start:
+	
+	ldi a, x	//a=&x
+	ld  a,(a)	//a=x
+	ldi b, 0	//b=0
+	cmp a, b	//a-b, set flags
+	jzi EndIfLabel1	//a==0, exit
+	jci EndIfLabel1 //a<0, also exit
+
+IfLabel1:	//if (a>0) then fall through to here
+
+	ldi a, y	//a=&y
+	ld  a,(a)	//a=y
+	ldi b, z	//b=&z
+	ld b,(b)	//b=*b
+	cmp a,b		//a-b, set flags
+	jzi IfLabel2	//a==b, enter if case
+	jci IfLabel2	//a<b enter if case
+	jmpi Elselabel2	//if not enter else case
+
+IfLabel2:	//if (a<=b) then this case is chosen
+	
+	ldi a, x	//a=&x
+	ldi b, z	//b=&z, not really needed though
+	ld  a,(a)	//a=x
+	st (b),a	//z=a
+	jmpi EndIfLabel1	//exit
+
+ElseLabel2:	//if (!(a<=b)) then this case is chosen
+
+	ldi a, y	//a=&y, not really needed though
+	ldi b, z	//b=&z, not really needed though
+	ld  a,(a)	//a=y
+	st (b),a	//z=a
+
+EndIfLabel1:	//the else case falls through to here, the if case jumps to here
+
+	halt	//end the program
+
+	x:
+	byte 1	//unsigned x = 1;
+	y:
+	byte 2	//unsigned y = 2;
+	z:
+	byte 0	//unsigned z = 0;
+	//since these are unsigned I am using the carry version of jxi, to check for signed < just %s/jci/jli 

@@ -1,0 +1,59 @@
+\documentclass{article}
+\usepackage{graphics, fitch, amssymb, ragged2e}
+\begin{document}
+
+\begin{flushleft}
+\textbf{Prove:}
+$$((x_{m-1})?(-(2^m - \sum_{i=0}^{m-1} x_i 2^i)):(\sum_{i=0}^{m-1} x_i 2^i)) \Rightarrow ((\sum_{i=0}^{m-2} x_i 2^i) - x_{m-1}2^{m-1})$$
+\newline
+\newline
+\textbf{How:}
+\newline
+\newline
+A ternary expression effectively has the form "if a then b follows and if not a then c follows," because of that a two case conditional proof starting first with $x_{m-1}=1$ as case 1, followed by $x_{m-1}=0$ as case 2 is sufficient.
+\newline
+\newline
+\textbf{Case 1: $x_{m-1}=1$}
+\end{flushleft}
+\begin{equation*}
+\begin{fitch}
+\fb x_{m-1}=1 & Assumption \\
+\fj (x_{m-1})?(-(2^m - \sum_{i=0}^{m-1} x_i 2^i)):(\sum_{i=0}^{m-1} x_i 2^i) & Assumption \\
+\fa -(2^m - \sum_{i=0}^{m-1} x_i 2^i) & From 1 and 2, defn of ternary stmt \\
+\fa (\sum_{i=0}^{m-1} x_i 2^i) - 2^m & From 3, Multiplication\\ 
+\fa (\sum_{i=0}^{m-2} x_i 2^i) +x_{m-1}2^{m-1} - 2^m & From 4, Expansion of a Series\\
+\fa (\sum_{i=0}^{m-2} x_i 2^i) - (2^m - x_{m-1}2^{m-1}) & 5, Factoring \\
+\fa (\sum_{i=0}^{m-2} x_i 2^i) - (2^m - (1)2^{m-1}) & 6 and 1, Multiplicative identity \\
+\fa (\sum_{i=0}^{m-2} x_i 2^i) - (2^m -2^{m-1}) & 7, Simplification \\
+\fa (\sum_{i=0}^{m-2} x_i 2^i) - (2^m -2^m 2^{-1}) & 8, Rules of Exponents \\
+\fa (\sum_{i=0}^{m-2} x_i 2^i) - 2^m(1 - \frac{1}{2}) & 9, Factoring \\
+\fa (\sum_{i=0}^{m-2} x_i 2^i) - 2^m(\frac{1}{2}) & 10, Simplification \\
+\fa (\sum_{i=0}^{m-2} x_i 2^i) - 2^{m-1} & 11, Rules of Exponents \\
+\fa (\sum_{i=0}^{m-2} x_i 2^i) - (1)2^{m-1} & 12, Multiplicative identity \\
+\fa (\sum_{i=0}^{m-2} x_i 2^i) - x_{m-1}2^{m-1} & 1 and 13, Substitution \\
+\end{fitch}
+\end{equation*}
+\begin{flushleft}
+Which completes the proof for Case 1.
+\newline
+\pagebreak
+\newline
+\textbf{Case 2: $x_{m-1}=0$}
+\end{flushleft}
+\begin{equation*}
+\begin{fitch}
+\fb x_{m-1}=0 & Assumption \\
+\fj (x_{m-1})?(-(2^m - \sum_{i=0}^{m-1} x_i 2^i)):(\sum_{i=0}^{m-1} x_i 2^i) & Assumption\\
+\fa \sum_{i=0}^{m-1} x_i 2^i & From 1 and 2, defn of ternary stmt\\
+\fa (\sum_{i=0}^{m-2} x_i 2^i)+x_{m-1}2^{m-1} & From 3, Expansion of a Series\\
+\fa (\sum_{i=0}^{m-2} x_i 2^i)+(0)2^{m-1} & 1 and 4, Substitution \\
+\fa (\sum_{i=0}^{m-2} x_i 2^i)+0 & 5, Multiplying by 0 gives Additive Identity \\
+\fa \sum_{i=0}^{m-2} x_i 2^i & 6, Additive Identity \\
+\fa (\sum_{i=0}^{m-2} x_i 2^i)-(0)2^{m-1} & 7, Additive Identity \\
+\fa (\sum_{i=0}^{m-2} x_i 2^i)-x_{m-1}2^{m-1} & 8 and 1, Substitution\\
+\end{fitch}
+\end{equation*}
+\begin{flushleft}
+Which completes the proof for Case 2 and ends the proof.
+\end{flushleft}
+\end{document}

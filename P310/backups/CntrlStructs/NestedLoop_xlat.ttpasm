@@ -1,0 +1,40 @@
+//#include <stdio.h>
+Start:
+
+//int main()
+//{
+BeginLoop1:
+ldi a, i
+ld a, (a)
+ldi c, 59
+cmp a, c
+jli	EndLoop1 
+jzi EndLoop1
+//	 for (int i = 0; i <= 59; i++)
+//	 {
+BeginLoop2:
+ldi b, j
+ld b, (b)
+cmp b, c
+jli	EndLoop2 
+jzi EndLoop2
+//		  for (int j = 0; j <= 59; j++)
+//		  {
+//			   printf("Time: %d:%d\n",i,j);
+ldi d, j
+inc b
+st (d), b
+//		  }
+EndLoop2:
+//	 }
+ldi d, i
+inc a
+st (d), a
+//}
+EndLoop1:
+halt
+
+i:
+byte 0
+j:
+byte 0

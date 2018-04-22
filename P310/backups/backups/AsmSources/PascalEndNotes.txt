@@ -1,0 +1,8 @@
+Ram File-Size Excluding White Space and Headers: ~323 bytes
+Ram Runnable Size: ~1093 bytes
+Source Line Count: ~104 lines
+Source Line Count With Actual Code: ~74 lines
+Source Raw Size: ~2430 bytes
+Ram Space for Variables: 4 bytes
+Ram Space for Triangles Including Empty Slots: ~3472 bytes
+Spaces Actually Containing a Number From the Triangle: ~36 bytes

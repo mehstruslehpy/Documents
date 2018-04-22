@@ -412,5 +412,4 @@ void drawRParab(double a, double h, double k, double cx, double cy, double deg);
 *		@param deg the amount to rotate in degrees
 */
 void drawRQuad(double a, double b, double c, double cx, double cy, double deg);
-
 #endif

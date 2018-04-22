@@ -1,0 +1,34 @@
+Start:
+BeginLoop1:
+
+	ldi a, i	//a=&i
+	ld a, (a)	//a=i
+	ldi c, 58	//c=58, for counting, increments if i<=59 but we want to stop at 59:59 to match the original print statements
+	cmp c, a	//a-c, sets flags
+	jli EndLoop1 //if c<a exit
+
+BeginLoop2:
+
+	ldi b, j	//b=&j
+	ld b, (b)	//b=j
+	cmp c, b	//c-b, sets flags
+	jli EndLoop2 //if c<b exit this iteration
+	ldi d, j	//d=&j
+	inc b  		//b++
+	st (d), b	//j=b
+
+EndLoop2:
+
+	ldi d, i	//d=&i
+	inc a  		//a++
+	st (d), a	//i=a
+	jmpi BeginLoop1	//begin again
+
+EndLoop1:
+
+	halt		//end execution
+
+	i:			//local variables
+	byte 0
+	j:
+	byte 0

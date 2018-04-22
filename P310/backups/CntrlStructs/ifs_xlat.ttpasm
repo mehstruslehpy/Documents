@@ -1,0 +1,68 @@
+//#include <stdio.h>
+//int main()
+//{
+//	int x = 1;
+//	int y = 2;
+//	int z = 0;
+//
+
+ldi a, x
+ld  a,(a)
+ldi b, 0
+cmp a, b
+
+//	if (x > 0)
+
+jzi EndIfLabel1
+jci EndIfLabel1
+
+//	{
+
+ldi a, y
+ld  a,(a)
+ldi b, z
+ldi b,(b)
+cmp a,b
+jzi IfLabel2
+jci IfLabel2
+jmpi Elselabel2
+
+//		if (y <= z)
+//		{
+
+IfLabel2:
+	ldi a, x
+	ldi b, z
+	ld  a,(a)
+	st (z),a
+	jmpi EndIfLabel1
+
+//			z = x;	
+//		}
+//		else
+//		{
+
+ElseLabel2:
+	ldi a, y
+	ldi b, z
+	ld  a,(a)
+	st (z),a 
+
+//			z = y;
+//		}
+//	}
+
+EndIfLabel1:
+	halt
+
+//	printf("Output: z=%d\n", z);
+//	
+//	return 0;
+//}
+	
+	x:
+	byte 1
+	y:
+	byte 2
+	z:
+	byte 0

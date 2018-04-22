@@ -1,0 +1,51 @@
+# depslib dependency file v1.0
+1519163784 source:/home/tauyeung/cisp310/double/double1/exp10to2.c
+	"number.h"
+	"exp10to2.h"
+
+1519163524 /home/tauyeung/cisp310/double/double1/number.h
+	<stdint.h>
+
+1519163832 /home/tauyeung/cisp310/double/double1/exp10to2.h
+	"number.h"
+
+1519163842 source:/home/tauyeung/cisp310/double/double1/main.c
+	<stdint.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"parse.h"
+	"exp10to2.h"
+
+1519163540 /home/tauyeung/cisp310/double/double1/parse.h
+	<stdint.h>
+	"number.h"
+
+1519163651 source:/home/tauyeung/cisp310/double/double1/parse.c
+	"parse.h"
+
+1519957470 source:e:\p310\double1\exp10to2.c
+	"number.h"
+	"exp10to2.h"
+
+1519307388 e:\p310\double1\number.h
+	<stdint.h>
+
+1519307388 e:\p310\double1\exp10to2.h
+	"number.h"
+
+1519307388 source:e:\p310\double1\main.c
+	<stdint.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"parse.h"
+	"exp10to2.h"
+
+1519307388 e:\p310\double1\parse.h
+	<stdint.h>
+	"number.h"
+
+1519307388 source:e:\p310\double1\parse.c
+	"parse.h"
+

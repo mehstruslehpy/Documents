@@ -1,0 +1,62 @@
+The Triangle itself:
+
+1
+11
+131
+1441
+15851
+
+The basic algorithm:
+
+const int MAX_SIZE = some value;
+int row = 0;
+int col = 0;
+int lastrow = 0;
+int lastcol = 0;
+int opc = 1;
+int opd = 1;
+
+//the tip
+int ram[row][col] = 1;
+
+//the two columns of the next row 
+row++
+lastrow++
+int ram[row][col] = 1;
+col++
+int ram[row][col] = 1;
+
+//loop entry conditions
+lastrow = 1;
+lastcol = 0;
+col = 0;
+row = 2;
+
+while (row < MAX_SIZE)
+{
+	ram[row][col] = 1;
+	while(ram[lastrow][lastcol] != 1)
+	{
+		opc = ram[lastrow][lastcol];
+		opd = ram[lastrow][lastcol+1];
+		opc += d;
+		ram[row][col] = d
+		lastcol++;
+		col++;
+	}
+	lastrow++;
+	row++;
+}
+
+memory layout:
+
+ADDRESS:  ...|0x00|.........................
+CONTENTS: ...|code|.........................
+
+		  ...|0x60|.........................
+          ...|Pascals Triangle goes here|...
+
+ADDRESS:  ...|0xFC|0xFD....|0xFE.|0xFF......
+CONTENTS: ...|col.|lastcol.|row..|lastrow|.
+
+

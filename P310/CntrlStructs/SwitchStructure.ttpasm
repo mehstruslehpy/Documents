@@ -1,0 +1,58 @@
+START:
+	ldi a, x
+	ldi b, 5
+	st (a), b // x = 5
+	ldi a, y
+	ldi b, 255
+	st (a), b // y = 255
+	ldi a, x
+	ld a, (a) //a = x
+	ldi b, 0
+	cmp a, b
+	jzi CASE0 //check x==0
+	ldi b, 1
+	cmp a, b
+	jzi CASE1 //check x==1
+	ldi b, 2
+	cmp a, b
+	jzi CASE2 //check x==2
+	ldi b, 3
+	cmp a, b
+	jzi CASE3 //check x==3
+	ldi b, 4
+	cmp a, b
+	jzi CASE4 //check x==4
+	jmpi CASEDEFAULT //else default
+CASE0:
+	ldi a, y
+	ldi b, 1
+	st (a), b //y = 1;
+	jmpi EXIT
+CASE1:
+	ldi a, y
+	ldi b, 2
+	st (a), b //y = 2;
+	jmpi EXIT
+CASE2:
+	ldi a, y
+	ldi b, 3
+	st (a), b //y = 3;
+	jmpi EXIT
+CASE3:
+	ldi a, y
+	ldi b, 4
+	st (a), b //y = 4;
+	jmpi EXIT
+CASE4:
+	ldi a, y
+	ldi b, 5
+	st (a), b //y = 5;
+	jmpi EXIT
+CASEDEFAULT:
+	jmpi EXIT
+EXIT:
+	halt
+x:
+	byte 0
+y:
+	byte 0
