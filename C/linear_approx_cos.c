@@ -30,15 +30,26 @@ int16_t linear_approx_cos(int16_t param)
 	//if out of range fail
 	assert(param >= 0 && param < TWOPI);
 
-	//two cases
 	if (param < PI)
 	{
-		param = param - PIOVER2;
+		param = PIOVER2 -param;
 	}
 	else
 	{
-		param = -param + THREEPIOVER2;
+		param = param - THREEPIOVER2;
 	}
 	return param;
 }
 
+/*
+*TODO: Increase the accuracy
+*	add in linear approximations at:
+*	-:  sqrt(2)/2 - sqrt(2)/2 * (x - pi/4)
+*	-: -sqrt(2)/2 - sqrt(2)/2 * (x - 3pi/4)
+*	-: -sqrt(2)/2 + sqrt(2)/2 * (x - 5pi/4)
+*	-:  sqrt(2)/2 + sqrt(2)/2 * (x - 7pi/4)
+*	
+*	figure out multiplying by an irrational in ttpasm	
+*
+*	NOTE: 000.1011010100000  ~ sqrt(2)/2 ~ 5792
+*/
