@@ -1,0 +1,124 @@
+sub d,d //init stack pointer
+MAIN:
+dec d // alloc for A
+ldi a, 2 
+st (d), a // initialize A to 2
+
+dec d // alloc for B
+ldi a, 3
+st (d), a // initialize A to 3
+
+dec d // alloc for ret
+ldi a, 0
+st (d), a //initialize ret to 0
+
+// CURRENT STACK:
+// A
+// B
+// ret <- d
+
+ldi a, 1 // offset to B from d
+add a,d // a == &B
+ld a,(a) // a == B
+
+dec d // alloc for B
+st (d), a // push B
+
+ldi a, 3 // offset to A from d
+add a,d // a == &A
+ld a,(a) // a == A
+
+dec d // alloc for A
+st (d), a // push A
+
+ldi a, RETURN // return address
+dec d // alloc for return address
+st (d), a //push return address
+jmpi BINMUL
+RETURN:
+inc d // dealloc param B
+inc d // dealloc param A
+
+// CURRENT STACK:
+// A
+// B
+// ret <- d
+
+st (d), a // store returned value into ret
+
+//end the program
+inc d // dealloc ret
+inc d // dealloc B
+inc d // dealloc A
+ldi a, 0
+halt
+ENDMAIN:
+
+BINMUL:
+// A
+// B
+// RETURN-ADDRESS <- d
+dec d // alloc for ret
+ldi a, 0
+st (d), a // init ret to 0
+
+dec d // alloc for i
+st (d), a //init i to 0
+
+BEGINFOR:
+// A
+// B
+// RETURN-ADDRESS
+// ret 
+// i <- d
+
+ld a, (d) // get i
+ldi b, 16 // the bit width
+cmp a,b // a-b
+jzi ENDFOR //if i == 16 the loop is done
+ldi b, 3 // offset to B
+add b,d // b == &B
+ld b, (b) // b == B
+ldi c, 1 // constant to use in the and expression
+rsh b,a // b == B >>= i 
+and b,c // b == B &= 0x01
+jzi ELSECASE //jump to ELSECASE if 0 flag got set
+
+IFCASE:
+ldi b,1
+add b,d // b == &ret
+ld b,(b) // b == ret
+ldi c,4
+add c,d // c == &A
+ld c,(c) // c == A
+
+//left shifts are multiplications by two
+//adding a number to itself once is also mul by two
+WHILE:
+and a,a //check if i is zero
+jzi ENDWHILE
+add c,c
+dec a
+jmpi WHILE
+ENDWHILE:
+
+add b,c // b == ret += (a<<i)
+ldi c, 1
+add c,d // c == &ret
+st (c), b // store ret back
+ELSECASE:
+ld a,(d) // a == i
+inc a // a == i++
+st (d),a
+jmpi BEGINFOR
+ENDFOR:
+
+ldi a,1
+add a,d // a == &ret
+ld a,(a) // a == ret
+inc d // dealloc i
+inc d // dealloc ret
+ld b,(d) // b == ret 
+inc d // dealloc return address
+jmp b // jmp to calling function
+ENDBINMUL:

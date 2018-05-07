@@ -3,18 +3,25 @@
 #include <assert.h>
 
 /*CONSTANTS*/
-//twopi ~ 110.0100100001111 ~ 102943
-const int TWOPI = 102943;
 //pi/4 ~ 000.1100100100001 ~ 6433
 const int PIOVER4 = 6433;
+//pi/2 ~ 001.1 0010 0100 0011 ~ 12867
+const int PIOVER2 = 12867;
+//3pi/4 ~ 010.0 1011 0110 0101 ~ 19301
+const int THREEPIOVER4 = 19301;
 //pi ~ 011.0010010000111 ~ 25735
 const int PI = 25735;
+//5pi/4 ~ 64339
+const int FIVEPIOVER4 = 64339;
 //3pi/2 ~ 100.1011011001011 ~ 38603
 const int THREEPIOVER2 = 38603;
-//pi/2 ~ 001.1001001000011 ~ 12867
-const int PIOVER2 = 12867;
+//7pi/4 ~ 45037
+const int SEVENPIOVERFOUR = 45037
+//twopi ~ 110.0100100001111 ~ 102943
+const int TWOPI = 102943;
 
 int16_t linear_approx_cos(int16_t);
+int16_t binmul(int32_t,int32_t);
 
 int main()
 {
@@ -32,13 +39,28 @@ int16_t linear_approx_cos(int16_t param)
 
 	if (param < PI)
 	{
-		param = PIOVER2 -param;
+		param = PIOVER2 - param;
 	}
 	else
 	{
 		param = param - THREEPIOVER2;
 	}
 	return param;
+}
+
+int16_t binmul(int32_t a, int32_t b)
+{
+    int32_t ret = 0;
+    for(int i = 0; i <= 31; i++)
+    {
+        if((b >> i) & 0x01)
+        {
+            ret += (a<<i);
+        }
+
+    }
+    ret = (ret<<26);
+	return ret;
 }
 
 /*
@@ -53,3 +75,8 @@ int16_t linear_approx_cos(int16_t param)
 *
 *	NOTE: 000.1011010100000  ~ sqrt(2)/2 ~ 5792
 */
+/*
+*	Description: Computes x*y without using the * operator
+*				 This is mainly for figuring out binary multiplication
+*/
+
