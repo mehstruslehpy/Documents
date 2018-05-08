@@ -1,0 +1,1080 @@
+sub d,d
+main:
+// pSorted[0]
+// pSorted[1]
+// pSorted[2]
+// pSorted[3]
+// pSorted[4]
+// sorted
+ldi a,6 // allocate for sorted and psorted
+sub d,a
+cpr c,d
+ldi a,5
+add c,a
+st  (c),d // pSorted = sorted
+
+//begin function call
+dec d
+st  (d),c // c==&pSorted, push &pSorted
+ldi a,N1
+dec d
+st  (d),a // push &N1
+ldi a,mainRetFromTraverse
+dec d
+st  (d),a // push return address
+jmpi traverse
+mainRetFromTraverse:
+inc d
+inc d
+
+ldi a,6
+add d,a
+halt
+
+N1:
+byte 5
+byte N2
+byte N3
+N2:
+byte 3
+byte 0
+byte N4
+N3:
+byte 10
+byte N5
+byte 0
+N4:
+byte 4
+byte 0
+byte 0
+N5:
+byte 9
+byte 0
+byte 0
+
+
+traverse:
+  //array (which is &pSorted)
+  //ptr (which is &N1)
+  //RETADDR <- d
+
+  ldi b, 1
+  add b, d // b == &ptr
+  ld b,(b) //b == ptr
+  and b,b
+  jzi traverseend // check for null pointer
+
+  ldi b, 2
+  add b,d //b == &array
+  ld b, (b) //b == array
+  dec d
+  st (d), b //push array
+
+  ldi b, 2
+  add b, d // b == &ptr
+  ld b,(b) //b == ptr
+  inc b
+  ld b,(b) //b == ptr->l
+  dec d
+  st (d), b //push ptr->l
+  
+  ldi b, traverseret1
+  dec d
+  st (d), b //push return address
+  jmpi traverse
+
+traverseret1:
+  inc d //dealloc the first param
+  inc d //dealloc the second param 
+  
+  ldi b, 1
+  add b, d // b == ptr
+  ld b,(b) // b == *ptr == ptr->value
+  ld b,(b) // b == *ptr == ptr->value
+
+  ldi c, 2
+  add c, d // c == &array
+  ld c,(c) // c == array
+  ld c,(c) // c == *array
+  st (c), b // **array = ptr->value
+
+  ldi c, 2
+  add c, d // c == array
+  ldi b, 2
+  add b, d // c == array
+  ld b,(b)
+  ld c,(c) // c == *array
+  ld c,(c)
+  inc c // (*array) += 1
+  st (b), c
+
+  ldi b, 2
+  add b,d //b == &array
+  ld b, (b)
+  dec d
+  st (d), b //push array
+
+  ldi b, 2
+  add b, d // b == &ptr
+  ld b,(b)
+  inc b // b == &ptr->l
+  inc b // b == &ptr->r
+  ld b,(b)
+  dec d
+  st (d), b //push ptr->r
+
+  ldi b, traverseret2
+  dec d
+  st (d), b //push return address
+  jmpi traverse
+
+traverseret2:
+  inc d
+  inc d //dealloc both params
+
+traverseend:
+  ld b,(d)
+  inc d
+  jmp b  
+halt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
