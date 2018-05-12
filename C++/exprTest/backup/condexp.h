@@ -1,17 +1,17 @@
-#ifndef _OREXP_H_
-#define _OREXP_H_
+#ifndef _CONDEXP_H_
+#define _CONDEXP_H_
 #include "boolexp.h"
 #include <string.h>	//cstring functions
 
 using namespace std;
 
-class OrExp : public BoolExp
+class CondExp : public BoolExp
 {
     BoolExp* _operand1;
     BoolExp* _operand2;
 public:
-    OrExp ( BoolExp*, BoolExp* );	//not expressions are constructed through boolean expressions
-    virtual ~OrExp ( );
+    CondExp ( BoolExp*, BoolExp* );	//not expressions are constructed through boolean expressions
+    virtual ~CondExp ( );
 
     virtual string Name() const; 	//return a copy of the name
 

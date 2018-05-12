@@ -28,5 +28,7 @@ string NotExp::Name() const
     return "~" + _operand->Name();
 }
 BoolReturn NotExp::Infer()
-{}
+{
+    return BoolReturn(_operand, nullptr);
+}
 

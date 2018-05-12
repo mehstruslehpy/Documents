@@ -36,4 +36,5 @@ string OrExp::Name() const
 }
 BoolReturn OrExp::Infer()
 {
+    return BoolReturn(_operand1,_operand2);
 }

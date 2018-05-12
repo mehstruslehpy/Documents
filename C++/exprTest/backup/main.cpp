@@ -7,37 +7,128 @@
 
 using namespace std;
 
+BoolExp* buildExpr(BoolExp*);
+
 int main()
 {
-	Context context;
-	VarExp var1("A");
-	VarExp* vptr = new VarExp("B");
-	BoolExp* bptr = vptr;
-	NotExp not1(&var1);
-	NotExp not2(bptr);
-	AndExp avar1(vptr,&var1);
-	AndExp avar2(&avar1,&var1);
-	OrExp ovar1(&avar1,&avar2);
-	OrExp ovar2(&avar1,&not2);
-	NotExp not3(&ovar1);
-	
-	context.Assign(&var1,true);
-	context.Assign(vptr,false);
+    string input = "";
+    Context context;
+    BoolExp* current = nullptr;
+    Prover proof;
 
-	cout << var1.Name()  << ": " << var1.Evaluate(context) << endl;
-	cout << bptr->Name() << ": " << bptr->Evaluate(context) << endl;
-	cout << not1.Name() << ": " << not1.Evaluate(context) << endl;	
-	cout << not2.Name() << ": " << not2.Evaluate(context) << endl;	
-	bptr = &not1;
-	cout << bptr->Name() << ": " << bptr->Evaluate(context) << endl;
-	bptr = &not2;
-	cout << bptr->Name() << ": " << bptr->Evaluate(context) << endl;
-	cout << avar1.Name() << ": " << avar1.Evaluate(context) << endl;	
-	cout << avar2.Name() << ": " << avar2.Evaluate(context) << endl;	
-	cout << ovar1.Name() << ": " << ovar1.Evaluate(context) << endl;	
-	cout << not3.Name() << ": " << not3.Evaluate(context) << endl;	
-	cout << ovar2.Name() << ": " << ovar2.Evaluate(context) << endl;	
-	
-	delete vptr;
-	return 0;
+    cout << "Building argument enter q to end:" << endl;
+    while (input != "q")
+    {
+        current = buildExpr(current);
+        proof.AddPremise(current, current->Type(), "given");
+        proof.PrintPremises();
+        cout << endl;
+        cout << "Building argument enter q to end or c to continue:" << endl;
+        cin >> input;
+        cin.ignore(256,'\n');
+    }
+    proof.PrintPremises();
+
+	//add conclusion code here
+
+    input = "";
+    cout << "Beginning inference step enter q to quit:" << endl;
+    //for (int i = 0; input != "q" && i < proof.PremiseCount() && inferences can be made; i++)
+    for (int i = 0; input != "q" && i < proof.PremiseCount(); i++)
+    {
+        proof.Infer(i);
+        proof.PrintPremises();
+		//check for contradiction here
+        cout << "Continue inferences?" << endl;
+        cin >> input;
+        cin.ignore(256,'\n');
+	}
+    cout << "Program Ending" << endl;
+    return 0;
+}
+
+BoolExp* buildExpr(BoolExp* current)
+{
+    string input = "";
+    do
+    {
+        cout << "\tUnary or Binary?(u/b): " << endl;
+        cin >> input;
+        cin.ignore(256,'\n');
+    }
+    while (input != "u" && input != "b");
+
+    if(input == "u")
+    {
+        do
+        {
+            cout << "\tVariable or Negation?(v/n)" << endl;
+            cin >> input;
+            cin.ignore(256,'\n');
+        }
+        while (input != "v" && input != "n");
+
+        if (input == "v")
+        {
+            cout << "\tEnter a variable name:" << endl;
+            cin >> input;
+            cin.ignore(256,'\n');
+            current = new VarExp(input.c_str());
+            return current;
+        }
+        if (input == "n")
+        {
+            cout << "\tContinuing to interior of negation: " << endl;
+            BoolExp* temp;
+            temp = buildExpr(current);
+            current = new NotExp(temp);
+            return current;
+        }
+    }
+    if (input == "b")
+    {
+        do
+        {
+            cout << "\tAnd, Or, or Conditional?(a/o/c)" << endl;
+            cin >> input;
+            cin.ignore(256,'\n');
+        }
+        while (input != "a" && input != "o" && input != "c");
+
+        if (input == "a")
+        {
+            BoolExp* temp1;
+            BoolExp* temp2;
+            cout << "\tBuilding left side of And: " << endl;
+            temp1 = buildExpr(current);
+            cout << "\tBuilding right side of And: " << endl;
+            temp2 = buildExpr(current);
+            current = new AndExp(temp1,temp2);
+            return current;
+        }
+        if (input == "o")
+        {
+            BoolExp* temp1;
+            BoolExp* temp2;
+            cout << "\tBuilding left side of Or: " << endl;
+            temp1 = buildExpr(current);
+            cout << "\tBuilding right side of Or: " << endl;
+            temp2 = buildExpr(current);
+            current = new OrExp(temp1,temp2);
+            return current;
+        }
+        if (input == "c")
+        {
+            BoolExp* temp1;
+            BoolExp* temp2;
+            cout << "\tBuilding left side of Conditional: " << endl;
+            temp1 = buildExpr(current);
+            cout << "\tBuilding right side of Conditional: " << endl;
+            temp2 = buildExpr(current);
+            current = new CondExp(temp1,temp2);
+            return current;
+        }
+
+    }
+    return nullptr;
 }

@@ -1,7 +1,8 @@
 #include "notexp.h"
 NotExp::NotExp ( BoolExp* op)
+    : BoolExp(NOT_EXP)
 {
-	_operand = op;
+    _operand = op;
 }
 
 NotExp::~NotExp ( )//need to make sure the destructor of the pointed to item gets called
@@ -9,20 +10,25 @@ NotExp::~NotExp ( )//need to make sure the destructor of the pointed to item get
 
 bool NotExp::Evaluate(Context& con)
 {
-	return !_operand->Evaluate(con);
+    return !_operand->Evaluate(con);
 }
 
 BoolExp* NotExp::Replace(const char* name, BoolExp& exp)
 {
-	return new NotExp(_operand->Replace(name,exp));
+    return new NotExp(_operand->Replace(name,exp));
 }
 
 BoolExp* NotExp::Copy() const
 {
-	return new NotExp(_operand->Copy());
+    return new NotExp(_operand->Copy());
 }
 
 string NotExp::Name() const
 {
-	return "~" + _operand->Name();
+    return "~" + _operand->Name();
 }
+BoolReturn NotExp::Infer()
+{
+    return BoolReturn(_operand, nullptr);
+}
+

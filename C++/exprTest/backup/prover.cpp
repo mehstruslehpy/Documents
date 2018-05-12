@@ -51,8 +51,8 @@ void Prover::Infer(int i)
     switch(_ptypes[i])
     {
     case OR_EXP:
-    {
-        // (AvB), ~A |- B
+    {	
+		// (AvB), ~A |- B
         BoolReturn inf = _premi[i]->Infer();
 
         if (!MatchNegation(inf.op1->Name()))
@@ -68,8 +68,8 @@ void Prover::Infer(int i)
     case VAR_EXP:
         break;
     case AND_EXP:
-    {
-        //(A&B) |- A, B
+    {	
+		//(A&B) |- A, B
         BoolReturn inf = _premi[i]->Infer();
         if (!MatchString(inf.op1->Name()))
         {
@@ -167,7 +167,7 @@ void Prover::PrintPremises() const
     for (auto i = _premi.begin(); i != _premi.end(); ++i, ++j)
     {
         cout << j << ") " << _premi[j]->Name();
-        cout << "\t{ " + _reasons[j] + " }" << endl;
+		cout << "\t{ " + _reasons[j] + " }" << endl; 
     }
 }
 

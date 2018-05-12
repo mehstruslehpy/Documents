@@ -11,9 +11,9 @@ using namespace std;
 class VarExp; //forward decl
 class Context
 {
-	map<string, bool> _map;	
+    map<string, bool> _map;
 public:
-	bool Lookup(const char*) const;
-	void Assign(VarExp*, bool);	//calling this with anything other than a varexp would make no sense
+    bool Lookup(const char*) const;
+    void Assign(VarExp*, bool);	//calling this with anything other than a varexp would make no sense
 };
 #endif
