@@ -1,9 +1,8 @@
 #include "andexp.h"
 AndExp::AndExp ( BoolExp* op1, BoolExp* op2)
-    : BoolExp(AND_EXP)
 {
-    _operand1 = op1;
-    _operand2 = op2;
+	_operand1 = op1;
+	_operand2 = op2;
 }
 
 AndExp::~AndExp ( )//need to make sure the destructor of the pointed to item gets called
@@ -11,33 +10,26 @@ AndExp::~AndExp ( )//need to make sure the destructor of the pointed to item get
 
 bool AndExp::Evaluate(Context& con)
 {
-    bool val1 = _operand1->Evaluate(con);
-    bool val2 = _operand2->Evaluate(con);
+	bool val1 = _operand1->Evaluate(con);
+	bool val2 = _operand2->Evaluate(con);
 
-    return val1 && val2;
+	return val1 && val2;
 }
 
 BoolExp* AndExp::Replace(const char* name, BoolExp& exp)
 {
-    return new AndExp(_operand1->Replace(name,exp),
-                      _operand2->Replace(name,exp));
+	return new AndExp(_operand1->Replace(name,exp),
+					  _operand2->Replace(name,exp));
 }
 
 BoolExp* AndExp::Copy() const
 {
-    return new AndExp(_operand1->Copy(),
-                      _operand2->Copy());
+	return new AndExp(_operand1->Copy(),
+					  _operand2->Copy());
 }
 
 string AndExp::Name() const
 {
-    string ret = "(" + _operand1->Name() + " & " + _operand2->Name() + ")";
-    return ret;
-}
-BoolReturn AndExp::Infer()
-{
-    //BoolReturn* ret = new BoolReturn;
-    //ret->op1 = _operand1;
-    //ret->op2 = _operand2;
-    return BoolReturn(_operand1,_operand2);
+	string ret = "(" + _operand1->Name() + " & " + _operand2->Name() + ")";
+	return ret;
 }

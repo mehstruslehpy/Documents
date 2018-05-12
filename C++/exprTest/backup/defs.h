@@ -6,6 +6,4 @@
 #include "notexp.h"
 #include "andexp.h"
 #include "orexp.h"
-#include "condexp.h"
-#include "prover.h"
 #endif
