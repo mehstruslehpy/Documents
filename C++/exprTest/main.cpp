@@ -33,20 +33,24 @@ int main()
     cout << "Build your conclusion" << endl;
     conclusion = buildExpr(current);
     current = new NotExp(conclusion);
-    proof.AddPremise(current, current->Type(), "~Conclusion");
+    proof.AddPremise(current, current->Type(), "~ of the conclusion");
     proof.PrintPremises();
     cout << endl;
 
     input = "";
     cout << "Beginning inference step enter q to quit:" << endl;
-    for (int i = 0; input != "q" && !proof.FindContradiction() && proof.HighestAssumption() >= 0; i++)
+    bool contradicted = false;
+    for (int i = 0; input != "q"; i++)
     {
+        cout << "Iteration: " << i << endl;
         proof.Infer(i%proof.PremiseCount());
         proof.PrintPremises();
         cout << "Continue inferences or quit?(c/q)" << endl;
         cin >> input;
         cin.ignore(256,'\n');
-        proof.MakeAssumption();
+        contradicted = proof.FindContradiction();
+        if (proof.HighestAssumption()==0 && contradicted) break;
+        if (!(i%50)&&i!=0) proof.MakeAssumption();
     }
     proof.PrintPremises();
     cout << "Therefore " << conclusion->Name() << " is a valid conclusion" << endl;

@@ -1,7 +1,34 @@
-./main <<-ENDOFMESSAGE
+../main <<-ENDOFMESSAGE
 	#Proposition 1
 	b
+	a
+	b
 	c
+	u
+	n
+	u
+	v
+	A
+	u
+	v
+	B
+	b
+	c
+	u
+	v
+	B
+	u
+	n
+	u
+	v
+	A
+	q #continue
+
+	#Conclusion
+	u
+	n
+	b
+	a
 	b
 	c
 	u
@@ -10,28 +37,6 @@
 	u
 	v
 	B
-	u
-	v
-	C
-	c #continue
-	
-	#Proposition 2
-	b
-	c
-	u
-	v
-	C
-	b
-	a
-	u
-	v
-	D
-	u
-	v
-	E
-	q #continue
-
-	#Conclusion
 	b
 	c
 	u
@@ -39,6 +44,6 @@
 	B
 	u
 	v
-	D
+	A
 	c # continue
 	ENDOFMESSAGE

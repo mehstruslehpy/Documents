@@ -1,4 +1,4 @@
-./main <<-ENDOFMESSAGE
+../main <<-ENDOFMESSAGE
 	#Proposition 1
 	b
 	o

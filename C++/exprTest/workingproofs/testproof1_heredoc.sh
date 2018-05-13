@@ -1,4 +1,4 @@
-./main <<-ENDOFMESSAGE
+../main <<-ENDOFMESSAGE
 	#Proposition 1
 	#builds: (A -> (B & C))
 	b #binary 

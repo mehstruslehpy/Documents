@@ -22,9 +22,15 @@ class Prover
     vector<int> _starred;		//starred derivations have no further inferences
     vector<bool> _contradicted; //a contradicted derivation cannot be used in further proof
 
-    bool MatchAtomic(string);	//returns true if the atomic proposition input is present in the proof
-    bool MatchString(string);	//returns true if the string input is present in the proof
-    bool MatchNegation(string);	//returns true if the negation of the input string is present in the proof
+    int MatchAtomic(string);	//returns true if the atomic proposition input is present in the proof
+    int MatchString(string);	//returns true if the string input is present in the proof
+    int MatchNegation(string);	//returns true if the negation of the input string is present in the proof
+
+    //unblocked versions
+    int MatchAtomicUB(string);	//returns true if the atomic proposition input is present in the proof
+    int MatchStringUB(string);	//returns true if the string input is present in the proof
+    int MatchNegationUB(string);	//returns true if the negation of the input string is present in the proof
+
 public:
     Prover();
     ~Prover();

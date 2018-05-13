@@ -1,38 +1,67 @@
 #include "prover.h"
 
 Prover::Prover()
-    :_premcount(0), _highestasm(0)
+    :_premcount(0), _highestasm(1)
 {}
 Prover::~Prover()
 {}
 
-bool Prover::MatchAtomic(string input)
+int Prover::MatchAtomic(string input)
 {
-    bool ret = false;
+    int ret = 0;
     for (unsigned int i = 0; i < _premi.size(); i++)
     {
-        if (input == _premi[i]->Name()) ret = true;
+        if (input == _premi[i]->Name()) ret = i;
     }
     return ret;
 }
 
-bool Prover::MatchNegation(string input)
+int Prover::MatchAtomicUB(string input)
 {
-    bool ret = false;
+    int ret = 0;
+    for (unsigned int i = 0; i < _premi.size(); i++)
+    {
+        if (input == _premi[i]->Name() && _assum[i] != -1) ret = i;
+    }
+    return ret;
+}
+
+int Prover::MatchNegation(string input)
+{
+    int ret = 0;
     string negate = "~"+input;
     for (unsigned int i = 0; i < _premi.size(); i++)
     {
-        if (negate == _premi[i]->Name()) ret = true;
+        if (negate == _premi[i]->Name()) ret = i;
+    }
+    return ret;
+}
+int Prover::MatchNegationUB(string input)
+{
+    int ret = 0;
+    string negate = "~"+input;
+    for (unsigned int i = 0; i < _premi.size(); i++)
+    {
+        if (negate == _premi[i]->Name() && _assum[i] != -1) ret = i;
     }
     return ret;
 }
 
-bool Prover::MatchString(string input)
+int Prover::MatchString(string input)
 {
-    bool ret = false;
+    int ret = 0;
     for (unsigned int i = 0; i < _premi.size(); i++)
     {
-        if (input == _premi[i]->Name()) ret = true;
+        if (input == _premi[i]->Name()) ret = i;
+    }
+    return ret;
+}
+int Prover::MatchStringUB(string input)
+{
+    int ret = 0;
+    for (unsigned int i = 0; i < _premi.size(); i++)
+    {
+        if (input == _premi[i]->Name() && _assum[i] != -1) ret = i;
     }
     return ret;
 }
@@ -71,21 +100,22 @@ void Prover::Infer(int i)
     {
         // (AvB), ~A |- B
         BoolReturn inf = _premi[i]->Infer();
-
-        if (!MatchNegation(inf.op1->Name()))
+        if (MatchNegationUB(inf.op1->Name()))
         {
-            if (!MatchString(inf.op2->Name()))
+            if (!MatchStringUB(inf.op2->Name()))
             {
                 _starred[i] = 1;
-                AddPremise(inf.op2,inf.op2->Type(), "(AvB), ~A |- B");
+                AddPremise(inf.op2,inf.op2->Type(),
+                           "(AvB), ~A |- B on "+to_string(i)+", "+to_string(MatchNegationUB(inf.op2->Name())));
             }
         }
-        if (!MatchNegation(inf.op2->Name()))
+        if (MatchNegationUB(inf.op2->Name()))
         {
-            if (!MatchString(inf.op2->Name()))
+            if (!MatchStringUB(inf.op1->Name()))
             {
                 _starred[i] = 1;
-                AddPremise(inf.op1,inf.op1->Type(), "(AvB), ~A |- B");
+                AddPremise(inf.op1,inf.op1->Type(),
+                           "(AvB), ~A |- B on " + to_string(i) + ", "+to_string(MatchNegationUB(inf.op2->Name())));
             }
         }
         break;
@@ -96,15 +126,17 @@ void Prover::Infer(int i)
     {
         //(A&B) |- A, B
         BoolReturn inf = _premi[i]->Infer();
-        if (!MatchString(inf.op1->Name()))
+        if (!MatchStringUB(inf.op1->Name()))
         {
             _starred[i] = 1;
-            AddPremise(inf.op1,inf.op1->Type(), "(A&B) |- A, B");
+            AddPremise(inf.op1,inf.op1->Type(),
+                       "(A&B) |- A, B on "+to_string(i));
         }
-        if (!MatchString(inf.op2->Name()))
+        if (!MatchStringUB(inf.op2->Name()))
         {
             _starred[i] = 1;
-            AddPremise(inf.op2,inf.op2->Type(), "(A&B) |- A, B");
+            AddPremise(inf.op2,inf.op2->Type(),
+                       "(A&B) |- A, B on "+to_string(i));
         }
         break;
     }
@@ -118,23 +150,27 @@ void Prover::Infer(int i)
         {
             // ~~A |- A
             inf = inf.op1->Infer();
-            if (!MatchString(inf.op1->Name()))
+            if (!MatchStringUB(inf.op1->Name()))
             {
                 _starred[i] = 1;
-                AddPremise(inf.op1,inf.op1->Type(), "~~A |- A");
+                AddPremise(inf.op1,inf.op1->Type(),
+                           "~~A |- A on " + to_string(i));
             }
             break;
         }
         case COND_EXP:
         {
+            //TODO: Add code here to avoid repetition?
             //~(A->B) |- A, ~B
             inf = inf.op1->Infer();
             BoolExp* tmp = new NotExp(inf.op2);
-            if (!MatchString(inf.op1->Name()))
+            if (!MatchStringUB(inf.op1->Name()))
             {
                 _starred[i] = 1;
-                AddPremise(inf.op1,inf.op1->Type(), "~(A->B) |- A, ~B");
-                AddPremise(tmp,tmp->Type(), "~(A->B) |- A, ~B");
+                AddPremise(inf.op1,inf.op1->Type(),
+                           "~(A->B) |- A, ~B on "+to_string(i));
+                AddPremise(tmp,tmp->Type(),
+                           "~(A->B) |- A, ~B on "+to_string(i));
             }
             break;
         }
@@ -142,13 +178,20 @@ void Prover::Infer(int i)
         {
             //~(AvB) |- ~A, ~B
             inf = inf.op1->Infer();
-            BoolExp* tmp = new NotExp(inf.op2);
-            if (!MatchString(inf.op1->Name()))
+            BoolExp* tmp;
+            if (!MatchNegationUB(inf.op1->Name()))
             {
                 _starred[i] = 1;
-                AddPremise(tmp,tmp->Type(), "~(AvB) |- ~A, ~B");
                 tmp = new NotExp(inf.op1);
-                AddPremise(tmp,tmp->Type(), "~(AvB) |- ~A, ~B");
+                AddPremise(tmp,tmp->Type(),
+                           "~(AvB) |- ~A, ~B on " +to_string(i));
+            }
+            if (!MatchNegationUB(inf.op2->Name()))
+            {
+                _starred[i] = 1;
+                tmp = new NotExp(inf.op2);
+                AddPremise(tmp,tmp->Type(),
+                           "~(AvB) |- ~A, ~B on " +to_string(i));
             }
             break;
         }
@@ -156,23 +199,25 @@ void Prover::Infer(int i)
         {
             //~(A&B), A |- ~B
             inf = inf.op1->Infer();
-            if (MatchString(inf.op1->Name()))
+            if (MatchStringUB(inf.op1->Name()))
             {
                 BoolExp* tmp = new NotExp(inf.op2);
 
-                if (!MatchString(tmp->Name()))
+                if (!MatchStringUB(tmp->Name()))
                 {
                     _starred[i] = 1;
-                    AddPremise(tmp,tmp->Type(), "~(A&B), A |- ~B");
+                    AddPremise(tmp,tmp->Type(),
+                               "~(A&B), A |- ~B on "+to_string(i)+", "+to_string(MatchStringUB(inf.op1->Name())));
                 }
             }
-            if (MatchString(inf.op2->Name()))
+            if (MatchStringUB(inf.op2->Name()))
             {
                 BoolExp* tmp = new NotExp(inf.op1);
-                if (!MatchString(tmp->Name()))
+                if (!MatchStringUB(tmp->Name()))
                 {
                     _starred[i] = 1;
-                    AddPremise(tmp,tmp->Type(), "~(A&B), A |- ~B");
+                    AddPremise(tmp,tmp->Type(),
+                               "~(A&B), A |- ~B on " + to_string(i) +", "+to_string(MatchStringUB(inf.op2->Name())));
                 }
             }
             break;
@@ -188,14 +233,27 @@ void Prover::Infer(int i)
     {
         //(A->B), A |- B
         BoolReturn inf = _premi[i]->Infer();
-        if (MatchString(inf.op1->Name()))
+        if (MatchStringUB(inf.op1->Name()))
         {
-            if (!MatchString(inf.op2->Name()))
+            if (!MatchStringUB(inf.op2->Name()))
             {
                 _starred[i] = 1;
-                AddPremise(inf.op2,inf.op2->Type(), "(A->B), A |- B");
+                AddPremise(inf.op2,inf.op2->Type(),
+                           "(A->B), A |- B on " +to_string(i)+", "+to_string(MatchStringUB(inf.op1->Name())));
             }
         }
+
+        if (MatchNegationUB(inf.op2->Name()))
+        {
+            if (!MatchNegationUB(inf.op1->Name()))
+            {
+                BoolExp* tmp = new NotExp(inf.op1);
+                _starred[i] = 1;
+                AddPremise(tmp,tmp->Type(),
+                           "(A->B), ~B |- ~A on "+to_string(i)+", "+to_string(MatchNegationUB(inf.op2->Name())));
+            }
+        }
+
         break;
     }
     default:
@@ -206,24 +264,54 @@ void Prover::Infer(int i)
 //need to think this out more
 void Prover::MakeAssumption()
 {
-    BoolReturn inf = _premi[0]->Infer();
-    _highestasm++;
 
     //check for a usable formula, I need three cases one for each binary formula
     for (int i = 0; i < _premcount; i++)
     {
+        BoolReturn inf = _premi[0]->Infer();
         inf = _premi[i]->Infer();
-        if(_premi[i]->Type() == AND_EXP &&
-                (!MatchNegation(inf.op1->Name())||!MatchNegation(inf.op2->Name())))
+        if(_premi[i]->Type() == NOT_EXP && _premi[i]->Infer().op1->Type() == AND_EXP &&
+                (!MatchNegationUB( _premi[i]->Infer().op1->Infer().op1->Name()  )
+                 ||!MatchNegationUB( _premi[i]->Infer().op1->Infer().op1->Name()  )))
         {
-            //cout << "DEBUG: AND ASSUMPTION" << endl;
+            if (!MatchStringUB(inf.op1->Infer().op1->Name()))
+            {
+                //TODO: possibly not working right
+                ++_highestasm;
+                AddPremise(inf.op1->Infer().op1,inf.op1->Infer().op1->Type(), "negated and assumption to break "+ to_string(i));
+                break;
+            }
+            if (!MatchStringUB(inf.op1->Infer().op2->Name()))
+            {
+                //TODO: possibly not working right
+                ++_highestasm;
+                AddPremise(inf.op1->Infer().op2,inf.op1->Infer().op2->Type(), "negated and assumption to break "+ to_string(i));
+                break;
+            }
+
         }
-        if(_premi[i]->Type() == NOT_EXP && _premi[i]->Infer().op1->Type() == OR_EXP &&
-                (!MatchString(inf.op1->Name())||!MatchString(inf.op2->Name())))
+        if(_premi[i]->Type() == OR_EXP &&
+                (!MatchNegationUB(inf.op1->Name())||!MatchNegationUB(inf.op2->Name())))
         {
-            //make assumption
-            //cout << "DEBUG: OR ASSUMPTION" << endl;
+            //TODO: possibly not working right
+            if (!MatchStringUB(inf.op1->Name()))
+            {
+                ++_highestasm;
+                AddPremise(inf.op1,inf.op1->Type(), "or assumption to break " + to_string(i));
+                break;
+            }
         }
+        if(_premi[i]->Type() == COND_EXP &&
+                (!MatchStringUB(inf.op1->Name())||!MatchNegationUB(inf.op2->Name())))
+        {
+            if (!MatchStringUB(inf.op1->Name()))
+            {
+                ++_highestasm;
+                AddPremise(inf.op1,inf.op1->Type(), "conditional assumption to break " + to_string(i));
+                break;
+            }
+        }
+
     }
 }
 
@@ -231,17 +319,36 @@ bool Prover::FindContradiction()
 {
     //use match negation, check each formula for its own negation
     bool ret = false;
+    int contraa = -1;
+    int contrab = -1;
     for (unsigned int i = 0; i < _premi.size(); i++)
     {
-        if (MatchNegation(_premi[i]->Name()))
+        if (MatchNegationUB(_premi[i]->Name()))
         {
             cout << "Negation of line " << i << " found!" << endl;
             ret = true;
+            _highestasm--;
+            contraa = i;
+            contrab = MatchNegationUB(_premi[i]->Name());
+            //_assum[i] = -1;
+            break;
         }
     }
+    //block off all lines at the previous assumption level
     if (ret == true)
     {
-        //block off all lines at highest assumption level
+        int k = 0;
+        while(_assum[k]!=_highestasm+1) k++;
+        BoolExp* tmp = new NotExp(_premi[k]);
+        if(_highestasm) AddPremise(tmp,tmp->Type(), "by contradiction "+to_string(contraa)+", "+to_string(contrab));
+        for (unsigned int i = 0; i < _premi.size(); i++)
+        {
+            if (_assum[i] ==_highestasm+1||_blocked[i])
+            {
+                _blocked[i]++;
+                _assum[i] = -1;
+            }
+        }
     }
     return ret;
 }
@@ -260,7 +367,15 @@ void Prover::PrintPremises() const
         {
             cout << "  ";
         }
-        cout << j << ") " << _premi[j]->Name();
+        cout << j << ") ";
+        if(_blocked[j] > 0)
+        {
+            for (int k = _blocked[j]; k != 0; k--)
+            {
+                cout << "[";
+            }
+        }
+        cout << " " << _premi[j]->Name();
         cout << "\t{ " + _reasons[j] + " }" << endl;
     }
 }
