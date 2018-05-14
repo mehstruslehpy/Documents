@@ -9,6 +9,8 @@
 using namespace std;
 
 class VarExp; //forward decl
+
+//The context class is mainly used for mapping VarExp's to boolean values
 class Context
 {
     map<string, bool> _map;

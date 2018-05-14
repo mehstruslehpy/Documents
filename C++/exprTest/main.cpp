@@ -1,8 +1,3 @@
-//#include "boolexp.h"
-//#include "context.h"
-//#include "varexp.h"
-//#include "notexp.h"
-//#include "andexp.h"
 #include "defs.h"
 
 using namespace std;
@@ -39,20 +34,19 @@ int main()
 
     input = "";
     cout << "Beginning inference step enter q to quit:" << endl;
-    bool contradicted = false;
     for (int i = 0; input != "q"; i++)
     {
         cout << "Iteration: " << i << endl;
-        contradicted = proof.FindContradiction();
+        proof.FindContradiction();
         cout << "Continue inferences or quit?(c/q)" << endl;
         cin >> input;
         cin.ignore(256,'\n');
         if (!(i%50)&&i!=0)proof.MakeAssumption();
         proof.Infer(i%proof.PremiseCount());
-        contradicted = proof.FindContradiction();
         cout << "Assumptions: " << proof.HighestAssumption() << endl;
-        //proof.PrintPremises();
         cout << "Premises: "<< proof.PremiseCount() << endl;
+        proof.FindContradiction();
+        //proof.PrintPremises();
         if (proof.HighestAssumption()==0) break;
     }
     proof.PrintPremises();
@@ -71,7 +65,6 @@ BoolExp* buildExpr(BoolExp* current)
         cin.ignore(256,'\n');
     }
     while (input != "u" && input != "b");
-
     if(input == "u")
     {
         do

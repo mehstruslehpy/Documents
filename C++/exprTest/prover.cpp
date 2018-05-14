@@ -3,29 +3,12 @@
 Prover::Prover()
     :_premcount(0), _highestasm(1)
 {}
+
+//need to fill this in to clean up properly
 Prover::~Prover()
 {}
 
-int Prover::MatchAtomic(string input)
-{
-    int ret = 0;
-    for (unsigned int i = 0; i < _premi.size(); i++)
-    {
-        if (input == _premi[i]->Name()) ret = i;
-    }
-    return ret;
-}
-
-int Prover::MatchAtomicUB(string input)
-{
-    int ret = 0;
-    for (unsigned int i = 0; i < _premi.size(); i++)
-    {
-        if (input == _premi[i]->Name() && _assum[i] != -1) ret = i;
-    }
-    return ret;
-}
-
+//return the index of the negation of the input string in _premi[i]
 int Prover::MatchNegation(string input)
 {
     int ret = 0;
@@ -36,6 +19,9 @@ int Prover::MatchNegation(string input)
     }
     return ret;
 }
+
+//return the index of the negation of the input string in _premi[i]
+//only if it is not contradicted/blocked
 int Prover::MatchNegationUB(string input)
 {
     int ret = 0;
@@ -47,6 +33,7 @@ int Prover::MatchNegationUB(string input)
     return ret;
 }
 
+//find the index of the input string
 int Prover::MatchString(string input)
 {
     int ret = 0;
@@ -56,6 +43,9 @@ int Prover::MatchString(string input)
     }
     return ret;
 }
+
+//find the index of the input string
+//only if it is not contradicted/blocked
 int Prover::MatchStringUB(string input)
 {
     int ret = 0;
@@ -85,11 +75,7 @@ void Prover::AddPremise(BoolExp* exp, PropType p, string reason)
     _ptypes.push_back(p);
 }
 
-//main functions in order to prove
-//TODO:
-//	-need to add more rules
-//	-split up / refactor
-//	-work out the asm/contradict mechanism
+//apply an inference rule if possible to the formula at index i
 void Prover::Infer(int i)
 {
     if (_blocked[i]) return;
@@ -142,7 +128,6 @@ void Prover::Infer(int i)
     }
     case NOT_EXP:
     {
-        //add double negation rule
         BoolReturn inf = _premi[i]->Infer();
         switch(inf.op1->Type())
         {
@@ -160,7 +145,6 @@ void Prover::Infer(int i)
         }
         case COND_EXP:
         {
-            //TODO: Add code here to avoid repetition?
             //~(A->B) |- A, ~B
             inf = inf.op1->Infer();
             BoolExp* tmp = new NotExp(inf.op2);
@@ -261,25 +245,24 @@ void Prover::Infer(int i)
     }
 }
 
-//need to think this out more
+//if possible make an assumption
 bool Prover::MakeAssumption()
 {
     bool ret = false;
-    //check for a usable formula, I need three cases one for each binary formula
     for (int i = 0; i < _premcount; i++)
     {
         BoolReturn inf = _premi[0]->Infer();
         inf = _premi[i]->Infer();
-        if(_premi[i]->Type() == NOT_EXP && _premi[i]->Infer().op1->Type() == AND_EXP &&
-                (!MatchStringUB( _premi[i]->Infer().op1->Infer().op1->Name()  )
+        if(_premi[i]->Type() == NOT_EXP && _premi[i]->Infer().op1->Type() == AND_EXP && //if a nand expression is found
+                (!MatchStringUB( _premi[i]->Infer().op1->Infer().op1->Name()  )			//and the lhs&rhs are not already present
                  &&!MatchStringUB( _premi[i]->Infer().op1->Infer().op2->Name()  )))
         {
-            if (!MatchStringUB(inf.op1->Infer().op1->Name())
-                    &&!MatchNegationUB(inf.op1->Infer().op2->Name())
-                    &&!MatchNegationUB(inf.op1->Infer().op1->Name()))
+            if (!MatchStringUB(inf.op1->Infer().op1->Name())			//if the lhs is not present
+                    &&!MatchNegationUB(inf.op1->Infer().op2->Name())	//and the negation of the lhs and rhs
+                    &&!MatchNegationUB(inf.op1->Infer().op1->Name()))	//are not already present
             {
-                ++_highestasm;
-                AddPremise(inf.op1->Infer().op1,
+                ++_highestasm;											//increment the highest assumption count
+                AddPremise(inf.op1->Infer().op1,						//add the lhs as an assumption
                            inf.op1->Infer().op1->Type(),
                            "negated and assumption to break "+ to_string(i));
                 ret = true;
@@ -331,6 +314,9 @@ bool Prover::MakeAssumption()
     return ret;
 }
 
+//search for any contradictions
+//notify the user if one is found
+//block off any contradictions at the proper assumption levels
 bool Prover::FindContradiction()
 {
     //use match negation, check each formula for its own negation
@@ -342,11 +328,11 @@ bool Prover::FindContradiction()
         if (MatchNegationUB(_premi[i]->Name())&&_assum[i]!=-1)
         {
             cout << "Negation of line " << i << " found!" << endl;
+            cout << "line " << i << " contradicts line " << MatchNegationUB(_premi[i]->Name()) << endl;
             ret = true;
             _highestasm--;
             contraa = i;
             contrab = MatchNegationUB(_premi[i]->Name());
-            //_assum[i] = -1;
             break;
         }
     }
@@ -369,6 +355,7 @@ bool Prover::FindContradiction()
     return ret;
 }
 
+//pretty  print the list of premises
 void Prover::PrintPremises() const
 {
     cout << "PREMISES: " << endl;

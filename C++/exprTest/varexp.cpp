@@ -37,4 +37,6 @@ string VarExp::Name() const
     return string(_name);
 }
 BoolReturn VarExp::Infer()
-{}
+{
+    return BoolReturn(this,this);
+}
