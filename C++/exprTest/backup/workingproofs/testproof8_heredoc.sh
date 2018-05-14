@@ -3,37 +3,52 @@
 	b
 	c
 	u
-	v
-	A
-	u
-	v
-	B
-	c #continue
-	
-	#Proposition 2
+	n
 	b
 	o
 	u
 	v
 	A
+	u
+	v
+	B
+	b
+	c
+	u
+	v
+	C
+	u
+	v
+	D
+	c #continue
+	
+	#Proposition 2
 	b
 	a
+	u
+	n
 	u
 	v
 	A
 	u
+	n
+	u
 	v
-	C
+	D
 	q #continue
 
 	#Conclusion
 	b
-	a
+	c
 	u
-	v
-	A
+	n
 	u
 	v
 	B
+	u
+	n
+	u
+	v
+	C
 	c # continue
 	ENDOFMESSAGE

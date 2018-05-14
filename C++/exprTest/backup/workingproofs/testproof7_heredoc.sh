@@ -2,38 +2,43 @@
 	#Proposition 1
 	b
 	c
+	b
+	c
 	u
 	v
 	A
 	u
 	v
 	B
+	u
+	v
+	C
 	c #continue
 	
 	#Proposition 2
 	b
-	o
+	c
 	u
 	v
-	A
+	C
 	b
 	a
 	u
 	v
-	A
+	D
 	u
 	v
-	C
+	E
 	q #continue
 
 	#Conclusion
 	b
-	a
-	u
-	v
-	A
+	c
 	u
 	v
 	B
+	u
+	v
+	D
 	c # continue
 	ENDOFMESSAGE

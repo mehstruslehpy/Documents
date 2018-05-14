@@ -1,0 +1,43 @@
+	b
+	c
+	u
+	v
+	A
+	b
+	a
+	u
+	v
+	B
+	u
+	n
+	u
+	v
+	C
+	c 	
+	
+	u
+	v
+	C
+	c 
+	
+	b
+	o
+	b
+	a
+	u
+	v
+	D
+	u
+	n
+	u
+	v
+	E
+	u
+	v
+	A
+	q 
+
+	u
+	v
+	D
+	c

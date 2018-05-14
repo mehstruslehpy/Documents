@@ -275,8 +275,8 @@ bool Prover::MakeAssumption()
                  &&!MatchStringUB( _premi[i]->Infer().op1->Infer().op2->Name()  )))
         {
             if (!MatchStringUB(inf.op1->Infer().op1->Name())
-                    &&!MatchNegationUB(inf.op1->Infer().op2->Name())
-                    &&!MatchNegationUB(inf.op1->Infer().op1->Name()))
+				&&!MatchNegationUB(inf.op1->Infer().op2->Name()) 
+				&&!MatchNegationUB(inf.op1->Infer().op1->Name()))
             {
                 ++_highestasm;
                 AddPremise(inf.op1->Infer().op1,
@@ -286,8 +286,8 @@ bool Prover::MakeAssumption()
                 break;
             }
             if (!MatchStringUB(inf.op1->Infer().op2->Name())
-                    &&!MatchNegationUB(inf.op1->Infer().op1->Name())
-                    &&!MatchNegationUB(inf.op1->Infer().op2->Name()) )
+				&&!MatchNegationUB(inf.op1->Infer().op1->Name())
+				&&!MatchNegationUB(inf.op1->Infer().op2->Name()) )
             {
                 ++_highestasm;
                 AddPremise(inf.op1->Infer().op2,

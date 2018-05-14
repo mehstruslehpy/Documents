@@ -4,18 +4,15 @@
 	c
 	u
 	v
-	A
+	B
 	u
 	v
-	B
+	A
 	c #continue
 	
 	#Proposition 2
-	b
-	o
 	u
-	v
-	A
+	n
 	b
 	a
 	u
@@ -24,16 +21,37 @@
 	u
 	v
 	C
+	c #continue
+	
+	#Proposition 3
+	b
+	o
+	u
+	v
+	B
+	u
+	v
+	C
 	q #continue
 
 	#Conclusion
 	b
 	a
+	b
+	c
 	u
 	v
 	A
 	u
 	v
 	B
+	b
+	c
+	u
+	v
+	B
+	u
+	v
+	A
 	c # continue
 	ENDOFMESSAGE

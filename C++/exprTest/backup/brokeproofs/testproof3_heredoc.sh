@@ -34,6 +34,6 @@
 	A
 	u
 	v
-	B
+	C
 	c # continue
 	ENDOFMESSAGE

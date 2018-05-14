@@ -40,7 +40,7 @@ public:
 
     //main functions in order to prove
     void Infer(const int);
-    bool MakeAssumption();
+    void MakeAssumption();
     bool FindContradiction();
 
     //auxiliary functions

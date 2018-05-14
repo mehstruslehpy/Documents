@@ -106,7 +106,7 @@ void Prover::Infer(int i)
             {
                 _starred[i] = 1;
                 AddPremise(inf.op2,inf.op2->Type(),
-                           "(AvB), ~A |- B on "+to_string(i)+", "+to_string(MatchNegationUB(inf.op1->Name())));
+                           "(AvB), ~A |- B on "+to_string(i)+", "+to_string(MatchNegationUB(inf.op2->Name())));
             }
         }
         if (MatchNegationUB(inf.op2->Name()))
@@ -164,7 +164,7 @@ void Prover::Infer(int i)
             //~(A->B) |- A, ~B
             inf = inf.op1->Infer();
             BoolExp* tmp = new NotExp(inf.op2);
-            if (!MatchStringUB(inf.op1->Name())||!MatchNegationUB(inf.op2->Name()))
+            if (!MatchStringUB(inf.op1->Name()))
             {
                 _starred[i] = 1;
                 AddPremise(inf.op1,inf.op1->Type(),
@@ -262,73 +262,57 @@ void Prover::Infer(int i)
 }
 
 //need to think this out more
-bool Prover::MakeAssumption()
+void Prover::MakeAssumption()
 {
-    bool ret = false;
+
     //check for a usable formula, I need three cases one for each binary formula
     for (int i = 0; i < _premcount; i++)
     {
         BoolReturn inf = _premi[0]->Infer();
         inf = _premi[i]->Infer();
         if(_premi[i]->Type() == NOT_EXP && _premi[i]->Infer().op1->Type() == AND_EXP &&
-                (!MatchStringUB( _premi[i]->Infer().op1->Infer().op1->Name()  )
-                 &&!MatchStringUB( _premi[i]->Infer().op1->Infer().op2->Name()  )))
+                (!MatchNegationUB( _premi[i]->Infer().op1->Infer().op1->Name()  )
+                 ||!MatchNegationUB( _premi[i]->Infer().op1->Infer().op1->Name()  )))
         {
-            if (!MatchStringUB(inf.op1->Infer().op1->Name())
-                    &&!MatchNegationUB(inf.op1->Infer().op2->Name())
-                    &&!MatchNegationUB(inf.op1->Infer().op1->Name()))
+            if (!MatchStringUB(inf.op1->Infer().op1->Name()))
             {
+                //TODO: possibly not working right
                 ++_highestasm;
-                AddPremise(inf.op1->Infer().op1,
-                           inf.op1->Infer().op1->Type(),
-                           "negated and assumption to break "+ to_string(i));
-                ret = true;
+                AddPremise(inf.op1->Infer().op1,inf.op1->Infer().op1->Type(), "negated and assumption to break "+ to_string(i));
                 break;
             }
-            if (!MatchStringUB(inf.op1->Infer().op2->Name())
-                    &&!MatchNegationUB(inf.op1->Infer().op1->Name())
-                    &&!MatchNegationUB(inf.op1->Infer().op2->Name()) )
+            if (!MatchStringUB(inf.op1->Infer().op2->Name()))
             {
+                //TODO: possibly not working right
                 ++_highestasm;
-                AddPremise(inf.op1->Infer().op2,
-                           inf.op1->Infer().op2->Type(),
-                           "negated and assumption to break "+ to_string(i));
-                ret = true;
+                AddPremise(inf.op1->Infer().op2,inf.op1->Infer().op2->Type(), "negated and assumption to break "+ to_string(i));
                 break;
             }
 
         }
         if(_premi[i]->Type() == OR_EXP &&
-                (!MatchNegationUB(inf.op1->Name())&&!MatchNegationUB(inf.op2->Name())))
+                (!MatchNegationUB(inf.op1->Name())||!MatchNegationUB(inf.op2->Name())))
         {
+            //TODO: possibly not working right
             if (!MatchStringUB(inf.op1->Name()))
             {
                 ++_highestasm;
                 AddPremise(inf.op1,inf.op1->Type(), "or assumption to break " + to_string(i));
-                ret = true;
-                break;
-            }
-            if (!MatchStringUB(inf.op2->Name()))
-            {
-                ++_highestasm;
-                AddPremise(inf.op2,inf.op2->Type(), "or assumption to break " + to_string(i));
-                ret = true;
                 break;
             }
         }
         if(_premi[i]->Type() == COND_EXP &&
-                (!MatchStringUB(inf.op1->Name())&&!MatchNegationUB(inf.op2->Name())))
+                (!MatchStringUB(inf.op1->Name())||!MatchNegationUB(inf.op2->Name())))
         {
             if (!MatchStringUB(inf.op1->Name()))
             {
                 ++_highestasm;
                 AddPremise(inf.op1,inf.op1->Type(), "conditional assumption to break " + to_string(i));
-                ret = true;
                 break;
             }
         }
+
     }
-    return ret;
 }
 
 bool Prover::FindContradiction()
@@ -339,7 +323,7 @@ bool Prover::FindContradiction()
     int contrab = -1;
     for (unsigned int i = 0; i < _premi.size(); i++)
     {
-        if (MatchNegationUB(_premi[i]->Name())&&_assum[i]!=-1)
+        if (MatchNegationUB(_premi[i]->Name()))
         {
             cout << "Negation of line " << i << " found!" << endl;
             ret = true;
@@ -392,8 +376,6 @@ void Prover::PrintPremises() const
             }
         }
         cout << " " << _premi[j]->Name();
-        //cout << "\t{ " + _reasons[j] + " }" +",_blocked[j]="+to_string(_blocked[j])+",_assum[j]="+to_string(_assum[j])
-        //     << endl;
         cout << "\t{ " + _reasons[j] + " }" << endl;
     }
 }

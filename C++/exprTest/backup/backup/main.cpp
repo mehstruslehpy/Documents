@@ -43,17 +43,14 @@ int main()
     for (int i = 0; input != "q"; i++)
     {
         cout << "Iteration: " << i << endl;
-        contradicted = proof.FindContradiction();
+        proof.Infer(i%proof.PremiseCount());
+        proof.PrintPremises();
         cout << "Continue inferences or quit?(c/q)" << endl;
         cin >> input;
         cin.ignore(256,'\n');
-        if (!(i%50)&&i!=0)proof.MakeAssumption();
-        proof.Infer(i%proof.PremiseCount());
         contradicted = proof.FindContradiction();
-        cout << "Assumptions: " << proof.HighestAssumption() << endl;
-        //proof.PrintPremises();
-        cout << "Premises: "<< proof.PremiseCount() << endl;
-        if (proof.HighestAssumption()==0) break;
+        if (proof.HighestAssumption()==0 && contradicted) break;
+        if (!(i%50)&&i!=0) proof.MakeAssumption();
     }
     proof.PrintPremises();
     cout << "Therefore " << conclusion->Name() << " is a valid conclusion" << endl;

@@ -5,35 +5,46 @@
 	u
 	v
 	A
-	u
-	v
-	B
-	c #continue
-	
-	#Proposition 2
-	b
-	o
-	u
-	v
-	A
 	b
 	a
 	u
 	v
-	A
+	B
+	u
+	n
 	u
 	v
 	C
-	q #continue
-
-	#Conclusion
+	c #continue
+	
+	#Proposition 2
+	u
+	v
+	C
+	c #continue
+	
+	#Proposition 3
+	b
+	o
 	b
 	a
 	u
 	v
-	A
+	D
+	u
+	n
 	u
 	v
-	B
+	E
+	u
+	v
+	A
+	q #continue
+
+
+	#Conclusion
+	u
+	v
+	D
 	c # continue
 	ENDOFMESSAGE
