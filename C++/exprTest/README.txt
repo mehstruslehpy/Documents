@@ -7,7 +7,8 @@ WHAT THIS IS:
 		-via the built in repl
 			-Start with unary or binary things
 				-For unary:
-					-it can be a variable or the negation of a formula (negations recurse)
+					-it can be a variable or the negation of a formula 
+					 (negations recurse)
 				-For binary:
 					-Pick between conditional, and, or or formulas
 					-arguments get filled in from left to right
