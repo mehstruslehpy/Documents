@@ -41,6 +41,8 @@ public:
 
     //auxiliary functions
     void PrintPremises() const;	//pretty print all premises
+    string PremiseName(int i) const;	//return a single premise as a string
+    bool Evaluate(int i, Context&) const;	//return the boolean value of a single premise
     int PremiseCount() const;	//returns the count of premises
     int starredCount() const;	//returns how many formulas are starred
     int HighestAssumption() const;	//returns the current highest assumption level

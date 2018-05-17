@@ -384,7 +384,14 @@ void Prover::PrintPremises() const
         cout << "\t{ " + _reasons[j] + " }" << endl;
     }
 }
-
+string Prover::PremiseName(int i) const
+{
+    return _premi[i]->Name();
+}
+bool Prover::Evaluate(int i, Context& context) const
+{
+    return _premi[i]->Evaluate(context);
+}
 int Prover::PremiseCount() const
 {
     return _premcount;
