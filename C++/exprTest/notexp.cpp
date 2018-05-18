@@ -5,8 +5,14 @@ NotExp::NotExp ( BoolExp* op)
     _operand = op;
 }
 
-NotExp::~NotExp ( )//need to make sure the destructor of the pointed to item gets called
-{}
+NotExp::~NotExp ( )
+{
+    if(_operand)
+    {
+        delete _operand;
+        _operand = nullptr;
+    }
+}
 
 bool NotExp::Evaluate(Context& con)
 {

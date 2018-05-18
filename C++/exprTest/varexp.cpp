@@ -7,7 +7,11 @@ VarExp::VarExp ( const char* nm)
 
 VarExp::~VarExp ( )
 {
-    free(_name);
+    if(_name)
+    {
+        free(_name);
+        _name = nullptr;
+    }
 }
 
 bool VarExp::Evaluate(Context& con)

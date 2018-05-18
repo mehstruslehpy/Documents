@@ -7,7 +7,18 @@ CondExp::CondExp ( BoolExp* op1, BoolExp* op2)
 }
 
 CondExp::~CondExp ( )//need to make sure the destructor of the pointed to item gets called
-{}
+{
+    if(_operand1)
+    {
+        delete _operand1;
+        _operand1 = nullptr;
+    }
+    if(_operand2)
+    {
+        delete _operand2;
+        _operand2 = nullptr;
+    }
+}
 
 bool CondExp::Evaluate(Context& con)
 {

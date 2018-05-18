@@ -210,7 +210,6 @@ BoolExp* buildExpr(BoolExp* current, Context& context)
             current = new CondExp(temp1,temp2);
             return current;
         }
-
     }
     return nullptr;
 }

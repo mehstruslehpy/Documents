@@ -7,7 +7,18 @@ OrExp::OrExp ( BoolExp* op1, BoolExp* op2)
 }
 
 OrExp::~OrExp ( )//need to make sure the destructor of the pointed to item gets called
-{}
+{
+    if(_operand1)
+    {
+        delete _operand1;
+        _operand1 = nullptr;
+    }
+    if(_operand2)
+    {
+        delete _operand2;
+        _operand2 = nullptr;
+    }
+}
 
 bool OrExp::Evaluate(Context& con)
 {

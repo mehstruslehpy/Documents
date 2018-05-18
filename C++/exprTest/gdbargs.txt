@@ -1,43 +1,46 @@
+	p 
+	
+	b 
+    c 
+	u 
+	v 
+	A 
+	b 
+	a 
+	u 
+	v 
+	B 
+	u 
+	v 
+	C 
+	c 	
+	
 	b
-	c
-	u
-	v
-	A
-	b
-	a
+    c
 	u
 	v
 	B
-	u
-	n
-	u
-	v
-	C
-	c 	
-	
-	u
-	v
-	C
-	c 
-	
-	b
-	o
 	b
 	a
 	u
 	v
-	D
-	u
-	n
-	u
-	v
-	E
-	u
-	v
 	A
-	q 
-
 	u
 	v
-	D
-	c
+	C
+	q
+
+	b 
+	c 
+	b 
+	o 
+	u 
+	v 
+	A 
+	u 
+	v 
+	B 
+	u 
+	v 
+	C 
+	c 

@@ -6,7 +6,18 @@ Prover::Prover()
 
 //need to fill this in to clean up properly
 Prover::~Prover()
-{}
+{
+    unsigned k = PremiseCount();
+    for (int i = 0; i < k; i++)
+    {
+        if(_premi[i])
+        {
+            delete _premi[i];
+            _premi[i] = nullptr;
+        }
+        delete _premi[i];
+    }
+}
 
 //return the index of the negation of the input string in _premi[i]
 int Prover::MatchNegation(string input)
@@ -91,7 +102,7 @@ void Prover::Infer(int i)
             if (!MatchStringUB(inf.op2->Name()))
             {
                 _starred[i] = 1;
-                AddPremise(inf.op2,inf.op2->Type(),
+                AddPremise(inf.op2->Copy(),inf.op2->Type(),
                            "(AvB), ~A |- B on "+to_string(i)+", "+to_string(MatchNegationUB(inf.op1->Name())));
             }
         }
@@ -100,7 +111,7 @@ void Prover::Infer(int i)
             if (!MatchStringUB(inf.op1->Name()))
             {
                 _starred[i] = 1;
-                AddPremise(inf.op1,inf.op1->Type(),
+                AddPremise(inf.op1->Copy(),inf.op1->Type(),
                            "(AvB), ~A |- B on " + to_string(i) + ", "+to_string(MatchNegationUB(inf.op2->Name())));
             }
         }
@@ -115,13 +126,13 @@ void Prover::Infer(int i)
         if (!MatchStringUB(inf.op1->Name()))
         {
             _starred[i] = 1;
-            AddPremise(inf.op1,inf.op1->Type(),
+            AddPremise(inf.op1->Copy(),inf.op1->Type(),
                        "(A&B) |- A, B on "+to_string(i));
         }
         if (!MatchStringUB(inf.op2->Name()))
         {
             _starred[i] = 1;
-            AddPremise(inf.op2,inf.op2->Type(),
+            AddPremise(inf.op2->Copy(),inf.op2->Type(),
                        "(A&B) |- A, B on "+to_string(i));
         }
         break;
@@ -138,7 +149,7 @@ void Prover::Infer(int i)
             if (!MatchStringUB(inf.op1->Name()))
             {
                 _starred[i] = 1;
-                AddPremise(inf.op1,inf.op1->Type(),
+                AddPremise(inf.op1->Copy(),inf.op1->Type(),
                            "~~A |- A on " + to_string(i));
             }
             break;
@@ -147,11 +158,11 @@ void Prover::Infer(int i)
         {
             //~(A->B) |- A, ~B
             inf = inf.op1->Infer();
-            BoolExp* tmp = new NotExp(inf.op2);
             if (!MatchStringUB(inf.op1->Name())||!MatchNegationUB(inf.op2->Name()))
             {
+                BoolExp* tmp = new NotExp(inf.op2->Copy());
                 _starred[i] = 1;
-                AddPremise(inf.op1,inf.op1->Type(),
+                AddPremise(inf.op1->Copy(),inf.op1->Type(),
                            "~(A->B) |- A, ~B on "+to_string(i));
                 AddPremise(tmp,tmp->Type(),
                            "~(A->B) |- A, ~B on "+to_string(i));
@@ -166,14 +177,14 @@ void Prover::Infer(int i)
             if (!MatchNegationUB(inf.op1->Name()))
             {
                 _starred[i] = 1;
-                tmp = new NotExp(inf.op1);
+                tmp = new NotExp(inf.op1->Copy());
                 AddPremise(tmp,tmp->Type(),
                            "~(AvB) |- ~A, ~B on " +to_string(i));
             }
             if (!MatchNegationUB(inf.op2->Name()))
             {
                 _starred[i] = 1;
-                tmp = new NotExp(inf.op2);
+                tmp = new NotExp(inf.op2->Copy());
                 AddPremise(tmp,tmp->Type(),
                            "~(AvB) |- ~A, ~B on " +to_string(i));
             }
@@ -185,10 +196,9 @@ void Prover::Infer(int i)
             inf = inf.op1->Infer();
             if (MatchStringUB(inf.op1->Name()))
             {
-                BoolExp* tmp = new NotExp(inf.op2);
-
-                if (!MatchStringUB(tmp->Name()))
+                if (!MatchNegationUB(inf.op2->Name()))
                 {
+                    BoolExp* tmp = new NotExp(inf.op2->Copy());
                     _starred[i] = 1;
                     AddPremise(tmp,tmp->Type(),
                                "~(A&B), A |- ~B on "+to_string(i)+", "+to_string(MatchStringUB(inf.op1->Name())));
@@ -196,9 +206,9 @@ void Prover::Infer(int i)
             }
             if (MatchStringUB(inf.op2->Name()))
             {
-                BoolExp* tmp = new NotExp(inf.op1);
-                if (!MatchStringUB(tmp->Name()))
+                if (!MatchNegationUB(inf.op1->Name()))
                 {
+                    BoolExp* tmp = new NotExp(inf.op1->Copy());
                     _starred[i] = 1;
                     AddPremise(tmp,tmp->Type(),
                                "~(A&B), A |- ~B on " + to_string(i) +", "+to_string(MatchStringUB(inf.op2->Name())));
@@ -222,7 +232,7 @@ void Prover::Infer(int i)
             if (!MatchStringUB(inf.op2->Name()))
             {
                 _starred[i] = 1;
-                AddPremise(inf.op2,inf.op2->Type(),
+                AddPremise(inf.op2->Copy(),inf.op2->Type(),
                            "(A->B), A |- B on " +to_string(i)+", "+to_string(MatchStringUB(inf.op1->Name())));
             }
         }
@@ -231,7 +241,7 @@ void Prover::Infer(int i)
         {
             if (!MatchNegationUB(inf.op1->Name()))
             {
-                BoolExp* tmp = new NotExp(inf.op1);
+                BoolExp* tmp = new NotExp(inf.op1->Copy());
                 _starred[i] = 1;
                 AddPremise(tmp,tmp->Type(),
                            "(A->B), ~B |- ~A on "+to_string(i)+", "+to_string(MatchNegationUB(inf.op2->Name())));
@@ -262,7 +272,7 @@ bool Prover::MakeAssumption()
                     &&!MatchNegationUB(inf.op1->Infer().op1->Name()))	//are not already present
             {
                 ++_highestasm;											//increment the highest assumption count
-                AddPremise(inf.op1->Infer().op1,						//add the lhs as an assumption
+                AddPremise(inf.op1->Infer().op1->Copy(),						//add the lhs as an assumption
                            inf.op1->Infer().op1->Type(),
                            "negated and assumption to break "+ to_string(i));
                 ret = true;
@@ -273,7 +283,7 @@ bool Prover::MakeAssumption()
                     &&!MatchNegationUB(inf.op1->Infer().op2->Name()) )
             {
                 ++_highestasm;
-                AddPremise(inf.op1->Infer().op2,
+                AddPremise(inf.op1->Infer().op2->Copy(),
                            inf.op1->Infer().op2->Type(),
                            "negated and assumption to break "+ to_string(i));
                 ret = true;
@@ -287,14 +297,14 @@ bool Prover::MakeAssumption()
             if (!MatchStringUB(inf.op1->Name()))
             {
                 ++_highestasm;
-                AddPremise(inf.op1,inf.op1->Type(), "or assumption to break " + to_string(i));
+                AddPremise(inf.op1->Copy(),inf.op1->Type(), "or assumption to break " + to_string(i));
                 ret = true;
                 break;
             }
             if (!MatchStringUB(inf.op2->Name()))
             {
                 ++_highestasm;
-                AddPremise(inf.op2,inf.op2->Type(), "or assumption to break " + to_string(i));
+                AddPremise(inf.op2->Copy(),inf.op2->Type(), "or assumption to break " + to_string(i));
                 ret = true;
                 break;
             }
@@ -305,7 +315,7 @@ bool Prover::MakeAssumption()
             if (!MatchStringUB(inf.op1->Name()))
             {
                 ++_highestasm;
-                AddPremise(inf.op1,inf.op1->Type(), "conditional assumption to break " + to_string(i));
+                AddPremise(inf.op1->Copy(),inf.op1->Type(), "conditional assumption to break " + to_string(i));
                 ret = true;
                 break;
             }
@@ -341,8 +351,9 @@ bool Prover::FindContradiction()
     {
         int k = 0;
         while(_assum[k]!=_highestasm+1) k++;
-        BoolExp* tmp = new NotExp(_premi[k]);
+        BoolExp* tmp = new NotExp(_premi[k]->Copy());
         if(_highestasm) AddPremise(tmp,tmp->Type(), "by contradiction "+to_string(contraa)+", "+to_string(contrab));
+        else delete tmp;
         for (unsigned int i = 0; i < _premi.size(); i++)
         {
             if (_assum[i] ==_highestasm+1||_blocked[i])
