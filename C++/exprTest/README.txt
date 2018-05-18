@@ -7,14 +7,15 @@ WHAT THIS IS:
 		-via the built in repl
 			-Choose between unary or binary operators/variables
 				-For unary:
-					-it can be a variable or the negation of a formula (negations recurse)
+					-it can be a variable or the negation of a formula
 				-For binary:
 					-Pick between conditional, and, or formulas
 					-arguments get filled in from left to right
 		-via automating the repl by using a here document
 			-type out the correct sequence of arguments that you would type into the repl
 			-I did not invent this method of input but I found it very useful during testing
-			-all 60 test arguments use this method see the first example in the valid arguments directory
+			-all 60 test arguments use this method see the first example in the valid arguments
+				directory
 TODO: 
 	-general cleanup
 	-refactor into something more elegant
