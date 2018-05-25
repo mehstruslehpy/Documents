@@ -3,22 +3,24 @@ WHAT THIS IS:
 	-Currently this program has two modes of operaton:
 		-Calculator mode: calculates boolean formulas using the supported operators
 		-Proof mode: proves a propositional argument or provides a counter argument
-	Input can be done in two ways:
+	-This program was written and tested on linux I cannot vouch for whether or not it will run on 
+		windows
+	-Input can be done in two ways:
 		-via the here document generator tool in the proofTranslator directory
 			-type out the well formed formulas and specify when you are entering the conlusion
 				via the prompts
 		-via the built in repl in the "main" binary
 			-Start with specifying a unary or binary proposition
 				-For unary:
-					-it can be a variable or the negation of a formula (negations recurse)
+					-it can be a variable or the negation of a formula
 				-For binary:
 					-Pick between conditional, and, or or formulas
 					-arguments get filled in from left to right
 		-via automating the repl by hand using a here document
 			-type out the correct sequence of arguments that you would type into the repl
 			-I did not invent this method of input but I found it very useful during testing
-			-all 60 test arguments use this method see the first example in the valid arguments directory
-	-This program was written and tested on linux I cannot vouch for whether or not it will run on windows
+			-all 60 test arguments use this method see the first example in the valid arguments 
+				directory
 
 Well Formed formulas:
 	-All formulas except negations and single variables are parenthesized
@@ -49,13 +51,13 @@ Inference Rules and Proofs:
 	-I use the turnstile 'A |- B' to mean from the general formula A the formula B is inferred
 	-each inference rule listed uses A,B as general formulas, do not confuse these with the specific
 		letters/variables you choose to use in your proof.
-	-Every proof is done by contradiction if possible, periodically the prover checks for a counterargument
-		this way so long as a counterargument or proof exists my prover will find it 
-		(given enough time and memory)
+	-Every proof is done by contradiction if possible, periodically the prover checks for a 
+		counterargument this way so long as a counterargument or proof exists my prover will 
+		find it (given enough time and memory)
 	-the prover can also make assumptions for proofs that require them, this is done periodically
 		similar to the counterargument checks if needed.
-	-this proof method is heavily based off the system used in Harry Genslers intro to logic book which I thought
-		was cool (obviously)
+	-this proof method is heavily based off the system used in Harry Genslers intro to logic book 
+		which I thought was cool (obviously)
 
 MISC:
 	-to build the program run the command "make all"
