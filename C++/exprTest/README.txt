@@ -61,11 +61,13 @@ Inference Rules and Proofs:
 
 MISC:
 	-to build the program run the command "make all"
-	-after you build the program I have created a set of test proofs under the invalidproofs and validproofs
-		directories just do ./prooftxtfile to run them if necessary you may need to give the file execute permissions
-	-to use the proof translator after building the program go into the proofTranslator directory run the program 
-		translator and follow the prompts after you are done a file will have been created in that directory for you
-		to run as explaine above (you may need to give this file execute permissions too)
+	-after you build the program I have created a set of test proofs under the
+		invalidproofs and validproofs directories just do ./prooftxtfile to run 
+		them if necessary you may need to give the file execute permissions
+	-to use the proof translator after building the program go into the proofTranslator 
+		directory run the program translator and follow the prompts after you are done 
+		a file will have been created in that directory for you to run as explaine 
+		above (you may need to give this file execute permissions too)
 
 TODO: 
 	-create doxygen documentation to make everything documented
