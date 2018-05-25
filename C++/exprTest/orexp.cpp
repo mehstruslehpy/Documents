@@ -1,24 +1,13 @@
 #include "orexp.h"
-OrExp::OrExp ( BoolExp* op1, BoolExp* op2)
+OrExp::OrExp ( shared_ptr<BoolExp> op1, shared_ptr<BoolExp> op2)
     : BoolExp(OR_EXP)
 {
     _operand1 = op1;
     _operand2 = op2;
 }
 
-OrExp::~OrExp ( )//need to make sure the destructor of the pointed to item gets called
-{
-    if(_operand1)
-    {
-        delete _operand1;
-        _operand1 = nullptr;
-    }
-    if(_operand2)
-    {
-        delete _operand2;
-        _operand2 = nullptr;
-    }
-}
+OrExp::~OrExp ( )
+{}
 
 bool OrExp::Evaluate(Context& con)
 {
@@ -28,16 +17,16 @@ bool OrExp::Evaluate(Context& con)
     return val1 || val2;
 }
 
-BoolExp* OrExp::Replace(const char* name, BoolExp& exp)
+shared_ptr<BoolExp> OrExp::Replace(string name, BoolExp& exp)
 {
-    return new OrExp(_operand1->Replace(name,exp),
-                     _operand2->Replace(name,exp));
+    return shared_ptr<BoolExp>(new OrExp(_operand1->Replace(name,exp),
+                                         _operand2->Replace(name,exp)));
 }
 
-BoolExp* OrExp::Copy() const
+shared_ptr<BoolExp> OrExp::Copy() const
 {
-    return new OrExp(_operand1->Copy(),
-                     _operand2->Copy());
+    return shared_ptr<BoolExp>(new OrExp(_operand1->Copy(),
+                                         _operand2->Copy()));
 }
 
 string OrExp::Name() const

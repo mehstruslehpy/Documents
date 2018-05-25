@@ -1,24 +1,13 @@
 #include "condexp.h"
-CondExp::CondExp ( BoolExp* op1, BoolExp* op2)
+CondExp::CondExp ( shared_ptr<BoolExp> op1, shared_ptr<BoolExp> op2)
     :BoolExp(COND_EXP)
 {
     _operand1 = op1;
     _operand2 = op2;
 }
 
-CondExp::~CondExp ( )//need to make sure the destructor of the pointed to item gets called
-{
-    if(_operand1)
-    {
-        delete _operand1;
-        _operand1 = nullptr;
-    }
-    if(_operand2)
-    {
-        delete _operand2;
-        _operand2 = nullptr;
-    }
-}
+CondExp::~CondExp ( )
+{}
 
 bool CondExp::Evaluate(Context& con)
 {
@@ -28,16 +17,16 @@ bool CondExp::Evaluate(Context& con)
     return !(val1 && !val2);
 }
 
-BoolExp* CondExp::Replace(const char* name, BoolExp& exp)
+shared_ptr<BoolExp> CondExp::Replace(string name, BoolExp& exp)
 {
-    return new CondExp(_operand1->Replace(name,exp),
-                       _operand2->Replace(name,exp));
+    return shared_ptr<BoolExp>(new CondExp(_operand1->Replace(name,exp),
+                                           _operand2->Replace(name,exp)));
 }
 
-BoolExp* CondExp::Copy() const
+shared_ptr<BoolExp> CondExp::Copy() const
 {
-    return new CondExp(_operand1->Copy(),
-                       _operand2->Copy());
+    return shared_ptr<BoolExp>(new CondExp(_operand1->Copy(),
+                                           _operand2->Copy()));
 }
 
 string CondExp::Name() const

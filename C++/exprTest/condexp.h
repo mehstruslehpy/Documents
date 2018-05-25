@@ -7,17 +7,17 @@ using namespace std;
 
 class CondExp : public BoolExp
 {
-    BoolExp* _operand1;
-    BoolExp* _operand2;
+    shared_ptr<BoolExp> _operand1;
+    shared_ptr<BoolExp> _operand2;
 public:
-    CondExp ( BoolExp*, BoolExp* );	//not expressions are constructed through boolean expressions
+    CondExp ( shared_ptr<BoolExp>, shared_ptr<BoolExp> );	//not expressions are constructed through boolean expressions
     virtual ~CondExp ( );
 
     virtual string Name() const; 	//return a copy of the name
 
     virtual bool Evaluate(Context&);
-    virtual BoolExp* Replace(const char*, BoolExp&);	//these functions require dynamic memory
-    virtual BoolExp* Copy() const;						//these functions require dynamic memory
+    virtual shared_ptr<BoolExp> Replace(string, BoolExp&);	//these functions require dynamic memory
+    virtual shared_ptr<BoolExp> Copy() const;						//these functions require dynamic memory
     virtual BoolReturn Infer();
 };
 

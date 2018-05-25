@@ -1,46 +1,41 @@
 #include "varexp.h"
-VarExp::VarExp ( const char* nm)
+VarExp::VarExp (string nm)
     : BoolExp(VAR_EXP)
 {
-    _name = strdup(nm); //change to strndup later
+    _name = nm;
 }
 
 VarExp::~VarExp ( )
-{
-    if(_name)
-    {
-        free(_name);
-        _name = nullptr;
-    }
-}
+{}
 
 bool VarExp::Evaluate(Context& con)
 {
     return con.Lookup(_name);
 }
 
-BoolExp* VarExp::Replace(const char* name, BoolExp& exp)
+shared_ptr<BoolExp> VarExp::Replace(string name, BoolExp& exp)
 {
-    if (strcmp(name,_name) != 0)
+    if (name != _name)
     {
         return exp.Copy();
     }
     else
     {
-        return new VarExp(_name);
+        return shared_ptr<BoolExp>(new VarExp(_name));
     }
 }
 
-BoolExp* VarExp::Copy() const
+shared_ptr<BoolExp> VarExp::Copy() const
 {
-    return new VarExp(_name);
+    return shared_ptr<BoolExp>(new VarExp(_name));
 }
 
 string VarExp::Name() const
 {
-    return string(_name);
+    return _name;
 }
 BoolReturn VarExp::Infer()
 {
-    return BoolReturn(this,this);
+    return BoolReturn( shared_ptr<BoolExp>(Copy()),
+                       shared_ptr<BoolExp>(Copy()));
 }

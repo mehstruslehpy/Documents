@@ -1,24 +1,13 @@
 #include "andexp.h"
-AndExp::AndExp ( BoolExp* op1, BoolExp* op2)
+AndExp::AndExp ( shared_ptr<BoolExp> op1, shared_ptr<BoolExp> op2)
     : BoolExp(AND_EXP)
 {
     _operand1 = op1;
     _operand2 = op2;
 }
 
-AndExp::~AndExp ( )//need to make sure the destructor of the pointed to item gets called
-{
-    if(_operand1)
-    {
-        delete _operand1;
-        _operand1 = nullptr;
-    }
-    if(_operand2)
-    {
-        delete _operand2;
-        _operand2 = nullptr;
-    }
-}
+AndExp::~AndExp ( )
+{}
 
 bool AndExp::Evaluate(Context& con)
 {
@@ -28,16 +17,16 @@ bool AndExp::Evaluate(Context& con)
     return val1 && val2;
 }
 
-BoolExp* AndExp::Replace(const char* name, BoolExp& exp)
+shared_ptr<BoolExp> AndExp::Replace(string name, BoolExp& exp)
 {
-    return new AndExp(_operand1->Replace(name,exp),
-                      _operand2->Replace(name,exp));
+    return shared_ptr<BoolExp>(new AndExp(_operand1->Replace(name,exp),
+                                          _operand2->Replace(name,exp)));
 }
 
-BoolExp* AndExp::Copy() const
+shared_ptr<BoolExp> AndExp::Copy() const
 {
-    return new AndExp(_operand1->Copy(),
-                      _operand2->Copy());
+    return shared_ptr<BoolExp>(new AndExp(_operand1->Copy(),
+                                          _operand2->Copy()));
 }
 
 string AndExp::Name() const
@@ -47,8 +36,5 @@ string AndExp::Name() const
 }
 BoolReturn AndExp::Infer()
 {
-    //BoolReturn* ret = new BoolReturn;
-    //ret->op1 = _operand1;
-    //ret->op2 = _operand2;
     return BoolReturn(_operand1,_operand2);
 }

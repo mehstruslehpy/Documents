@@ -1,32 +1,26 @@
 #include "notexp.h"
-NotExp::NotExp ( BoolExp* op)
+NotExp::NotExp ( shared_ptr<BoolExp> op)
     : BoolExp(NOT_EXP)
 {
     _operand = op;
 }
 
 NotExp::~NotExp ( )
-{
-    if(_operand)
-    {
-        delete _operand;
-        _operand = nullptr;
-    }
-}
+{}
 
 bool NotExp::Evaluate(Context& con)
 {
     return !_operand->Evaluate(con);
 }
 
-BoolExp* NotExp::Replace(const char* name, BoolExp& exp)
+shared_ptr<BoolExp> NotExp::Replace(string name, BoolExp& exp)
 {
-    return new NotExp(_operand->Replace(name,exp));
+    return shared_ptr<BoolExp>(new NotExp(_operand->Replace(name,exp)));
 }
 
-BoolExp* NotExp::Copy() const
+shared_ptr<BoolExp> NotExp::Copy() const
 {
-    return new NotExp(_operand->Copy());
+    return shared_ptr<BoolExp>(new NotExp(_operand->Copy()));
 }
 
 string NotExp::Name() const

@@ -9,7 +9,7 @@ class Prover
 {
     int _premcount;				//the count of premises
     int _highestasm;			//the highest level of assumption in the proof currently
-    vector<BoolExp*> _premi;	//the premises themselves
+    vector<shared_ptr<BoolExp>> _premi;	//the premises themselves
     vector<string> 	_reasons;	//the inference rule used for each derivation, this array is parallel to the premises
 
     vector<PropType> _ptypes;	//parallel array for keeping track of typeinfo
@@ -27,12 +27,26 @@ class Prover
     int MatchStringUB(string);	//returns true if the string input is present in the proof
     int MatchNegationUB(string);	//returns true if the negation of the input string is present in the proof
 
+    //inference functions
+    void OrInference(int);
+    void AndInference(int);
+    void CondInference(int);
+    //not based inference functions
+    void NotNotInference(int);
+    void NotOrInference(int);
+    void NotAndInference(int);
+    void NotCondInference(int);
+    //assumption testing inference functions
+    bool NotAndAsm(int);
+    bool OrAsm(int);
+    bool CondAsm(int);
+
 public:
     Prover();
     ~Prover();
 
     //setup functions
-    void AddPremise(BoolExp*, PropType, string);
+    void AddPremise(shared_ptr<BoolExp>, PropType, string);
 
     //main functions for proving
     void Infer(const int);	//make an inference on the wff at an index if possible

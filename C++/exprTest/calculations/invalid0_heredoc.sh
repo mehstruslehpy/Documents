@@ -1,5 +1,5 @@
 valgrind ../main <<-ENDOFMESSAGE
-	p #p for proof mode not calculator mode
+	c
 
 	#Proposition 1
 	b
@@ -16,11 +16,13 @@ valgrind ../main <<-ENDOFMESSAGE
 	u
 	v
 	B
-	q #quit adding propositions, continue to conclusion
+	c
 
-	#Conclusion
+	#Proposition 3
 	u
 	v
 	A
-	c #continue to proof
-	ENDOFMESSAGE
+	q
+	1
+	0
+ENDOFMESSAGE

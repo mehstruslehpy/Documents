@@ -8,19 +8,16 @@ using namespace std;
 class VarExp : public BoolExp
 {
     friend Context;	//makes life easier for Context
-    char* _name;
+    string _name;
 public:
-    //VarExp ( );				//ctor
-    VarExp ( const char*);	//for passing a variable name as a string
-    //VarExp ( const VarExp& );	//copy ctor
+    VarExp (string);	//for passing a variable name as a string
     virtual ~VarExp ( );
 
-    //VarExp& operator= ( const VarExp& ); //for assignment
     virtual string Name() const; 	//return a copy of the name
 
     virtual bool Evaluate(Context&);
-    virtual BoolExp* Replace(const char*, BoolExp&);	//these functions require dynamic memory
-    virtual BoolExp* Copy() const;						//these functions require dynamic memory
+    virtual shared_ptr<BoolExp> Replace(string, BoolExp&);	//these functions require dynamic memory
+    virtual shared_ptr<BoolExp> Copy() const;						//these functions require dynamic memory
     virtual BoolReturn Infer();
 };
 #endif

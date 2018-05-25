@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <memory>
 #include "context.h"
 
 //need to fwd declare this for BoolReturn
@@ -11,11 +12,13 @@ class BoolExp;
 //an enum for each proposition type possible
 enum PropType {OR_EXP,VAR_EXP,NOT_EXP,AND_EXP,COND_EXP};
 
+//BoolReturn allows us to peek at the formulas contained in a proposition
 struct BoolReturn
 {
-    BoolReturn(BoolExp*,BoolExp*);
-    BoolExp* op1;
-    BoolExp* op2;
+    BoolReturn(shared_ptr<BoolExp>,shared_ptr<BoolExp>);
+    ~BoolReturn() {}
+    shared_ptr<BoolExp> op1;
+    shared_ptr<BoolExp> op2;
 };
 
 using namespace std;
@@ -26,11 +29,10 @@ class BoolExp
     PropType _type;
 public:
     BoolExp (PropType);				//ctor
-    //BoolExp ( const char*);	//for passing a wff as a string
-    //BoolExp ( const BoolExp& );	//copy ctor
+    //BoolExp ( const BoolExp& );	//use the default copy ctor
     virtual ~BoolExp ( );
 
-    //BoolExp& operator= ( const BoolExp& ); //for assignment
+    //BoolExp& operator= ( const BoolExp& ); //use default assignment (since I am not using assignment)
     //virtual void Print() const = 0;
 
     //return the name of the formula by calling this method on nested boolexp's
@@ -38,11 +40,12 @@ public:
     //evaluate the value of the formula in the same manner
     virtual bool Evaluate(Context&) = 0;
     //replace the current formula
-    virtual BoolExp* Replace(const char*, BoolExp&) = 0;
-    virtual BoolExp* Copy() const = 0;
+    virtual shared_ptr<BoolExp> Replace(string, BoolExp&) = 0;
+    //copy the current formula
+    virtual shared_ptr<BoolExp> Copy() const = 0;
     //return the type of the outermost formula
     virtual PropType Type() const;
-    //Infer from the current formula
+    //Infer from the current formula (just return the children)
     virtual BoolReturn Infer() = 0;
 };
 
