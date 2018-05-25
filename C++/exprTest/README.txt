@@ -70,6 +70,8 @@ MISC:
 		above (you may need to give this file execute permissions too)
 
 TODO: 
-	-create doxygen documentation to make everything documented
+	-create doxygen documentation
+	-clean up the translator code into something nicer
+	-continuing cleaning up the main program code
 	-Write a gui (maybe)
 	-figure out the blocking glitch in testproof5
