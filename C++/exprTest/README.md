@@ -1,11 +1,19 @@
-#**WHAT THIS IS:**
+# H1 WHAT THIS IS:
+	
 	*-Exprtest is a program based off of a design from the design patterns book (the gang of four one).
+	
 	*-Currently this program has two modes of operaton:
+		
 		*-Calculator mode: calculates boolean formulas using the supported operators
+		
 		*-Proof mode: proves a propositional argument or provides a counter argument
+	
 	*-This program was written and tested on linux I cannot vouch for whether or not it will run on 
+		
 		*windows
+	
 	*-Input can be done in two ways:
+		
 		*-via the here document generator tool in the proofTranslator directory
 			*-type out the well formed formulas and specify when you are entering the conlusion
 				*via the prompts
@@ -22,7 +30,7 @@
 			*-all 60 test arguments use this method see the first example in the valid arguments 
 				*directory
 
-#**Well Formed Formulas:**
+# H1 Well Formed Formulas:
 	*-All formulas except negations and single variables are parenthesized
 	*-If you use the here doc generator you must use single letter upper case variables
 		*you should do this for the repl or hand written here docs but you don't have to
@@ -35,7 +43,7 @@
 		*'#' and '@' can be any of the expression types above
 	*For Example ~((AvB)&~~(~C->~D)) is a well formed formula
 
-#**The Inference Rules:**
+# H1 The Inference Rules:
 	*-: {(AvB), ~A |- B} for v's
 	*-: {(A&B) |- A, B} for &'s
 	*-: {(A->B), A |- B} for ->'s (modus ponens)
@@ -45,7 +53,7 @@
 	*-: {~(A&B), A |- ~B} negated &'s
 	*-: {~(A->B) |- A, ~B} negated ->'s
 
-#**Inference Rules and Proofs:**
+# H1 Inference Rules and Proofs:
 	*-Inference rules are listed to the right of the line to which they apply in '{}' brackets.
 	*-Each inference rule used in a proof specifies also the lines used to make the inference.
 	*-I use the turnstile 'A |- B' to mean from the general formula A the formula B is inferred
@@ -59,7 +67,7 @@
 	*-this proof method is heavily based off the system used in Harry Genslers intro to logic book 
 		*which I thought was cool (obviously)
 
-#**MISC:**
+# H1 MISC:
 	*-to build the program run the command "make all"
 	*-after you build the program I have created a set of test proofs under the
 		*invalidproofs and validproofs directories just do ./prooftxtfile to run 
@@ -69,7 +77,7 @@
 		*a file will have been created in that directory for you to run as explaine 
 		*above (you may need to give this file execute permissions too)
 
-#**TODO:**
+# H1 TODO:
 	*-do more testing for calc and proof translators
 	*-create doxygen documentation
 	*-clean up the translator code into something nicer
