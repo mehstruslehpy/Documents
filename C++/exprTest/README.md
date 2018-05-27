@@ -1,19 +1,11 @@
 # H1 WHAT THIS IS:
-	
 	*-Exprtest is a program based off of a design from the design patterns book (the gang of four one).
-	
 	*-Currently this program has two modes of operaton:
-		
 		*-Calculator mode: calculates boolean formulas using the supported operators
-		
 		*-Proof mode: proves a propositional argument or provides a counter argument
-	
 	*-This program was written and tested on linux I cannot vouch for whether or not it will run on 
-		
 		*windows
-	
 	*-Input can be done in two ways:
-		
 		*-via the here document generator tool in the proofTranslator directory
 			*-type out the well formed formulas and specify when you are entering the conlusion
 				*via the prompts
