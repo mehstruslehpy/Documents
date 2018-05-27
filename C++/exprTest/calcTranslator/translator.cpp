@@ -1,11 +1,12 @@
 #include <iostream>
 #include <fstream>
-
+#include <vector>
+#include <string>
 using namespace std;
 
 //general functions
 int readFormula(istream&,string&);
-int parseFormula(ofstream& instrm,const string& str, int start, int stop);
+int parseFormula(ofstream&,const string&, int, int, vector<string>&);
 bool isLastFormula();
 int matchEndParens(const string&,int);
 void hereDocPreamble(ofstream&);
@@ -19,11 +20,13 @@ int isOr(const string&);
 int isNot(const string&);
 
 //emitter functions for emitting and recursing
-void twoplaceemit(ofstream&,const string&,int,int,const string&);
-void oneplaceemit(ofstream&,const string&,int,int,const string&);
+void twoplaceemit(ofstream&,const string&,int,int,const string&,vector<string>&);
+void oneplaceemit(ofstream&,const string&,int,int,const string&,vector<string>&);
+void askAndEmitboolValues(ofstream&,vector<string>);
 
 int main()
 {
+    vector<string> vars;
     bool last = false;
     ofstream outfile;
     string input = "";
@@ -43,7 +46,7 @@ int main()
         cout << "Please Enter a formula:" << endl;
         readFormula(cin,input);
         removeWhiteSpace(input);
-        parseFormula(outfile,input,0,input.size());
+        parseFormula(outfile,input,0,input.size(),vars);
         last = isLastFormula();
         //the menu uses different ending characters for premises and conclusions
         if (last)
@@ -59,11 +62,8 @@ int main()
         i++;
     }
 
-    //read in the conclusion parse and emit it to the file
-    cout << "Please Enter a conclusion:" << endl;
-    readFormula(cin,input);
-    removeWhiteSpace(input);
-    parseFormula(outfile,input,0,input.size());
+    //output variable values
+    askAndEmitboolValues(outfile,vars);
 
     //generic ending code for the file
     cout << "FILE:ENDOFMESSAGE" << endl;
@@ -108,9 +108,10 @@ int readFormula(istream& instrm,string& str)
 
 //takes a formula from the user outputs correct code to the file for the outermost
 //expression type and then recurses on any subexpressions
-int parseFormula(ofstream& fout,const string& str, int start, int stop)
+int parseFormula(ofstream& fout,const string& str, int start, int stop,vector<string>& vars)
 {
     int oploc = -1;
+    bool isin = false;
 
     if (isVariable(str)!=-1)
     {
@@ -120,6 +121,16 @@ int parseFormula(ofstream& fout,const string& str, int start, int stop)
         fout << "\tv" << endl;
         cout << "FILE:\t" << str[0] << endl;
         fout << "\t" << str[0] << endl;
+        //check if variable is already in the vector
+        for (unsigned int i = 0; i < vars.size(); i++)
+        {
+            if (vars[i]==str) isin =true;
+        }
+        //if the variable is not in the vector
+        if (!isin)
+        {
+            vars.push_back(str);
+        }
         return 1;
     }
     else if ((oploc = isNot(str))!=-1)
@@ -129,22 +140,22 @@ int parseFormula(ofstream& fout,const string& str, int start, int stop)
         fout << "\tu" << endl;
         cout << "FILE:\tn" << endl;
         fout << "\tn" << endl;
-        parseFormula(fout,sub,0,0);
+        parseFormula(fout,sub,0,0,vars);
         return 1;
     }
     else if ((oploc = isConditional(str))!=-1)
     {
-        twoplaceemit(fout,str,start,oploc,"c");
+        twoplaceemit(fout,str,start,oploc,"c",vars);
         return 1;
     }
     else if ((oploc = isOr(str))!=-1)
     {
-        oneplaceemit(fout,str,start,oploc,"o");
+        oneplaceemit(fout,str,start,oploc,"o",vars);
         return 1;
     }
     else if ((oploc = isAnd(str))!=-1)
     {
-        oneplaceemit(fout,str,start,oploc,"a");
+        oneplaceemit(fout,str,start,oploc,"a",vars);
         return 1;
     }
     return 1;
@@ -157,11 +168,11 @@ bool isLastFormula()
     string str = "";
     do
     {
-        cout << "Premise or conclusion?(c/p)" << endl;
+        cout << "LastFormula?(y/n)" << endl;
         getline(cin,str,'\n');
-    } while(str[0]!='c'&&str[0]!='p'&&str[0]!='C'&&str[0]!='P');
+    } while(str[0]!='y'&&str[0]!='Y'&&str[0]!='n'&&str[0]!='N');
 
-    if (str=="c"||str=="C")ret=true;
+    if (str=="Y"||str=="y")ret=true;
     else ret = false;
 
     return ret;
@@ -172,7 +183,7 @@ void hereDocPreamble(ofstream& fout)
 {
     cout << "FILE: ../main <<-ENDOFMESSAGE" << endl;
     fout << "../main <<-ENDOFMESSAGE" << endl;
-    fout << "\tp #this program is always prove mode" << endl;
+    fout << "\tc #this program is always calc mode" << endl;
 }
 //identify if the formula is a variable return 1 if true -1 if false
 int isVariable(const string& str)
@@ -256,7 +267,7 @@ void removeWhiteSpace(string& str)
     }
 }
 //emit and recurse to parse any children formulas this version is for two character operators
-void twoplaceemit(ofstream& fout,const string& str,int start,int oploc, const string& op)
+void twoplaceemit(ofstream& fout,const string& str,int start,int oploc, const string& op, vector<string>& vars)
 {
     cout << "FILE:\tb" << endl;
     fout << "\tb" << endl;
@@ -274,7 +285,7 @@ void twoplaceemit(ofstream& fout,const string& str,int start,int oploc, const st
     {
         sub = str.substr(lstart,lend-lstart+1);
     }
-    parseFormula(fout,sub,0,0);
+    parseFormula(fout,sub,0,0,vars);
 
     int rstart = oploc+2;
     int rend = matchEndParens(str,rstart);
@@ -287,10 +298,10 @@ void twoplaceemit(ofstream& fout,const string& str,int start,int oploc, const st
     {
         sub = str.substr(rstart,rend-rstart+1);
     }
-    parseFormula(fout,sub,0,0);
+    parseFormula(fout,sub,0,0,vars);
 }
 //emit and recurse to parse any children formulas this version is for one character operators
-void oneplaceemit(ofstream& fout,const string& str,int start,int oploc, const string& op)
+void oneplaceemit(ofstream& fout,const string& str,int start,int oploc, const string& op,vector<string>& vars)
 {
     cout << "FILE:\tb" << endl;
     fout << "\tb" << endl;
@@ -308,7 +319,7 @@ void oneplaceemit(ofstream& fout,const string& str,int start,int oploc, const st
     {
         sub = str.substr(lstart,lend-lstart+1);
     }
-    parseFormula(fout,sub,0,0);
+    parseFormula(fout,sub,0,0,vars);
 
     int rstart = oploc+1;
     int rend = matchEndParens(str,rstart);
@@ -321,5 +332,17 @@ void oneplaceemit(ofstream& fout,const string& str,int start,int oploc, const st
     {
         sub = str.substr(rstart,rend-rstart+1);
     }
-    parseFormula(fout,sub,0,0);
+    parseFormula(fout,sub,0,0,vars);
+}
+void askAndEmitboolValues(ofstream& fout,vector<string> vars)
+{
+    cout << "Please choose a 1 for true or 0 for false for each variable that follows:" << endl;
+    bool vals;
+    for (unsigned int i = 0; i < vars.size(); i++)
+    {
+        cout << vars[i] << " = ";
+        cin >> vals;
+        cout << "FILE:\t" << vals << endl;
+        fout << "\t" << vals << endl;
+    }
 }

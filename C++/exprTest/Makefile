@@ -1,4 +1,4 @@
-all: main translator
+all: main ptranslator ctranslator
 
 main: prover.o main.cpp context.o boolexp.o varexp.o notexp.o andexp.o orexp.o condexp.o
 	g++ -g -Wall -pedantic main.cpp varexp.o context.o boolexp.o notexp.o andexp.o orexp.o condexp.o prover.o -o main
@@ -20,14 +20,18 @@ condexp.o: condexp.h condexp.cpp
 prover.o: prover.h prover.cpp
 	g++ -g -Wall -pedantic prover.cpp -o prover.o -c
 
-translator: ./proofTranslator/translator.cpp
+ptranslator: ./proofTranslator/translator.cpp
 	g++ -g -Wall -pedantic ./proofTranslator/translator.cpp -o ./proofTranslator/translator
+
+ctranslator: ./calcTranslator/translator.cpp
+	g++ -g -Wall -pedantic ./calcTranslator/translator.cpp -o ./calcTranslator/translator
 
 clean:
 	astyle *.cpp
 	astyle *.h
 	astyle ./proofTranslator/*
+	astyle ./calcTranslator/*
 	rm proofTranslator/translator
-	rm proofTranslator/*.txt
-	rm proofTranslator/*.orig
-	rm *.o *.orig main
+	rm calcTranslator/translator
+	rm *.o *.orig main proofTranslator/translator calcTranslator/translator
+	rm -rf *.orig 
