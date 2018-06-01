@@ -6,7 +6,7 @@
 	-This program was written and tested on linux I cannot vouch for whether or not it will run on 
 		windows
 	-Input can be done in two ways:
-		-via the here document generator tool in the proofTranslator directory
+		-via the here document generator tool in the proofTranslator and calcTranslator directories
 			-type out the well formed formulas and specify when you are entering the conlusion
 				via the prompts
 		-via the built in repl in the "main" binary
@@ -71,7 +71,11 @@
 
 # TODO:
 	-do more testing for calc and proof translators
+		-fix calculator variable <- value assignment procedure values need to be received line by line left to right in the proof to interact
+			correctly with the calculator translator
 	-create doxygen documentation
+		-add tutorials
+		-add examples
 	-clean up the translator code into something nicer
 	-continuing cleaning up the main program code
 	-Write a gui (maybe)

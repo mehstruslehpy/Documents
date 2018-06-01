@@ -1,4 +1,4 @@
-valgrind ../main <<-ENDOFMESSAGE
+../main <<-ENDOFMESSAGE
 	c #proof 
 
 	u
@@ -24,5 +24,6 @@ valgrind ../main <<-ENDOFMESSAGE
 	v
 	X
 	q #continue to proof
+	0
 	1
 	ENDOFMESSAGE

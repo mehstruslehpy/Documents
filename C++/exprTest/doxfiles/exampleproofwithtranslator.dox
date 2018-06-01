@@ -1,0 +1,60 @@
+/** \page proofexample Using The Proof Translator
+<h1>The Proof Translator</h1>
+The proof translator is a tool to turn lists of well formed formulas in the language of propositional logic into here documents that you can run on the prover.
+The proof translator outputs lines such as <i>FILE:&lt;some output goes here&gt;</i> as a way of showing the user what specifically gets output to the
+here document being created. The proof translator will prompt the user after each formula as to whether the next formula is a conclusion or a premise,
+if the formula to be entered next is a conclusion the prover accepts that formula as the last formula before exitting
+<h1>An Example Session</h1>
+Note: User input has been marked with a 'user>' symbol and 'FILE:' statements have been omitted
+<br>
+<br>
+<i>
+<code>
+Please Enter a formula:<br>
+user> ((A->B)&(B->A))<br>
+Premise or conclusion?(c/p)<br>
+user> ((AvB)->C)<br>
+Premise or conclusion?(c/p)<br>
+user> p<br>
+Please Enter a formula:<br>
+user> ((AvB)->C)<br>
+Premise or conclusion?(c/p)<br>
+user> c<br>
+Please Enter a conclusion:<br>
+user> C<br>
+</code>
+</i>
+<br>
+After the translator is completed you may need to give the newly generated here document execute permissions since it is effectively a script.
+On my system I do that with the command 'chmod +x output_heredoc.txt'
+
+As you can probably guess the above input represents the invalid argument:
+<br>
+<br>
+<i>
+<code>
+((A -> B) & (B -> A))<br>
+((A v B) -> C)<br>
+&there4;C<br>
+</code>
+</i>
+
+And when run on the prover produces the following counter argument:
+
+
+<code>
+<i>
+Counter-argument:<br>
+A=0<br>
+B=0<br>
+C=0<br>
+
+Evaluation:<br>
+((A -> B) & (B -> A))=1<br>
+((A v B) -> C)=1<br>
+~C=1<br>
+</i>
+</code>
+<br>
+Which is the correct output.
+*/

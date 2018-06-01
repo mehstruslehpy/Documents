@@ -1,4 +1,4 @@
-valgrind ../main <<-ENDOFMESSAGE
+../main <<-ENDOFMESSAGE
 	c 
 	
 	u

@@ -29,6 +29,7 @@ string NotExp::Name() const
 }
 BoolReturn NotExp::Infer()
 {
-    return BoolReturn(_operand, nullptr);
+    //return BoolReturn(_operand, nullptr);
+    return BoolReturn(_operand, _operand);
 }
 

@@ -1,0 +1,73 @@
+/** \page calcexample Using The Calculator Translator
+<h1>The Calculator Translator</h1>
+The calculator translator is a tool to turn lists of well formed formulas along with variables in the language of propositional logic into here documents that you can run for calculations
+on the prover. The calculator translator outputs lines such as <i>FILE:&lt;some output goes here&gt;</i> as a way of showing the user what specifically gets output to the
+here document being created. The calculator translator will prompt the user as to whether they are done entering in formulas to be evaluated if yes then the calculator translator
+moves on to prompting for values to use per each variable. Variables are assigned from top to bottom left to right as described in the here document file documentation
+
+<h1>An Example Session</h1>
+Note: User input has been marked with a 'user>' symbol and 'FILE:' statements have been omitted
+<br>
+<br>
+<i>
+<code>
+Please Enter a formula:<br>
+user> (A->B)<br>
+LastFormula?(y/n)<br>
+user> n<br>
+Please Enter a formula:<br>
+user> (A&(Bv(C->E)))<br>
+LastFormula?(y/n)<br>
+user> n<br>
+Please Enter a formula:<br>
+user> F<br>
+LastFormula?(y/n)<br>
+user> y<br>
+Please choose a 1 for true or 0 for false for each variable that follows:<br>
+A = user> 1<br>
+B = user> 1<br>
+C = user> 0<br>
+E = user> 0<br>
+F = user> 1<br>
+</code>
+</i>
+
+After the translator is completed you may need to give the newly generated here document execute permissions since it is effectively a script.
+On my system I do that with the command 'chmod +x output_heredoc.txt'
+
+As you can probably guess the above input represents the following list of formulas and values:
+<br>
+<br>
+<i>
+<code>
+(A -> B)<br>
+(A & (B v (C -> E)))<br>
+F<br>
+<br>
+A = 1<br>
+B = 1<br>
+C = 0<br>
+E = 0<br>
+F = 1<br>
+</code>
+</i>
+
+And when ran for calculation produces the following:
+
+<code>
+<i>
+Dumping context:<br>
+A=1<br>
+B=1<br>
+C=0<br>
+E=0<br>
+F=1<br>
+Beginning calculation step enter q to quit:<br>
+(A -> B) = 1<br>
+(A & (B v (C -> E))) = 1<br>
+F = 1<br>
+</i>
+</code>
+<br>
+Which is the correct output.
+*/

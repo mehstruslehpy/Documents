@@ -64,3 +64,14 @@ void Context::DumpContext()
         cout << it->first << "=" << it->second << endl;
     }
 }
+void Context::AssignByStr(string str, bool trf)
+{
+    for (std::map<string,bool>::iterator it=_map.begin(); it!=_map.end(); ++it)
+    {
+        if (str == it->first)
+        {
+            it->second=trf;
+            cout << "You chose: " << it->first << " = " << trf << endl;
+        }
+    }
+}

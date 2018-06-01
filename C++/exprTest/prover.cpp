@@ -542,3 +542,56 @@ bool Prover::CondAsm(int i)
     return ret;
 }
 
+void Prover::AssignByFormula(Context& context)
+{
+    vector<string> assigned;
+    vector<string> unassigned;
+    bool trf = false;
+
+    //for every formula in the proof
+    for (int i = 0; i < _premcount; i++ )
+    {
+        //get a variable letter from the current formula
+        Traverse(unassigned,_premi[i]);
+
+        //assign to every unassigned variable that was found
+        for (unsigned int i = 0; i < unassigned.size(); i++)
+        {
+            if (find(assigned.begin(),assigned.end(),unassigned[i]) == assigned.end())
+            {
+                cout << unassigned[i] << " = " << endl;
+                cin >> trf;
+                cin.ignore(256,'\n');
+                context.AssignByStr(unassigned[i],trf);
+                assigned.push_back(unassigned[i]);
+            }
+        }
+
+        //clear the unassigned vector in prep for the next line
+        unassigned.clear();
+    }
+}
+void Prover::Traverse(vector<string>& vec, shared_ptr<BoolExp> boolexp)
+{
+    if (boolexp->Type() != VAR_EXP)
+    {
+        //cout << "debug boop"<<endl;
+        if (boolexp->Infer().op1->Type() == VAR_EXP)
+        {
+            vec.push_back(boolexp->Infer().op1->Name());
+        }
+        else
+        {
+            Traverse(vec,boolexp->Infer().op1);
+        }
+
+        if (boolexp->Infer().op2->Type() == VAR_EXP)
+        {
+            vec.push_back(boolexp->Infer().op2->Name());
+        }
+        else
+        {
+            Traverse(vec,boolexp->Infer().op2);
+        }
+    }
+}

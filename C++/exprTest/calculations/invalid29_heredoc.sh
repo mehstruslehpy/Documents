@@ -1,4 +1,4 @@
-valgrind ../main <<-ENDOFMESSAGE
+../main <<-ENDOFMESSAGE
 	c #proof 
 
 	b
@@ -22,7 +22,7 @@ valgrind ../main <<-ENDOFMESSAGE
 	v
 	Q
 	q #continue to proof
-	1
+	0
 	1
 	0
 	ENDOFMESSAGE

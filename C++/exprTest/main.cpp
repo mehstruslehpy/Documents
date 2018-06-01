@@ -4,14 +4,30 @@
 
 using namespace std;
 
-//build a well formed formula based on user input
-shared_ptr<BoolExp> buildExpr(shared_ptr<BoolExp>,Context&);
-//brute force a counterargument via boolean permutations
-bool testEveryPermutation(vector<bool>&,Prover&,Context&,int,int);
-//normal operation consists of proof mode or calculator mode
+/**builds a well formed formula based on user input via an interactive menu
+*	@param current the current BoolExp being created
+*	@param the context mapping variables to values
+*	@return returns a shared_ptr<BoolExp> referring to the created formula
+*/
+shared_ptr<BoolExp> buildExpr(shared_ptr<BoolExp> current,Context& context);
+/**attempt to bruteforce a counterargument by testing every possible permutation
+*	@param myvec a vector of bools containing one element for every formula
+*	@param proof the proof
+*	@param context the Context structure mapping values to variables for this proof
+*	@param premises the count of premises
+*	@param conclusions the index of the conclusion in the proof
+*	@return returns true if a counterarg is found otherwise false
+*/
+bool testEveryPermutation(vector<bool>& myvec,Prover& proof,Context& context,int premises,int conclusion);
+/**the program is running in proof mode the user will input arguments to be proved or disproved
+*	@return indiscriminately returns 0 but may return something more useful in the future
+*/
 int prover();
+/**the program is running in calculator mode the user will input formulas and values to be calculated
+*	@return indiscriminately returns 0 but may return something more useful in the future
+*/
 int calculator();
-
+/**initiates either calculator or prover mode based on user input*/
 int main()
 {
     string choice = "";
@@ -159,8 +175,11 @@ int calculator()
 
     //Assign values to variables based on user input
     cout << "Beginning variable assignment step:" << endl;
-    context.AssignValues();
-
+    //context.AssignValues();
+    proof.AssignByFormula(context);
+    cout << endl;
+    cout << "Dumping context:" << endl;
+    context.DumpContext();
     //evaluate each formula based on the chosen values and print
     cout << "Beginning calculation step enter q to quit:" << endl;
     for (int i = 0; i < proof.PremiseCount(); i++)

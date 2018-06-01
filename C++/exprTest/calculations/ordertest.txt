@@ -1,0 +1,63 @@
+../main <<-ENDOFMESSAGE
+	c #this program is always calc mode
+	b
+	a
+	u
+	v
+	Q
+	b
+	o
+	u
+	v
+	W
+	b
+	c
+	u
+	v
+	E
+	b
+	a
+	u
+	v
+	R
+	u
+	v
+	T
+	c #proposition 0
+
+	b
+	c
+	b
+	o
+	u
+	v
+	Y
+	b
+	a
+	u
+	v
+	U
+	u
+	v
+	I
+	b
+	o
+	u
+	v
+	O
+	u
+	v
+	P
+	q #conclusion follows
+
+	1
+	0
+	1
+	0
+	1
+	0
+	1
+	0
+	1
+	0
+ENDOFMESSAGE

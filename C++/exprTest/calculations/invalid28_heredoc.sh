@@ -1,4 +1,4 @@
-valgrind ../main <<-ENDOFMESSAGE
+../main <<-ENDOFMESSAGE
 	c #proof 
 
 	#a single proposition argument needs a garbage variable

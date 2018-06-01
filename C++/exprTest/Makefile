@@ -1,4 +1,4 @@
-all: main ptranslator ctranslator
+all: main ptranslator ctranslator doc
 
 main: prover.o main.cpp context.o boolexp.o varexp.o notexp.o andexp.o orexp.o condexp.o
 	g++ -g -Wall -pedantic main.cpp varexp.o context.o boolexp.o notexp.o andexp.o orexp.o condexp.o prover.o -o main
@@ -27,11 +27,8 @@ ctranslator: ./calcTranslator/translator.cpp
 	g++ -g -Wall -pedantic ./calcTranslator/translator.cpp -o ./calcTranslator/translator
 
 clean:
-	astyle *.cpp
-	astyle *.h
-	astyle ./proofTranslator/*
-	astyle ./calcTranslator/*
-	rm proofTranslator/translator
-	rm calcTranslator/translator
-	rm *.o *.orig main proofTranslator/translator calcTranslator/translator
-	rm -rf *.orig 
+	./clean.sh
+
+docs: doc
+doc: doxfiles/mainpage.dox Doxyfile
+	doxygen Doxyfile

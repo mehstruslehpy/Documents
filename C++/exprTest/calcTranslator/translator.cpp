@@ -4,25 +4,86 @@
 #include <string>
 using namespace std;
 
-//general functions
+/**read a formula from the user into a string
+*   @param  the input stream to read from (probably not necessary)
+*   @param  the string to read into
+*   @return currently returns 0 always but may return something more useful in the future
+*/
 int readFormula(istream&,string&);
+/**recursively parse a formula and emit the correct sequence of characters to a file
+*   @param fout the file stream to emit to
+*   @param the string to parse
+*   @param the start position in the string to parse from (possibly unnecessary)
+*   @param the ending position in the string to parse from (possibly unnecessary)
+*   @return currently returns 1 always but may return something more useful in the future
+*/
 int parseFormula(ofstream&,const string&, int, int, vector<string>&);
+/**ask the user if the previously entered formula was the last
+*   @return true if the user choose so returns false if not
+*/
 bool isLastFormula();
+/**given a string and the index of an open paren return the index of it's matching paren
+*   @param str the string being analyzed
+*   @param start the opening paren to be matched
+*   @return returns the index of the required closing paren or -1 if it cannot find a closing paren
+*/
 int matchEndParens(const string&,int);
+/**emit the heredoc preamble code to a file
+*   @param fout the ofstream to output to
+*/
 void hereDocPreamble(ofstream&);
+/**remove space characters from the input string
+*   @param str the string having whitespace removed
+*/
 void removeWhiteSpace(string&);
 
-//conditions to check for expression type
+/**check if the given string is a single propostional variable
+*   @param str the string to be analyzed
+*   @return returns 1 if the input string is a variable and -1 if not
+*/
 int isVariable(const string&);
+/**check if the given string is a conditional
+*   @param str the string to be analyzed
+*   @return returns 1 if the input string is a conditional and -1 if not
+*/
 int isConditional(const string&);
+/**check if the given string is an and
+*   @param str the string to be analyzed
+*   @return returns 1 if the input string is an and returns -1 if not
+*/
 int isAnd(const string&);
+/**check if the given string is an or
+*   @param str the string to be analyzed
+*   @return returns 1 if the input string is an or returns -1 if not
+*/
 int isOr(const string&);
+/**check if the given string is a not
+*   @param str the string to be analyzed
+*   @return returns 1 if the input string is a not and -1 if not
+*/
 int isNot(const string&);
 
-//emitter functions for emitting and recursing
+/**emit the correct character sequence for a two character operator
+*   @param fout the stream to output to
+*   @param str the string being analyzed
+*   @param start the starting point in the string to work on
+*   @param oploc the location of the first character of the operator in the expression
+*   @param op the operator that will be emitted
+*/
 void twoplaceemit(ofstream&,const string&,int,int,const string&,vector<string>&);
+/**emit the correct character sequence for a one character operator
+*   @param fout the stream to output to
+*   @param str the string being analyzed
+*   @param start the starting point in the string to work on
+*   @param oploc the location of the operator in the expression
+*   @param op the operator that will be emitted
+*/
 void oneplaceemit(ofstream&,const string&,int,int,const string&,vector<string>&);
-void askAndEmitboolValues(ofstream&,vector<string>);
+/**Prompt the user to input a value for each variable in the proof
+*	@param fout the file to write values to
+*	@param vars a vector of strings containing each variable to give a value to
+*/
+void askAndEmitboolValues(ofstream& fout,vector<string> vars);
 
 int main()
 {
