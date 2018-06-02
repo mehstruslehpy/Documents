@@ -71,11 +71,8 @@
 
 # TODO:
 	-do more testing for calc and proof translators
-		-fix calculator variable <- value assignment procedure values need to be received line by line left to right in the proof to interact
-			correctly with the calculator translator
 	-create doxygen documentation
-		-add tutorials
-		-add examples
+		-add more docs and clean up existing docs
 	-clean up the translator code into something nicer
 	-continuing cleaning up the main program code
 	-Write a gui (maybe)
