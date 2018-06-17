@@ -14,8 +14,11 @@
 	-For lower level debugging of a binary consider running the emulator in gdb and breaking on the function
 		that implements the instruction you would like to analyze or break on a particular value of the program
 		counter register
+	-The method CompSim::ExecInstr is useful for stepping one ttp instruction at a time in gdb
 	-you probably want to adjust your screen and font to fit the ram dump nicely into your screen ideally you want it 
 		to look like a big rectangle
+	-the program should exit with the pc one less than what it would be in logisim otherwise the state of the registers
+		and ram should be identical (if not you found a bug)
 # TODO:
 	-clean up the source code and make it look pretty
 	-doxygen docs?

@@ -37,12 +37,12 @@ vector<T> csvToRam(ifstream& file)
 
     while(getline(file,line))
     {
-        if (line!=" \r")
+        if (line!=" \r"&&line[0]!=' ') //blank lines are the string " \r"
         {
             sub = line.substr(0,2);
             cout << endl;
+            cout << "LINE: \"" << dec <<line <<"\""<< endl;
             cout << "CHAR CODES:";
-            cout << "LINE: " << dec <<line << endl;
             charCodes(line);
             cout << "SUB1:" << sub << endl;
             cout << "SUB1:0x" << hex << charToNum(sub[0]) << charToNum(sub[1]) << endl;
@@ -55,6 +55,29 @@ vector<T> csvToRam(ifstream& file)
                 if(line.size()==6)filevec.push_back(16*charToNum(sub[0])+charToNum(sub[1]));
                 if(line.size()==5)filevec.push_back(charToNum(sub[0]));
             }
+        }
+        else if (line[0] == ' ' && line[1] != '\r') //byte instructions are a space followed by one or two digits
+        {
+            cout << endl;
+            cout << dec << "LINE: \"" << line <<"\""<< endl;
+            if(line.size()==3) //one digit
+            {
+                sub = line.substr(1,1);
+                cout << "BYTE CHAR CODES:";
+                charCodes(sub);
+                cout << dec << "SUB: \"" << sub <<"\""<< endl;
+                filevec.push_back(charToNum(sub[0]));
+            }
+            if(line.size()==4) //two digits
+            {
+                sub = line.substr(1,2);
+                cout << "BYTE CHAR CODES:";
+                charCodes(sub);
+                cout << dec << "SUB: \"" << sub <<"\""<< endl;
+                filevec.push_back(16*charToNum(sub[0])+charToNum(sub[1]));
+            }
+
+            cout << endl;
         }
     }
     cout << endl;

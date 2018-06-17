@@ -189,7 +189,7 @@ T CompSim::Cmp(RegCode xc,RegCode yc) // x-y 1110 xxyy
     T op1 = registers.ReadRegister(xc);
     T op2 = registers.ReadRegister(yc);
     T result = op1-op2;
-    ComputeFlags(op1,op2,result,SUB_INSTR);
+    ComputeFlags(op1,op2,result,CMP_INSTR);
     return 1;
 }
 T CompSim::And(RegCode xc,RegCode yc) // x&=y 1100 xxyy
@@ -198,7 +198,7 @@ T CompSim::And(RegCode xc,RegCode yc) // x&=y 1100 xxyy
     T op2 = registers.ReadRegister(yc);
     T result = op1&op2;
     registers.WriteRegister(xc,result);
-    ComputeFlags(op1,op2,result,ADD_INSTR);
+    ComputeFlags(op1,op2,result,AND_INSTR);
     return 1;
 }
 T CompSim::Or(RegCode xc,RegCode yc) // x|=y 1101 xxyy
@@ -207,7 +207,7 @@ T CompSim::Or(RegCode xc,RegCode yc) // x|=y 1101 xxyy
     T op2 = registers.ReadRegister(yc);
     T result = op1|op2;
     registers.WriteRegister(xc,result);
-    ComputeFlags(op1,op2,result,ADD_INSTR);
+    ComputeFlags(op1,op2,result,OR_INSTR);
     return 1;
 }
 T CompSim::Not(RegCode xc) // x=~x 1011 xx00
@@ -215,7 +215,7 @@ T CompSim::Not(RegCode xc) // x=~x 1011 xx00
     T op1 = registers.ReadRegister(xc);
     T result = ~op1;
     registers.WriteRegister(xc,result);
-    ComputeFlags(op1,~op1,result,ADD_INSTR);
+    ComputeFlags(op1,~op1,result,NOT_INSTR);
     return 1;
 }
 T CompSim::Rsh(RegCode xc,RegCode yc) // x>>=y 1010 xxyy
@@ -224,7 +224,7 @@ T CompSim::Rsh(RegCode xc,RegCode yc) // x>>=y 1010 xxyy
     T op2 = registers.ReadRegister(yc);
     T result = op1>>op2;
     registers.WriteRegister(xc,result);
-    ComputeFlags(op1,op2,result,ADD_INSTR);
+    ComputeFlags(op1,op2,result,RSH_INSTR);
     return 1;
 }
 
@@ -247,7 +247,7 @@ T CompSim::Dec(RegCode xc) // --x 1110 xxxx
 //Copying Type:
 T CompSim::Ldi(RegCode xc) // x=*(PC++) or x=(*PC++) 0110 11xx
 {
-    cout << "DEBUG: T CompSim::Ldi(RegCode xc)" << endl;
+    //cout << "DEBUG: T CompSim::Ldi(RegCode xc)" << endl;
     //get the value right after the just read instruction by incrementing the pc once
     //and then reading from ram
     T pc = registers.ReadRegister(REG_PC);
