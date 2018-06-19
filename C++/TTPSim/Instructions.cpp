@@ -293,7 +293,7 @@ T CompSim::Jmpi() // PC=i or PC=*PC 0100 0000
     //increment the program counter past the instruction opcode
     T pc = 0;
     pc = registers.ReadRegister(REG_PC);
-    cout << "DEBUG: pc=" << pc << endl;
+    //cout << "DEBUG: pc=" << pc << endl;
     registers.WriteRegister(REG_PC,ram.ReadRam(pc+1));
     //pc++;
     //registers.WriteRegister(REG_PC,pc);
@@ -308,6 +308,12 @@ T CompSim::Jc(RegCode xc) // PC=(CFlag?XReg:PC) 1011 xx10
     {
         T val = registers.ReadRegister(xc);
         registers.WriteRegister(REG_PC,val);
+    }
+    else
+    {
+        T pc = registers.ReadRegister(REG_PC);
+        pc++;
+        registers.WriteRegister(REG_PC,pc);
     }
     return 1;
 }
@@ -336,6 +342,12 @@ T CompSim::Jz(RegCode xc) // ZFlag 1011 xx11
     {
         T val = registers.ReadRegister(xc);
         registers.WriteRegister(REG_PC,val);
+    }
+    else
+    {
+        T pc = registers.ReadRegister(REG_PC);
+        pc++;
+        registers.WriteRegister(REG_PC,pc);
     }
     return 1;
 }
@@ -366,6 +378,12 @@ T CompSim::Js(RegCode xc) // SFlag 0110 10xx
         T val = registers.ReadRegister(xc);
         registers.WriteRegister(REG_PC,val);
     }
+    else
+    {
+        T pc = registers.ReadRegister(REG_PC);
+        pc++;
+        registers.WriteRegister(REG_PC,pc);
+    }
     return 1;
 }
 T CompSim::Jsi() // SFlag 0100 0011
@@ -395,6 +413,12 @@ T CompSim::Jo(RegCode xc) // OFlag 0110 01xx
         T val = registers.ReadRegister(xc);
         registers.WriteRegister(REG_PC,val);
     }
+    else
+    {
+        T pc = registers.ReadRegister(REG_PC);
+        pc++;
+        registers.WriteRegister(REG_PC,pc);
+    }
     return 1;
 }
 T CompSim::Joi() // OFlag 0100 0010
@@ -423,6 +447,12 @@ T CompSim::Jl(RegCode xc) // LFlag 0110 00xx
     {
         T val = registers.ReadRegister(xc);
         registers.WriteRegister(REG_PC,val);
+    }
+    else
+    {
+        T pc = registers.ReadRegister(REG_PC);
+        pc++;
+        registers.WriteRegister(REG_PC,pc);
     }
     return 1;
 }

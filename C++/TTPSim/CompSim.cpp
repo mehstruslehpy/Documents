@@ -257,12 +257,12 @@ int CompSim::DumpState()
 {
     //system("clear");
     cout << endl;
-    cout << "Reg A: 0x" << hex << static_cast<unsigned>(registers.ReadRegister(REG_A)) << endl;
-    cout << "Reg B: 0x" << hex << static_cast<unsigned>(registers.ReadRegister(REG_B)) << endl;
-    cout << "Reg C: 0x" << hex << static_cast<unsigned>(registers.ReadRegister(REG_C)) << endl;
-    cout << "Reg D: 0x" << hex << static_cast<unsigned>(registers.ReadRegister(REG_D)) << endl;
-    cout << "Reg PC: 0x" << hex << static_cast<unsigned>(registers.ReadRegister(REG_PC)) << endl;
-    cout << "Reg FLAGS: 0x" << hex << static_cast<unsigned>(registers.ReadRegister(REG_FLAGS)) << endl;
+    cout << "Reg A: 0x"  << hex << setw(2) << setfill('0')<< static_cast<unsigned>(registers.ReadRegister(REG_A)) << endl;
+    cout << "Reg B: 0x"  << hex << setw(2) << setfill('0')<<static_cast<unsigned>(registers.ReadRegister(REG_B)) << endl;
+    cout << "Reg C: 0x"  << hex << setw(2) << setfill('0')<<static_cast<unsigned>(registers.ReadRegister(REG_C)) << endl;
+    cout << "Reg D: 0x"  << hex << setw(2) << setfill('0')<<static_cast<unsigned>(registers.ReadRegister(REG_D)) << endl;
+    cout << "Reg PC: 0x" << hex << setw(2) << setfill('0')<<static_cast<unsigned>(registers.ReadRegister(REG_PC)) << endl;
+    cout << "Reg FLAGS: 0x" << hex << setw(2) << setfill('0')<<static_cast<unsigned>(registers.ReadRegister(REG_FLAGS)) << endl;
     cout << "Ram Length: " << dec << ram.RamLength() << endl;
     cout << "Ram Dump: " << endl;
     for (int i = 0; i < ram.RamLength(); i++)
@@ -614,6 +614,7 @@ string CompSim::InstrToStr(InstrCode instr,T ramval)
     }
     case JL_INSTR:
     {
+        return "jl " + RegToStr(LowerReg(ramval));
     }
     case JLI_INSTR:
     {
