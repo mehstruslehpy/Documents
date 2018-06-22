@@ -13,7 +13,7 @@ st (d),c
 dec d
 dec c
 st (d),c
-ldi a main_retfromswap
+ldi a, main_retfromswap
 dec d
 st (d),a
 jmpi swap
