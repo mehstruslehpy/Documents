@@ -48,9 +48,65 @@ int getLabelNum(string& str, map<string, unsigned int>& lmap)
 //from stack overflow
 string do_replace( string const & in, string const & from, string const & to )
 {
-  return std::regex_replace( in, std::regex(from), to );
+  return regex_replace( in, regex(from), to );
 }
 void labelToNum(string& str,string from,unsigned int num)
 {
-	str = do_replace(str,from,to_string(num));
+	//only perform replacements on instructions that use immediate operands
+	//make sure to do so only on the correct portion of the string
+	string prefix;
+	string postfix;
+	if (str.substr(0,4)=="jmpi") 
+	{
+		postfix = str.substr(4,str.size());
+		prefix = str.substr(0,4);
+		str = prefix + do_replace(postfix,from,to_string(num));
+	}
+	else if (str.substr(0,4)=="byte") 
+	{
+		postfix = str.substr(4,str.size());
+		prefix = str.substr(0,4);
+		str = prefix + do_replace(postfix,from,to_string(num));
+	}
+	else if (str.substr(0,3)=="jci")
+	{
+		postfix = str.substr(3,str.size());
+		prefix = str.substr(0,3);
+		str = prefix + do_replace(postfix,from,to_string(num));
+	}
+	else if (str.substr(0,3)=="jzi")	
+	{
+		postfix = str.substr(3,str.size());
+		prefix = str.substr(0,3);
+		str = prefix + do_replace(postfix,from,to_string(num));
+	}
+	else if (str.substr(0,3)=="jsi")	
+	{
+		postfix = str.substr(3,str.size());
+		prefix = str.substr(0,3);
+		str = prefix + do_replace(postfix,from,to_string(num));
+	}
+	else if (str.substr(0,3)=="joi")	
+	{
+		postfix = str.substr(3,str.size());
+		prefix = str.substr(0,3);
+		str = prefix + do_replace(postfix,from,to_string(num));
+	}
+	else if (str.substr(0,3)=="jli")	
+	{
+		postfix = str.substr(3,str.size());
+		prefix = str.substr(0,3);
+		str = prefix + do_replace(postfix,from,to_string(num));
+	}
+	else if (str.substr(0,3)=="ldi")	
+	{//ldix,immediate
+		postfix = str.substr(5,str.size());
+		prefix = str.substr(0,5);
+		str = prefix + do_replace(postfix,from,to_string(num));
+	}
+	else 
+	{
+		str=str;
+	}
+	//str = do_replace(str,from,to_string(num));
 }

@@ -16,3 +16,5 @@
 	-test more thorougly
 	-nicer error handling
 	-clean up debug/logging output
+	-fix very minor label/comment bugs
+	-fix minor single char instruction matching bugs

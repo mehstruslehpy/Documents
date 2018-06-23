@@ -20,7 +20,7 @@ void checkLabelCorrect(string& str,unsigned int lineno)
 {
 	//disallow spaces in the middle of a label
 	for(unsigned int i = 0; str[i]!=':' ; i++)
-		if (isspace(str[i]))
+		if (isspace(str[i])&&str[0]!='/')
 			labelError(str,"illegal space in labelname",lineno,i);
 }
 static unsigned int bytesOnLine(string str)
@@ -95,15 +95,15 @@ static unsigned int bytesOnLine(string str)
 unsigned int countBytes(vector<string> filevec,unsigned int countto)
 {
 	unsigned int countbytes = 0;
-	cout << "#####################################################"<<endl;
+	//cout << "#####################################################"<<endl;
 	for (unsigned int i = 0; i < countto; i++)
 	{
 		//cout << "DEBUG: " << countbytes << endl;
-		int temp = bytesOnLine(filevec[i]);
+		//int temp = bytesOnLine(filevec[i]);
 		countbytes += bytesOnLine(filevec[i]);
-		cout << "\tDEBUG:index="<<i<<": string="<<filevec[i]<<": bytecount="<<countbytes<<": bytesadded="<<temp<< endl;
+		//cout << "\tDEBUG:index="<<i<<": string="<<filevec[i]<<": bytecount="<<countbytes<<": bytesadded="<<temp<< endl;
 	}
-	cout << "#####################################################"<<endl;
+	//cout << "#####################################################"<<endl;
 	//countbytes++; //increment to one after the current count
 	return countbytes;
 }
