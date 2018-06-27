@@ -443,8 +443,8 @@ string toHex(string instr)
     }
 	string output = sstr.str().substr(2,2);
     if (output[0]=='0') output = output.substr(1,1);
-	cout << "DEBUG: "
-         << instr
+	//cout << "DEBUG: "
+	cout << instr
          << " converted to "
          << output
          << " in hex"

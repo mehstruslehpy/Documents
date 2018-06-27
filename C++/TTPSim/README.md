@@ -22,6 +22,7 @@
 # TODO:
 	-clean up the source code and make it look pretty
 	-doxygen docs?
+	-Instruction docs?
 	-IO hardware?
 	-breakpoint mechanism?
 	-write more tools
@@ -31,4 +32,3 @@
 	-get clarification on how the flags are supposed to work
 	-add user level interface for running different variations of the hardware, mainly ram size but register mods might be cool too
 	-consider making it possible for a user to install/augment the instruction set
-	-write my own assembler so I don't have to keep using taks online one

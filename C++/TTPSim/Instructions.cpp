@@ -155,8 +155,17 @@ int CompSim::ComputeFlags(T op1,T op2,T result,InstrCode opcode)
         if (ComputeZeroFlag(result)) flags += 0x02;
         //sflag: if the msb of the result is set
         if (ComputeSignFlag(result)) flags += 0x04;
+        registers.WriteRegister(REG_FLAGS,flags);
+
         //lflag: use the sub version?
-        if (ComputeLessFlag(op1,op2,result,SUB_INSTR)) flags += 0x10;
+        //if (ComputeLessFlag(op1,op2,result,SUB_INSTR)) flags += 0x10;
+
+        //ttp recomputes zero and sign flags then xors sign and overflow
+        //to compute the less flag
+        if ((registers.SignFlag()||registers.OverflowFlag())
+                && !(registers.SignFlag()&&registers.OverflowFlag()))
+            flags += 0x10;
+
         registers.WriteRegister(REG_FLAGS,flags);
         break;
     }
@@ -215,13 +224,20 @@ T CompSim::Not(RegCode xc) // x=~x 1011 xx00
     T op1 = registers.ReadRegister(xc);
     T result = ~op1;
     registers.WriteRegister(xc,result);
-    ComputeFlags(op1,~op1,result,NOT_INSTR);
+    //the docs say not updates the flags register
+    //but the flags register never gets enabled when
+    //you trace the instruction in logisim
+    //ComputeFlags(op1,~op1,result,NOT_INSTR);
     return 1;
 }
 T CompSim::Rsh(RegCode xc,RegCode yc) // x>>=y 1010 xxyy
 {
+    //the ttp takes ONLY the 3 least significant bits of operand 2
+    //everything else gets ignored, this is undocumented
+    //we can achieve this with a bitmask of 0x07 on op2
     T op1 = registers.ReadRegister(xc);
     T op2 = registers.ReadRegister(yc);
+    op2 &= 0x07;
     T result = op1>>op2;
     registers.WriteRegister(xc,result);
     ComputeFlags(op1,op2,result,RSH_INSTR);

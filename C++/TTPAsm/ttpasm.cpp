@@ -139,7 +139,7 @@ void replaceLabelsWithNumbers(vector<string>& vec, map<string,unsigned int>& lma
 	{
 		//get the biggest label in the map
 		curlabel = findBiggestLabel(lmap);
-		cout << "DEBUG: replacing label " << curlabel << endl;
+		cout << "replacing label " << curlabel << endl;
 		//check ever line to see if it contains that label
 		for (unsigned int j = 0; j < vec.size(); j++)
 		{
