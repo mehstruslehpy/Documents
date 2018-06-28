@@ -1,0 +1,24 @@
+(
+@echo.p
+@echo.b
+@echo.c
+@echo.u
+@echo.v
+@echo.R
+@echo.u
+@echo.v
+@echo.P
+@echo.c
+@echo.u
+@echo.n
+@echo.u
+@echo.v
+@echo.R
+@echo.q
+@echo.u
+@echo.n
+@echo.u
+@echo.v
+@echo.P
+@echo.c
+) | ..\main.exe
