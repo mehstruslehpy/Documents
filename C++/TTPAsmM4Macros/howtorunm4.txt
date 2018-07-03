@@ -1,0 +1,2 @@
+m4 <myfile> > outputfile.asm to see the result of macro expansion via stdout 
+m4 <myfile> > outputfile.asm to output to a file
