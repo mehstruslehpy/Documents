@@ -1,0 +1,145 @@
+#include "ArrayRepPoly.h"
+ArrayRepPoly::ArrayRepPoly()
+    : _coeff(), _varname("x")
+{}
+ArrayRepPoly::ArrayRepPoly(int* inarr, string var,unsigned int arrcount)
+{
+    _varname = var;
+    for (unsigned int i = 0; i < arrcount; i++)
+    {
+        _coeff.push_back(inarr[i]);
+    }
+}
+ArrayRepPoly::ArrayRepPoly(vector<int>& invec, string var)
+{
+    _varname = var;
+    for (auto i : invec)
+    {
+        _coeff.push_back(i);
+    }
+}
+ArrayRepPoly::ArrayRepPoly(const vector<int>& invec, string var, unsigned int arrcount)
+{
+    _varname = var;
+    for (unsigned int i = 0; i < arrcount; i++)
+    {
+        _coeff.push_back(invec[i]);
+    }
+}
+double ArrayRepPoly::operator() (double arg)
+{
+    return Evaluate(arg);
+}
+double ArrayRepPoly::Evaluate(double arg)
+{
+    double sum = 0;
+    unsigned int size = _coeff.size();
+    for (unsigned int i = 0; i < _coeff.size(); i++)
+    {
+        if (_coeff[i]==0) continue;
+        sum += _coeff[i]*pow(arg,size-i-1);
+    }
+    return sum;
+}
+//keep or drop 0 coefficients?
+string ArrayRepPoly::Name()
+{
+    string name = "";
+    for (unsigned int i = 0; i < _coeff.size(); i++)
+    {
+        if (_coeff[i]==0) continue;
+        if (i!=0) name += "+ ";
+        if (_coeff[i]!=1) name += to_string(_coeff[i]);
+        if (_coeff.size()-i-1!=0) name += (_coeff[i]!=1?"*":"")
+                                              +_varname
+                                              +(_coeff.size()-i-1!=1?"^"+to_string(_coeff.size()-i-1):"");
+        name += " ";
+    }
+    return name;
+}
+unsigned int ArrayRepPoly::Order()
+{
+    return _coeff.size() - 1;
+}
+vector<int> ArrayRepPoly::Coeff()
+{
+    return vector<int>(_coeff);
+}
+ostream& operator<< ( ostream& os, ArrayRepPoly& poly)
+{
+    os << poly.Name();
+    return os;
+}
+ostream& operator<< ( ostream& os, ArrayRepPoly* poly)
+{
+    os << poly->Name();
+    return os;
+}
+ArrayRepPoly& ArrayRepPoly::operator+= (ArrayRepPoly& rhs)
+{
+    int bigcount = 0;
+    vector<int> newCoeff;
+
+    if (rhs.Order() > Order())
+        bigcount = rhs.Order();
+    else
+        bigcount = Order();
+
+    for (int i = bigcount; i >= 0; i--)
+    {
+        newCoeff.push_back(Term(i)+rhs.Term(i));
+    }
+    _coeff = newCoeff;
+    return *this;
+}
+ArrayRepPoly ArrayRepPoly::operator+ (ArrayRepPoly& rhs)
+{
+    return ArrayRepPoly(*this) += rhs;
+}
+int ArrayRepPoly::Term(unsigned int exp)
+{
+    if (exp>Order()) return 0;
+    else return _coeff[Order()-exp];
+}
+ArrayRepPoly& ArrayRepPoly::operator-= (ArrayRepPoly& rhs)
+{
+    int bigcount = 0;
+    vector<int> newCoeff;
+
+    if (rhs.Order() > Order())
+        bigcount = rhs.Order();
+    else
+        bigcount = Order();
+
+    for (int i = bigcount; i >= 0; i--)
+    {
+        newCoeff.push_back(Term(i)-rhs.Term(i));
+    }
+    _coeff = newCoeff;
+    return *this;
+}
+ArrayRepPoly ArrayRepPoly::operator- (ArrayRepPoly& rhs)
+{
+    return ArrayRepPoly(*this) -= rhs;
+}
+void ArrayRepPoly::Scale(double scalar)
+{
+    for (auto i : _coeff)
+    {
+        _coeff[i]*=scalar;
+    }
+}
+ArrayRepPoly ArrayRepPoly::operator*= (double scalar)
+{
+    Scale(scalar);
+    return *this;
+}
+ArrayRepPoly operator* (double lhs,const ArrayRepPoly& rhs)
+{
+    return ArrayRepPoly(rhs)*=lhs;
+}
+ArrayRepPoly ArrayRepPoly::operator* (double rhs)
+{
+    return ArrayRepPoly(*this) *= rhs;
+}
+
