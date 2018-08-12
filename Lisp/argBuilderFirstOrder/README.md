@@ -22,5 +22,5 @@ Currently the program does not care if it is printing a quantified proposition, 
 For example: <img src="https://latex.codecogs.com/gif.latex?\exists%20x%20D" alt="(Some x)D"/> is a possible formula.
 
 Currently the program does not care if it quantifies an expression and then never places the quantified variable in that expression. 
-For example:<img src="https://latex.codecogs.com/gif.latex?\exists%20x%20Pab" alt="(Some x)Pab"/> $\exists x Pab$ is a possible formula.
+For example: <img src="https://latex.codecogs.com/gif.latex?\exists%20x%20Pab" alt="(Some x)Pab"/> is a possible formula.
     
