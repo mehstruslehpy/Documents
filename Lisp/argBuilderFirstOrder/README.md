@@ -1,0 +1,25 @@
+# What is this: 
+This is a set of programs for building practice arguments to work on in first order logic.
+# Files:
+# common.lisp: 
+Lisp functions and variables common to all scripts
+# prettyPrint.lisp: 
+Calls the functions from common.lisp, calling this function will print an argument in a command line friendly format
+# prettyPrintToTex.sh: 
+A bash/sed script to generate a tex file from the prettyprint.lisp script
+# TexConvenienceScript.sh: 
+Uses the prettyPrintToTex.sh script to make and open a pdf of the created argument
+# prettyPrintToTexAltFormat.sh: 
+An alternate quantifier format which reduces parentheses
+# AltTexConvenienceScript.sh: 
+Does the same thing as TexConvenienceScript.sh but with the alternate quantifier format
+# README.md: 
+the file you are currently viewing
+
+# Things that are sort of bugs but it's debatable:
+
+Currently the program does not care if it is printing a quantified proposition, meaning a statement that is NOT a predicate but is still quantified. 
+For example: "(Some x)D" is a possible formula.
+
+Currently the program does not care if it quantifies an expression and then never places the quantified variable in that expression. 
+For example: "(Some x)Pab" is a possible formula.
