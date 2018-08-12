@@ -5,7 +5,7 @@
 
 # Files this directory contains:
 
-# README:
+# README.md:
     The file you are currently reading.
 
 # randomproof.sh:
