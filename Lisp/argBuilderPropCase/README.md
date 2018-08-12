@@ -1,8 +1,9 @@
 # What this directory is for:
 	-This directory contains tools for building and running proofs without having to type them directly into the prover itself.
     -All the main tools generate executable intermediary scripts that you can run that will provide input to the prover or to the translator
+	-The files in this directory are meant to be ran from the prooftranslator directory of the prover
 
-# What this directory contains:
+# Files this directory contains:
 
 # README:
     The file you are currently reading.
