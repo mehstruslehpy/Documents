@@ -4,7 +4,7 @@ This is a set of programs for building practice arguments to work on in first or
 # common.lisp: 
 Lisp functions and variables common to all scripts
 # prettyPrint.lisp: 
-Calls the functions from common.lisp, calling this function will print an argument in a command line friendly format
+A script that calls the functions from common.lisp, running this script will print an argument in a command line friendly format
 # prettyPrintToTex.sh: 
 A bash/sed script to generate a tex file from the prettyprint.lisp script
 # TexConvenienceScript.sh: 
