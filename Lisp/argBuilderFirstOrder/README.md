@@ -8,7 +8,7 @@ A script that calls the functions from common.lisp, running this script will pri
 # prettyPrintToTex.sh: 
 A bash/sed script to generate a tex file from the prettyprint.lisp script
 # TexConvenienceScript.sh: 
-Uses the prettyPrintToTex.sh script to make and open a pdf of the created argument
+Uses the prettyPrintToTex.sh script to make and open a pdf of the created argument in the pdf viewer evince.
 # prettyPrintToTexAltFormat.sh: 
 An alternate quantifier format which reduces parentheses
 # AltTexConvenienceScript.sh: 
