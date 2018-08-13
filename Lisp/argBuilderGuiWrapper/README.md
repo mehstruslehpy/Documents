@@ -6,6 +6,7 @@ This directory contains a gui program for building random arguments as pdf's in 
 - sbcl: the core of the argument building program is a lisp script I wrote using sbcl.
 - sed: filters the argbuilder script output to tex
 - pdflatex: converts the tex file to a pdf file
+- tcl/tk since the gui is written for the wish shell
 # Files this directory contains:
 # UnifiedGui.sh:
 The actual gui script, you probably want to run this.
