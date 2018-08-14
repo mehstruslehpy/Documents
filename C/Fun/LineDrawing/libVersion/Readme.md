@@ -1,7 +1,7 @@
-SUMMARY:
+# SUMMARY:
 This library draws various equations and shapes via the ncurses library
 
-BUILDING AND USING:
+# BUILDING AND USING:
 
 The functions are currently documented either by browsing the Shapes.h source yourself or viewing the documentation included inside of the html subdirectory
 
@@ -14,3 +14,6 @@ running: 'make library' will build the library as a .a file
 running: 'make test' will build the testing tools and programs inside of test
 running: 'make clean' cleans out any build files
 running: 'make doc' will build the doxygen documentation
+
+# DEMO:
+![alt text]((https://raw.githubusercontent.com/mehstruslehpy/Documents/master/C/Fun/LineDrawing/libVersion/shapesDemo.gif)
