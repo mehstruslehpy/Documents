@@ -9,4 +9,4 @@ random chords.
 
 The most important thing is to have fun.
 # Demo:
-![alt text](https://raw.githubusercontent.com/mehstruslehpy/Documents/master/C++/gui/tcl_tk/RandChordsGuihttps://github.com/mehstruslehpy/Documents/blob/master/C%2B%2B/gui/tcl_tk/RandChordsGui/randChord.gif)
+![alt text](https://raw.githubusercontent.com/mehstruslehpy/Documents/master/C++/gui/tcl_tk/RandChordsGui/randChord.gif)
