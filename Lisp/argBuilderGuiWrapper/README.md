@@ -18,3 +18,5 @@ A trimmed down version of the first order argbuilder program
 A trimmed down version of the propositional argbuilder program
 # format[1-3] scripts:
 The unified gui script runs these scripts to build and display the pdfs
+# demo:
+![alt text](https://raw.githubusercontent.com/mehstruslehpy/Documents/master/Lisp/argBuilderGuiWrapper/ArgBuilderDemo.gif)
