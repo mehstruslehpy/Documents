@@ -43,7 +43,7 @@ the *.src files are the output from the map building program.
 
 # ELEMENTS OF A MAP
 M is for monsters
-# is for walls
+\# is for walls
 @ is for @'s
 l designates the end of a line
 on new line at the end of the file use e to specify the end of the map
