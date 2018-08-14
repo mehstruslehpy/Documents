@@ -16,4 +16,4 @@ running: 'make clean' cleans out any build files
 running: 'make doc' will build the doxygen documentation
 
 # DEMO:
-![alt text]((https://raw.githubusercontent.com/mehstruslehpy/Documents/master/C/Fun/LineDrawing/libVersion/shapesDemo.gif)
+![alt text](https://raw.githubusercontent.com/mehstruslehpy/Documents/master/C/Fun/LineDrawing/libVersion/shapesDemo.gif)
