@@ -23,4 +23,10 @@ For example: <img src="https://latex.codecogs.com/gif.latex?\exists%20x%20D" alt
 
 Currently the program does not care if it quantifies an expression and then never places the quantified variable in that expression. 
 For example: <img src="https://latex.codecogs.com/gif.latex?\exists%20x%20Pab" alt="(Some x)Pab"/> is a possible formula.
-    
+
+See the links for why this behavior is left in
+
+https://www.logicmatters.net/2011/12/10/and-who-is-for-nullary-functions/
+
+https://math.stackexchange.com/questions/873237/relations-and-functions-with-valence-0/873385#873385
+   
