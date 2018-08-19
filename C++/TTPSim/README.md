@@ -32,3 +32,6 @@
 	-get clarification on how the flags are supposed to work
 	-add user level interface for running different variations of the hardware, mainly ram size but register mods might be cool too
 	-consider making it possible for a user to install/augment the instruction set
+
+# DEMO:
+![link to demo gif goes here](https://raw.githubusercontent.com/mehstruslehpy/Documents/master/C%2B%2B/TTPSim/TTPSimAndAsmDemo.gif)

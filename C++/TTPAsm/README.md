@@ -18,3 +18,4 @@
 	-clean up debug/logging output
 	-fix very minor label/comment bugs
 	-fix minor single char instruction matching bugs
+![link to demo gif goes here](https://raw.githubusercontent.com/mehstruslehpy/Documents/master/C%2B%2B/TTPAsm/TTPSimAndAsmDemo.gif)

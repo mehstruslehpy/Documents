@@ -77,3 +77,6 @@
 	-continuing cleaning up the main program code
 	-Write a gui (maybe)
 	-figure out the blocking glitch in testproof5
+
+# Demo:
+![link to demo gif goes here](https://raw.githubusercontent.com/mehstruslehpy/Documents/master/C%2B%2B/exprTest/exprTestDemoVid.gif)
