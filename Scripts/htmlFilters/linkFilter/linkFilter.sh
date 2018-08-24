@@ -72,9 +72,9 @@ sed -e 's/">CLICKME<\/a><br>//' -i links.txt
 
 #create and output a graph file
 python dotPrep.py $1 > graph.gv
-dot graph.gv -Tsvg
+dot graph.gv -Tjpg > file.jpg
 
 #this can be changed to auto open in whatever browser you want so long as it has cmd line
 #support like this... Doing it in a variable makes it user supplied though which is nice.
-exec $2 out.html
-exec $2 file.svg
+exec $2 out.html &
+exec $2 file.jpg &
