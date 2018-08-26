@@ -15,7 +15,7 @@ int main()
     ProofNode proof; //the root node
     int premisecount = 0; //the count of premises/propositions in the proof
     int conclusionindex = 0; //what index the users conclusion is at
-    bool counterarg = false; //true if the program finds a counter argument
+    //bool counterarg = false; //true if the program finds a counter argument
 
     //build the user premises
     cout << "Building argument enter q to end:" << endl;

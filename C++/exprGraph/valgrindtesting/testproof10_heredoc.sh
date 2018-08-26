@@ -18,13 +18,13 @@ valgrind ../main <<-ENDOFMESSAGE
 	v
 	C
 	c #continue
-	
+
 	#Proposition 2
 	u
 	v
 	C
 	c #continue
-	
+
 	#Proposition 3
 	b
 	o
@@ -50,3 +50,4 @@ valgrind ../main <<-ENDOFMESSAGE
 	D
 	c # continue
 	ENDOFMESSAGE
+dot -Tpng OUTPUT_DOTFILE_PROOF.gv > image.png

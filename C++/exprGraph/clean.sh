@@ -5,8 +5,7 @@ rm -rf latex
 rm -rf html
 rm proofTranslator/*.orig
 rm proofTranslator/*.txt
+rm proofTranslator/*.png
+rm proofTranslator/*.gv
 rm proofTranslator/translator
-rm calcTranslator/*.orig
-rm calcTranslator/*.txt
-rm calcTranslator/translator
 rm -rf *.o *.orig main

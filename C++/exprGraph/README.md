@@ -26,10 +26,7 @@
 	-The tree is built until no further inferences can be made.
 	-The tree checks itself for any contradictions on a branch and blocks off branches containing contradictions with "XXXXX"
 	-Counter arguments can be read from branches containing no "XXXXX" if the argument is invalid.
-
-
 # MISC:
 	-proofs are built and run in the same style as the exprtest program
-# TODO:
-	-Fix valgrind on my computer to test for memory leaks
-	-Adapt translator tools to this program for easier user input
+# DEMO:
+![alt text](https://raw.githubusercontent.com/mehstruslehpy/Documents/master/C%2B%2B/exprGraph/exprGraphDemo.gif)

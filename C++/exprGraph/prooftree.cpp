@@ -160,7 +160,7 @@ void ProofNode::PrintGraph(ostream& fout)
     PrintNodes(fout);
     fout << endl;
     PrintLabels(fout);
-    fout << "INFO_NODE [label=\"The conclusion is the negation of the last premise in the root.\nXXXXX is used to denote a branch which contains a contradiction\" shape=box]" << endl;
+    fout << "INFO_NODE [label=\"The conclusion is the negation of the last premise in the top node.\nXXXXX is used to denote a branch which contains a contradiction\" shape=box]" << endl;
     fout << "}" << endl;
     fout << endl;
 }
@@ -206,25 +206,25 @@ string ProofNode::NodeName()
 
 void ProofNode::BlockOffBranches()
 {
-    cout << "DEBUG:BlockOffBranches()" << endl;
+    //cout << "DEBUG:BlockOffBranches()" << endl;
     vector<string> formulasSoFar;
-    bool contra = false;
+    //bool contra = false;
     //for every premise in the current node
     for(auto const& value: _premises)
     {
         formulasSoFar.push_back(value->Name());
-        cout << "DEBUG:" << value->Name() << endl;
+        //cout << "DEBUG:" << value->Name() << endl;
     }
 
     //if we've reached a leaf begin checking formulas
     if (_left!=nullptr)
     {
-        cout << "DEBUG:recurse left" << endl;
+        //cout << "DEBUG:recurse left" << endl;
         _left->BlockOffBranches(formulasSoFar);
     }
     if (_right!=nullptr)
     {
-        cout << "DEBUG:recurse right" << endl;
+        //cout << "DEBUG:recurse right" << endl;
         _right->BlockOffBranches(formulasSoFar);
     }
     if (_left==nullptr&&_right==nullptr)
@@ -234,8 +234,8 @@ void ProofNode::BlockOffBranches()
 }
 void ProofNode::BlockOffBranches(vector<string> formulasSoFar)
 {
-    cout << "DEBUG:BlockOffBranches(string)" << endl;
-    bool contra = false;
+    //cout << "DEBUG:BlockOffBranches(string)" << endl;
+    //bool contra = false;
     //for every premise in the current node gather it up
     for(auto const& value: _premises)
     {
@@ -245,12 +245,12 @@ void ProofNode::BlockOffBranches(vector<string> formulasSoFar)
     //if we've reached a leaf begin checking formulas
     if (_left!=nullptr)
     {
-        cout << "DEBUG:recurse left" << endl;
+        //cout << "DEBUG:recurse left" << endl;
         _left->BlockOffBranches(formulasSoFar);
     }
     if (_right!=nullptr)
     {
-        cout << "DEBUG:recurse right" << endl;
+        //cout << "DEBUG:recurse right" << endl;
         _right->BlockOffBranches(formulasSoFar);
     }
     if (_left==nullptr&&_right==nullptr)
@@ -270,7 +270,7 @@ void ProofNode::CheckForBlock(vector<string> forms)
             if (IsNegation(str1,str2))
             {
                 _left.reset(new ProofNode);
-                cout << "DEBUG:CONTRADICTION!" << endl;
+                //cout << "DEBUG:CONTRADICTION!" << endl;
             }
         }
     }

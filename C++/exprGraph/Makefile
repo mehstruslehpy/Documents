@@ -1,4 +1,4 @@
-all: main
+all: main translator
 
 main: prooftree.o main.cpp context.o boolexp.o varexp.o notexp.o andexp.o orexp.o condexp.o
 	g++ -g -Wall -pedantic main.cpp varexp.o context.o boolexp.o notexp.o andexp.o orexp.o condexp.o prooftree.o -o main
@@ -17,6 +17,9 @@ condexp.o: condexp.h condexp.cpp
 	g++ -g -Wall -pedantic condexp.cpp -o condexp.o -c
 prooftree.o: prooftree.h prooftree.cpp
 	g++ -g -Wall -pedantic prooftree.cpp -o prooftree.o -c
+
+translator: ./proofTranslator/translator.cpp
+	g++ -g -Wall -pedantic ./proofTranslator/translator.cpp -o ./proofTranslator/translator
 
 clean:
 	./clean.sh
