@@ -1,0 +1,7 @@
+digraph proof {
+	1 -> 2 ;
+
+1 [label="~(A v B)\nC\n~D\n"];
+2 [label="~A\n~B\n"];
+}
+

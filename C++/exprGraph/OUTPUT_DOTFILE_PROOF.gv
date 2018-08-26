@@ -1,0 +1,9 @@
+digraph proof {
+	1 -> 2 ;
+
+1 [label="~~A\n~C\n"];
+2 [label="A\n"];
+INFO_NODE [label="The conclusion is the negation of the last premise in the root.
+XXXXX is used to denote a branch which contains a contradiction" shape=box]
+}
+

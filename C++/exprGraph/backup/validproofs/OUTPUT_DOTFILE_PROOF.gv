@@ -1,0 +1,36 @@
+digraph proof {
+	1 -> 2 ;
+	2 -> 3 ;
+	2 -> 4 ;
+	3 -> 5 ;
+	3 -> 6 ;
+	5 -> 9 ;
+	5 -> 10 ;
+	6 -> 11 ;
+	6 -> 12 ;
+	4 -> 7 ;
+	4 -> 8 ;
+	7 -> 13 ;
+	7 -> 14 ;
+	8 -> 15 ;
+	8 -> 16 ;
+
+1 [label="((A -> B) & (B -> A))\n~(A -> (A & B))\n"];
+2 [label="(A -> B)\n(B -> A)\nA\n~(A & B)\n"];
+3 [label="~A\n"];
+5 [label="~B\n"];
+9 [label="~A\n"];
+10 [label="~B\n"];
+6 [label="A\n"];
+11 [label="~A\n"];
+12 [label="~B\n"];
+4 [label="B\n"];
+7 [label="~B\n"];
+13 [label="~A\n"];
+14 [label="~B\n"];
+8 [label="A\n"];
+15 [label="~A\n"];
+16 [label="~B\n"];
+INFO_NODE [label="The conclusion is the negation of the last premise in the root." shape=box]
+}
+

@@ -1,0 +1,27 @@
+digraph proof {
+	1 -> 2 ;
+	1 -> 3 ;
+	2 -> 4 ;
+	2 -> 5 ;
+	4 -> 9 ;
+	5 -> 10 ;
+	3 -> 6 ;
+	3 -> 7 ;
+	6 -> 11 ;
+	7 -> 12 ;
+
+1 [label="(P -> (Q & R))\nP\n~(P & Q)\n"];
+2 [label="~P\n"];
+4 [label="~P\n"];
+9 [label=XXXXX];
+5 [label="~Q\n"];
+10 [label=XXXXX];
+3 [label="(Q & R)\n"];
+6 [label="~P\nQ\nR\n"];
+11 [label=XXXXX];
+7 [label="~Q\nQ\nR\n"];
+12 [label=XXXXX];
+INFO_NODE [label="The conclusion is the negation of the last premise in the root.
+XXXXX is used to denote a branch which contains a contradiction" shape=box]
+}
+

@@ -1,0 +1,5 @@
+digraph {
+"mehstruslehpy.neocities.org\nhello" -> "https://mehstruslehpy.neocities.org/projects.html";
+"mehstruslehpy.neocities.org" -> "https://mehstruslehpy.neocities.org/links.html";
+"mehstruslehpy.neocities.org" -> "https://mehstruslehpy.neocities.org/fun.html";
+}
