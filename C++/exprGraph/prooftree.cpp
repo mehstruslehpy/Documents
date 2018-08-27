@@ -73,6 +73,8 @@ void ProofNode::NotInfer(ProofNode& node,shared_ptr<BoolExp> value)
         if(!_left)_left.reset(new ProofNode);
         _left->PassToLeaves(tmp1);
         _left->PassToLeaves(tmp2);
+        if(_right)_right->PassToLeaves(tmp1);
+        if(_right)_right->PassToLeaves(tmp2);
         break;
     }
     case AND_EXP:
