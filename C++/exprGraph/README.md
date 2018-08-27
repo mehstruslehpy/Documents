@@ -29,5 +29,6 @@
 # MISC:
 	-proofs are built and run in the same style as the exprtest program
 	-I have not tested this project quite as thoroughly as the exprTest prover, but with the prooftranslator and randomproof scripts in place doing so shall be easy in the future.
+	-That being said there are bound to be some bugs and issues due to a limited amount of time for me to work on this.
 # DEMO:
 ![alt text](https://raw.githubusercontent.com/mehstruslehpy/Documents/master/C%2B%2B/exprGraph/exprGraphDemo.gif)
