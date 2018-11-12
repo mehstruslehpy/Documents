@@ -1,6 +1,7 @@
 # WHAT THIS IS:
 * This is an assembler for the TTP architecture.
-  * TTP stands for "Taks Toy Processor" it is a processor design used for an intro to assembly language class that I took.
+* TTP stands for "Taks Toy Processor" it is a processor design used for an intro to assembly language class that I took.
+* [binaries can be downloaded here](https://github.com/mehstruslehpy/TTPAsmWin/releases)
 # TIPS AND USAGE:
 * To run do: __./asm &lt;myasmfile&gt;__
   * the output will be placed in the file output.ram.
