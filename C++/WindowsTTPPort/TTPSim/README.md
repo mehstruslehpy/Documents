@@ -30,6 +30,7 @@
 ![link to demo gif goes here](https://raw.githubusercontent.com/mehstruslehpy/Documents/master/C%2B%2B/TTPSim/TTPSimAndAsmDemo.gif)
 
 # WINDOWS NOTES:
+* This version of my ttp tools is very much experimental please notify me if you encounter any bugs
 * the debug scripts will only work if the system you are using has the correct nix shells and utilities
 * you can either run the program via the command prompt using a program like msys or by clicking run inside of codeblocks
 * if you choose to run inside of codeblocks set the ram file to run via Project>Set programs' arguments...> then type your filename under Program arguments
