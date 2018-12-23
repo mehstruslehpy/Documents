@@ -1,0 +1,147 @@
+\hypertarget{classVarExp}{}\section{Var\+Exp Class Reference}
+\label{classVarExp}\index{Var\+Exp@{Var\+Exp}}
+
+
+{\ttfamily \#include $<$varexp.\+h$>$}
+
+
+
+Inheritance diagram for Var\+Exp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=154pt]{classVarExp__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Var\+Exp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=154pt]{classVarExp__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classVarExp_a8281aeafbde537140bacfed1a894e889}{Var\+Exp}} (string)
+\item 
+virtual \mbox{\hyperlink{classVarExp_a5e1198cc9abe533d0a606e27d7b20e75}{$\sim$\+Var\+Exp}} ()
+\item 
+virtual string \mbox{\hyperlink{classVarExp_af50f77454d193ebfd7633f5f20becaf4}{Name}} () const
+\item 
+virtual bool \mbox{\hyperlink{classVarExp_af9d73e76a255123e00d5ebb1ae703188}{Evaluate}} (\mbox{\hyperlink{classContext}{Context}} \&con)
+\item 
+virtual shared\+\_\+ptr$<$ \mbox{\hyperlink{classBoolExp}{Bool\+Exp}} $>$ \mbox{\hyperlink{classVarExp_a0b716a76069a7fad3b99b86a9bd9d331}{Replace}} (string, \mbox{\hyperlink{classBoolExp}{Bool\+Exp}} \&)
+\item 
+virtual shared\+\_\+ptr$<$ \mbox{\hyperlink{classBoolExp}{Bool\+Exp}} $>$ \mbox{\hyperlink{classVarExp_ad93ffa6aa927bc41c9765bc37b4d0a63}{Copy}} () const
+\item 
+virtual \mbox{\hyperlink{structBoolReturn}{Bool\+Return}} \mbox{\hyperlink{classVarExp_a6c3e1736ade0456d23085923bc3fef61}{Infer}} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{classVarExp}{Var\+Exp}} are just names they can be thought of as terminals in the language of propositional formulas 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classVarExp_a8281aeafbde537140bacfed1a894e889}\label{classVarExp_a8281aeafbde537140bacfed1a894e889}} 
+\index{Var\+Exp@{Var\+Exp}!Var\+Exp@{Var\+Exp}}
+\index{Var\+Exp@{Var\+Exp}!Var\+Exp@{Var\+Exp}}
+\subsubsection{\texorpdfstring{Var\+Exp()}{VarExp()}}
+{\footnotesize\ttfamily Var\+Exp\+::\+Var\+Exp (\begin{DoxyParamCaption}\item[{string}]{nm }\end{DoxyParamCaption})}
+
+Var\+Exps can be constructed via passing the intended name \mbox{\Hypertarget{classVarExp_a5e1198cc9abe533d0a606e27d7b20e75}\label{classVarExp_a5e1198cc9abe533d0a606e27d7b20e75}} 
+\index{Var\+Exp@{Var\+Exp}!````~Var\+Exp@{$\sim$\+Var\+Exp}}
+\index{````~Var\+Exp@{$\sim$\+Var\+Exp}!Var\+Exp@{Var\+Exp}}
+\subsubsection{\texorpdfstring{$\sim$\+Var\+Exp()}{~VarExp()}}
+{\footnotesize\ttfamily Var\+Exp\+::$\sim$\+Var\+Exp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classVarExp_ad93ffa6aa927bc41c9765bc37b4d0a63}\label{classVarExp_ad93ffa6aa927bc41c9765bc37b4d0a63}} 
+\index{Var\+Exp@{Var\+Exp}!Copy@{Copy}}
+\index{Copy@{Copy}!Var\+Exp@{Var\+Exp}}
+\subsubsection{\texorpdfstring{Copy()}{Copy()}}
+{\footnotesize\ttfamily shared\+\_\+ptr$<$ \mbox{\hyperlink{classBoolExp}{Bool\+Exp}} $>$ Var\+Exp\+::\+Copy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Create a copy of this \mbox{\hyperlink{classVarExp}{Var\+Exp}} \begin{DoxyReturn}{Returns}
+returns the copy of this \mbox{\hyperlink{classVarExp}{Var\+Exp}} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classBoolExp_a846c30d1730cf645a040978a4cf7cdbb}{Bool\+Exp}}.
+
+\mbox{\Hypertarget{classVarExp_af9d73e76a255123e00d5ebb1ae703188}\label{classVarExp_af9d73e76a255123e00d5ebb1ae703188}} 
+\index{Var\+Exp@{Var\+Exp}!Evaluate@{Evaluate}}
+\index{Evaluate@{Evaluate}!Var\+Exp@{Var\+Exp}}
+\subsubsection{\texorpdfstring{Evaluate()}{Evaluate()}}
+{\footnotesize\ttfamily bool Var\+Exp\+::\+Evaluate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classContext}{Context}} \&}]{con }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Lookups the name of this \mbox{\hyperlink{classVarExp}{Var\+Exp}} in context and returns its value 
+\begin{DoxyParams}{Parameters}
+{\em con} & the context for name lookup to be used on \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns the evaluation of the \mbox{\hyperlink{classBoolExp}{Bool\+Exp}} as a boolean 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classBoolExp_a591fb5f9cb849e0f56e596406a9a10d0}{Bool\+Exp}}.
+
+\mbox{\Hypertarget{classVarExp_a6c3e1736ade0456d23085923bc3fef61}\label{classVarExp_a6c3e1736ade0456d23085923bc3fef61}} 
+\index{Var\+Exp@{Var\+Exp}!Infer@{Infer}}
+\index{Infer@{Infer}!Var\+Exp@{Var\+Exp}}
+\subsubsection{\texorpdfstring{Infer()}{Infer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structBoolReturn}{Bool\+Return}} Var\+Exp\+::\+Infer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+returns a \mbox{\hyperlink{structBoolReturn}{Bool\+Return}} containing two of the same \mbox{\hyperlink{classVarExp}{Var\+Exp}}\textquotesingle{}s \begin{DoxyReturn}{Returns}
+returns a \mbox{\hyperlink{structBoolReturn}{Bool\+Return}} with operands as copies of this \mbox{\hyperlink{classVarExp}{Var\+Exp}} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classBoolExp_a0e5d4a241332ae72d083645e4b71e0e6}{Bool\+Exp}}.
+
+\mbox{\Hypertarget{classVarExp_af50f77454d193ebfd7633f5f20becaf4}\label{classVarExp_af50f77454d193ebfd7633f5f20becaf4}} 
+\index{Var\+Exp@{Var\+Exp}!Name@{Name}}
+\index{Name@{Name}!Var\+Exp@{Var\+Exp}}
+\subsubsection{\texorpdfstring{Name()}{Name()}}
+{\footnotesize\ttfamily string Var\+Exp\+::\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Recursively retrieves and returns a string representation of the \mbox{\hyperlink{classVarExp}{Var\+Exp}} \begin{DoxyReturn}{Returns}
+returns the name of this \mbox{\hyperlink{classVarExp}{Var\+Exp}} as a string 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classBoolExp_a3fdb64a9b8fd54e33d755ff4a577d11a}{Bool\+Exp}}.
+
+\mbox{\Hypertarget{classVarExp_a0b716a76069a7fad3b99b86a9bd9d331}\label{classVarExp_a0b716a76069a7fad3b99b86a9bd9d331}} 
+\index{Var\+Exp@{Var\+Exp}!Replace@{Replace}}
+\index{Replace@{Replace}!Var\+Exp@{Var\+Exp}}
+\subsubsection{\texorpdfstring{Replace()}{Replace()}}
+{\footnotesize\ttfamily shared\+\_\+ptr$<$ \mbox{\hyperlink{classBoolExp}{Bool\+Exp}} $>$ Var\+Exp\+::\+Replace (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{\mbox{\hyperlink{classBoolExp}{Bool\+Exp}} \&}]{exp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Left in for possible future usage see \mbox{\hyperlink{classBoolExp}{Bool\+Exp}} explanation 
+\begin{DoxyParams}{Parameters}
+{\em name} & the name to use for replacement \\
+\hline
+{\em exp} & the expression to use for replacement \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns the new \mbox{\hyperlink{classBoolExp}{Bool\+Exp}} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classBoolExp_a6448b7121c238759cc9cc8e48d6f8773}{Bool\+Exp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{varexp_8h}{varexp.\+h}}\item 
+\mbox{\hyperlink{varexp_8cpp}{varexp.\+cpp}}\end{DoxyCompactItemize}

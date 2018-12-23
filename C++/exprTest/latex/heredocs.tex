@@ -1,0 +1,165 @@
+\section*{Here Documents}
+
+Here documents are a way to automate sending commands to interactive programs. For example suppose you have some program called \char`\"{}myprog\char`\"{} with commands \char`\"{}p\char`\"{} for print and \char`\"{}l\char`\"{} for list. You could automate sending these two commands into one script by writing a here document like this\+:
+
+{\itshape  {\ttfamily  myprog $<$$<$ M\+E\+S\+S\+A\+G\+E\+D\+E\+L\+IM ~\newline
+ l ~\newline
+ p ~\newline
+ M\+E\+S\+S\+A\+G\+E\+D\+E\+L\+IM ~\newline
+ } }
+
+myprog\+: is the binary receiving input.~\newline
+ $<$$<$\+: is used to signify input redirection. (the prover uses $<$$<$-\/ to supress leading tabs.)~\newline
+ M\+E\+S\+S\+A\+G\+E\+D\+E\+L\+IM\+: is used to specify the beginning and ending of the commands sent to myprog.~\newline
+ l\+: is the first command sent to myprog.~\newline
+ p\+: is the seccond command sent to myprog.~\newline
+
+
+To read more about here documents click \href{http://www.tldp.org/LDP/abs/html/here-docs.html}{\tt here }. \section*{Why Does Your Program Use Them?}
+
+Originally I designed the program using a read-\/evaluate-\/print loop for inputting logical formulas, over time I realized the menu commands used to enter logic formulas created a sort of pidgin language that could be automated, after some searching I found here documents worked well enough as venue for this goal. After doing more work on the prover via here docs I also noticed that I could write a program to read in formulas and translate them to my here document menu format so I wrote translators to do that as well.~\newline
+~\newline
+ As things stand now to use my program you can choose between using the repl in main, writing heredocs by hand or using the translator programs that I wrote to create here documents for you. \section*{Should I Use Them?}
+
+For the most part you don\textquotesingle{}t need to write them by hand, you can just use my translators instead. Here documents in the context of this programs are useful for debugging and since they function as an intermediate language between logical expressions and the provers menu pidgin they need to be documented. \section*{A Proof Example}
+
+Suppose you would like to prove or disprove the following argument\+: ~\newline
+
+
+{\itshape  {\ttfamily  (A-\/$>$B)~\newline
+ A~\newline
+ {$\therefore$} B~\newline
+ } }
+
+In my heredoc pidgin we start with the arity of each operator first. You can choose either a binary or unary operator. A \char`\"{}-\/$>$\char`\"{} statement is a binary operator called a conditional in heredoc pidgin we specify the arity, then the first letter of the operator name and then the variable names from left to right so (A-\/$>$B) is a\+:
+
+{\ttfamily  {\bfseries B}inary {\bfseries C}onditional with {\bfseries U}nary {\bfseries V}ariable {\bfseries A} on the left and {\bfseries U}nary {\bfseries V}ariable {\bfseries B} on the right ~\newline
+ }
+
+or~\newline
+
+
+{\itshape  {\ttfamily  \char`\"{}bcuv\+Auv\+B\char`\"{} } }
+
+as you can probably guess the proposition {\bfseries A} would just be uv{\bfseries A} and {\bfseries B} would be uv{\bfseries B}
+
+We write these a letter at a time one letter per line in our heredoc files
+
+The whole argument thus will end up looking like this~\newline
+ ~\newline
+ {\itshape  {\ttfamily  ../main $<$$<$-\/ A\+R\+G\+D\+E\+L\+IM~\newline
+ p \#specifies that we are in prover mode~\newline
+ ~\newline
+ b \#binary~\newline
+ c \#conditional~\newline
+ u \#unary~\newline
+ v \#variable~\newline
+ A \#A~\newline
+ u \#unary~\newline
+ v \#variable~\newline
+ B \#B~\newline
+ c \#continue to the next premise~\newline
+ ~\newline
+ u \#unary~\newline
+ v \#variable~\newline
+ A \#A~\newline
+ q \#the premises are done continue to the conclusion~\newline
+ ~\newline
+ u \#unary~\newline
+ v \#variable~\newline
+ B \#B~\newline
+ c \#premises and conclusions are done continue to the proof~\newline
+ A\+R\+G\+D\+E\+L\+IM~\newline
+ } }
+
+\section*{A Calculation Example}
+
+Essentially the only changes you need to make for calculations rather than proofs is that for a calculation here document you need to specify c as the first command for calc mode before filling in any logic formulas in here doc pidgin. Then at the end of your list of formulas you specify a 1 for true or a 0 for false for each variable that appeared in your list of formulas.
+
+The ordering in which you specify values reads from the first line of the list of formulas to the last from left to right. You never need to specify a variables value twice so if you come across a repeated variable while reading skip it and keep going until you reach the next new variable
+
+Here is a complicated example for the following formulas and assignments\+:
+
+{\itshape  {\ttfamily  (Q \& (W v (E -\/$>$ (R \& T))))~\newline
+ ((Y v (U \& I)) -\/$>$ (O v P))~\newline
+ Q=1~\newline
+ W=0~\newline
+ E=1~\newline
+ R=0~\newline
+ T=1~\newline
+ Y=0~\newline
+ U=1~\newline
+ I=0~\newline
+ O=1~\newline
+ P=0~\newline
+ } }
+
+The here doc code is as follows\+:~\newline
+~\newline
+ {\itshape  {\ttfamily  ../main $<$$<$-\/ E\+N\+D\+O\+F\+M\+E\+S\+S\+A\+GE~\newline
+ c \#c for calc mode~\newline
+ ~\newline
+ b \#binary~\newline
+ a \#and~\newline
+ u \#unary~\newline
+ v \#variable~\newline
+ Q \#Q~\newline
+ b \#binary~\newline
+ o \#or~\newline
+ u \#unary~\newline
+ v \#variable~\newline
+ W \#W~\newline
+ b \#binary~\newline
+ c \#conditional~\newline
+ u \#unary~\newline
+ v \#variable~\newline
+ E \#E~\newline
+ b \#binary~\newline
+ a \#and~\newline
+ u \#unary~\newline
+ v \#variable~\newline
+ R \#R~\newline
+ u \#unary~\newline
+ v \#variable~\newline
+ T \#T~\newline
+ c \#continue to next formula~\newline
+}}
+
+{\itshape {\ttfamily  b \#binary~\newline
+ c \#conditional~\newline
+ b \#binary~\newline
+ o \#or~\newline
+ u \#unary~\newline
+ v \#variable~\newline
+ Y \#Y~\newline
+ b \#binary~\newline
+ a \#and~\newline
+ u \#unary~\newline
+ v \#variable~\newline
+ U \#U~\newline
+ u \#unary~\newline
+ v \#variable~\newline
+ I \#I~\newline
+ b \#binary~\newline
+ o \#or~\newline
+ u \#unary~\newline
+ v \#variable~\newline
+ O \#O~\newline
+ u \#unary~\newline
+ v \#variable~\newline
+ P \#P~\newline
+ q \#this is the last formula boolean values follow~\newline
+}}
+
+{\itshape {\ttfamily  1 \#Q=1~\newline
+ 0 \#W=0~\newline
+ 1 \#E=1~\newline
+ 0 \#R=0~\newline
+ 1 \#T=1~\newline
+ 0 \#Y=0~\newline
+ 1 \#U=1~\newline
+ 0 \#I=0~\newline
+ 1 \#O=1~\newline
+ 0 \#P=0~\newline
+ E\+N\+D\+O\+F\+M\+E\+S\+S\+A\+GE~\newline
+ } } 

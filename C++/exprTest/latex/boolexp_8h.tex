@@ -1,0 +1,72 @@
+\hypertarget{boolexp_8h}{}\section{boolexp.\+h File Reference}
+\label{boolexp_8h}\index{boolexp.\+h@{boolexp.\+h}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include \char`\"{}context.\+h\char`\"{}}\newline
+Include dependency graph for boolexp.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{boolexp_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{boolexp_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structBoolReturn}{Bool\+Return}}
+\item 
+class \mbox{\hyperlink{classBoolExp}{Bool\+Exp}}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{boolexp_8h_ac6a79184a0a7c1d2e3ea745512aa2d0c}{Prop\+Type}} \{ \newline
+\mbox{\hyperlink{boolexp_8h_ac6a79184a0a7c1d2e3ea745512aa2d0ca04805a6faca1af084bc10a6966d6c028}{O\+R\+\_\+\+E\+XP}}, 
+\mbox{\hyperlink{boolexp_8h_ac6a79184a0a7c1d2e3ea745512aa2d0ca2a7416697bd29ada986d099ced049f92}{V\+A\+R\+\_\+\+E\+XP}}, 
+\mbox{\hyperlink{boolexp_8h_ac6a79184a0a7c1d2e3ea745512aa2d0ca085db57f00d8a4da06d4740433a8b554}{N\+O\+T\+\_\+\+E\+XP}}, 
+\mbox{\hyperlink{boolexp_8h_ac6a79184a0a7c1d2e3ea745512aa2d0cab50e10e823f44f49914780f9e97e0805}{A\+N\+D\+\_\+\+E\+XP}}, 
+\newline
+\mbox{\hyperlink{boolexp_8h_ac6a79184a0a7c1d2e3ea745512aa2d0ca2bc6ba5f3e73884ee8865c9cb46522e7}{C\+O\+N\+D\+\_\+\+E\+XP}}
+ \}
+\end{DoxyCompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{boolexp_8h_ac6a79184a0a7c1d2e3ea745512aa2d0c}\label{boolexp_8h_ac6a79184a0a7c1d2e3ea745512aa2d0c}} 
+\index{boolexp.\+h@{boolexp.\+h}!Prop\+Type@{Prop\+Type}}
+\index{Prop\+Type@{Prop\+Type}!boolexp.\+h@{boolexp.\+h}}
+\subsubsection{\texorpdfstring{Prop\+Type}{PropType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{boolexp_8h_ac6a79184a0a7c1d2e3ea745512aa2d0c}{Prop\+Type}}}
+
+Prop\+Type is used so that an expression can announce it\textquotesingle{}s own type and so that functions can do different things for differrent kinds of expressions \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{O\+R\+\_\+\+E\+XP@{O\+R\+\_\+\+E\+XP}!boolexp.\+h@{boolexp.\+h}}\index{boolexp.\+h@{boolexp.\+h}!O\+R\+\_\+\+E\+XP@{O\+R\+\_\+\+E\+XP}}}\mbox{\Hypertarget{boolexp_8h_ac6a79184a0a7c1d2e3ea745512aa2d0ca04805a6faca1af084bc10a6966d6c028}\label{boolexp_8h_ac6a79184a0a7c1d2e3ea745512aa2d0ca04805a6faca1af084bc10a6966d6c028}} 
+O\+R\+\_\+\+E\+XP&The type for an OR expression \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{V\+A\+R\+\_\+\+E\+XP@{V\+A\+R\+\_\+\+E\+XP}!boolexp.\+h@{boolexp.\+h}}\index{boolexp.\+h@{boolexp.\+h}!V\+A\+R\+\_\+\+E\+XP@{V\+A\+R\+\_\+\+E\+XP}}}\mbox{\Hypertarget{boolexp_8h_ac6a79184a0a7c1d2e3ea745512aa2d0ca2a7416697bd29ada986d099ced049f92}\label{boolexp_8h_ac6a79184a0a7c1d2e3ea745512aa2d0ca2a7416697bd29ada986d099ced049f92}} 
+V\+A\+R\+\_\+\+E\+XP&The type for a Variable expression \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{N\+O\+T\+\_\+\+E\+XP@{N\+O\+T\+\_\+\+E\+XP}!boolexp.\+h@{boolexp.\+h}}\index{boolexp.\+h@{boolexp.\+h}!N\+O\+T\+\_\+\+E\+XP@{N\+O\+T\+\_\+\+E\+XP}}}\mbox{\Hypertarget{boolexp_8h_ac6a79184a0a7c1d2e3ea745512aa2d0ca085db57f00d8a4da06d4740433a8b554}\label{boolexp_8h_ac6a79184a0a7c1d2e3ea745512aa2d0ca085db57f00d8a4da06d4740433a8b554}} 
+N\+O\+T\+\_\+\+E\+XP&The type for a N\+OT expression \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{A\+N\+D\+\_\+\+E\+XP@{A\+N\+D\+\_\+\+E\+XP}!boolexp.\+h@{boolexp.\+h}}\index{boolexp.\+h@{boolexp.\+h}!A\+N\+D\+\_\+\+E\+XP@{A\+N\+D\+\_\+\+E\+XP}}}\mbox{\Hypertarget{boolexp_8h_ac6a79184a0a7c1d2e3ea745512aa2d0cab50e10e823f44f49914780f9e97e0805}\label{boolexp_8h_ac6a79184a0a7c1d2e3ea745512aa2d0cab50e10e823f44f49914780f9e97e0805}} 
+A\+N\+D\+\_\+\+E\+XP&The type for an A\+ND expression \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+O\+N\+D\+\_\+\+E\+XP@{C\+O\+N\+D\+\_\+\+E\+XP}!boolexp.\+h@{boolexp.\+h}}\index{boolexp.\+h@{boolexp.\+h}!C\+O\+N\+D\+\_\+\+E\+XP@{C\+O\+N\+D\+\_\+\+E\+XP}}}\mbox{\Hypertarget{boolexp_8h_ac6a79184a0a7c1d2e3ea745512aa2d0ca2bc6ba5f3e73884ee8865c9cb46522e7}\label{boolexp_8h_ac6a79184a0a7c1d2e3ea745512aa2d0ca2bc6ba5f3e73884ee8865c9cb46522e7}} 
+C\+O\+N\+D\+\_\+\+E\+XP&The type for an Conditional expression \\
+\hline
+
+\end{DoxyEnumFields}

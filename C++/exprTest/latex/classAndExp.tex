@@ -1,0 +1,154 @@
+\hypertarget{classAndExp}{}\section{And\+Exp Class Reference}
+\label{classAndExp}\index{And\+Exp@{And\+Exp}}
+
+
+{\ttfamily \#include $<$andexp.\+h$>$}
+
+
+
+Inheritance diagram for And\+Exp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=154pt]{classAndExp__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for And\+Exp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=154pt]{classAndExp__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classAndExp_a5a3124ff6fd4adca49a702f075100607}{And\+Exp}} (shared\+\_\+ptr$<$ \mbox{\hyperlink{classBoolExp}{Bool\+Exp}} $>$ op1, shared\+\_\+ptr$<$ \mbox{\hyperlink{classBoolExp}{Bool\+Exp}} $>$ op2)
+\item 
+virtual \mbox{\hyperlink{classAndExp_ab42437c5641d21c116bf0c90532b9075}{$\sim$\+And\+Exp}} ()
+\item 
+virtual string \mbox{\hyperlink{classAndExp_ac930ab2d9098904596aea6b2b6429d90}{Name}} () const
+\item 
+virtual bool \mbox{\hyperlink{classAndExp_a7708cad60cf9b0913d30a7164ed8aceb}{Evaluate}} (\mbox{\hyperlink{classContext}{Context}} \&con)
+\item 
+virtual shared\+\_\+ptr$<$ \mbox{\hyperlink{classBoolExp}{Bool\+Exp}} $>$ \mbox{\hyperlink{classAndExp_ac6176c316c96da57f587fe7731fc414b}{Replace}} (string name, \mbox{\hyperlink{classBoolExp}{Bool\+Exp}} \&exp)
+\item 
+virtual shared\+\_\+ptr$<$ \mbox{\hyperlink{classBoolExp}{Bool\+Exp}} $>$ \mbox{\hyperlink{classAndExp_a86a369f7f3bf7d4d157b9f0df9e6a315}{Copy}} () const
+\item 
+virtual \mbox{\hyperlink{structBoolReturn}{Bool\+Return}} \mbox{\hyperlink{classAndExp_a26390e42318a13aa0f03a4e5ccbb0270}{Infer}} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{classAndExp}{And\+Exp}}\textquotesingle{}s are derived from \mbox{\hyperlink{classBoolExp}{Bool\+Exp}}\textquotesingle{}s they implement the logical proposition (A\&B) 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classAndExp_a5a3124ff6fd4adca49a702f075100607}\label{classAndExp_a5a3124ff6fd4adca49a702f075100607}} 
+\index{And\+Exp@{And\+Exp}!And\+Exp@{And\+Exp}}
+\index{And\+Exp@{And\+Exp}!And\+Exp@{And\+Exp}}
+\subsubsection{\texorpdfstring{And\+Exp()}{AndExp()}}
+{\footnotesize\ttfamily And\+Exp\+::\+And\+Exp (\begin{DoxyParamCaption}\item[{shared\+\_\+ptr$<$ \mbox{\hyperlink{classBoolExp}{Bool\+Exp}} $>$}]{op1,  }\item[{shared\+\_\+ptr$<$ \mbox{\hyperlink{classBoolExp}{Bool\+Exp}} $>$}]{op2 }\end{DoxyParamCaption})}
+
+Constructs the specified \mbox{\hyperlink{classAndExp}{And\+Exp}} 
+\begin{DoxyParams}{Parameters}
+{\em op1} & becomes the left hand operand \\
+\hline
+{\em op2} & becomes the right hand operand \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classAndExp_ab42437c5641d21c116bf0c90532b9075}\label{classAndExp_ab42437c5641d21c116bf0c90532b9075}} 
+\index{And\+Exp@{And\+Exp}!````~And\+Exp@{$\sim$\+And\+Exp}}
+\index{````~And\+Exp@{$\sim$\+And\+Exp}!And\+Exp@{And\+Exp}}
+\subsubsection{\texorpdfstring{$\sim$\+And\+Exp()}{~AndExp()}}
+{\footnotesize\ttfamily And\+Exp\+::$\sim$\+And\+Exp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+The \mbox{\hyperlink{classAndExp}{And\+Exp}} destructor 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classAndExp_a86a369f7f3bf7d4d157b9f0df9e6a315}\label{classAndExp_a86a369f7f3bf7d4d157b9f0df9e6a315}} 
+\index{And\+Exp@{And\+Exp}!Copy@{Copy}}
+\index{Copy@{Copy}!And\+Exp@{And\+Exp}}
+\subsubsection{\texorpdfstring{Copy()}{Copy()}}
+{\footnotesize\ttfamily shared\+\_\+ptr$<$ \mbox{\hyperlink{classBoolExp}{Bool\+Exp}} $>$ And\+Exp\+::\+Copy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Create a copy of this \mbox{\hyperlink{classAndExp}{And\+Exp}} \begin{DoxyReturn}{Returns}
+returns the copy of this \mbox{\hyperlink{classAndExp}{And\+Exp}} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classBoolExp_a846c30d1730cf645a040978a4cf7cdbb}{Bool\+Exp}}.
+
+\mbox{\Hypertarget{classAndExp_a7708cad60cf9b0913d30a7164ed8aceb}\label{classAndExp_a7708cad60cf9b0913d30a7164ed8aceb}} 
+\index{And\+Exp@{And\+Exp}!Evaluate@{Evaluate}}
+\index{Evaluate@{Evaluate}!And\+Exp@{And\+Exp}}
+\subsubsection{\texorpdfstring{Evaluate()}{Evaluate()}}
+{\footnotesize\ttfamily bool And\+Exp\+::\+Evaluate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classContext}{Context}} \&}]{con }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Recursively evaluates the \mbox{\hyperlink{classAndExp}{And\+Exp}} via (op1.\+Evaluate() \&\& op2.\+Evaluate()) 
+\begin{DoxyParams}{Parameters}
+{\em con} & is the \mbox{\hyperlink{classContext}{Context}} class which maps variables to values \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns the evaluation of the \mbox{\hyperlink{classBoolExp}{Bool\+Exp}} as a boolean 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classBoolExp_a591fb5f9cb849e0f56e596406a9a10d0}{Bool\+Exp}}.
+
+\mbox{\Hypertarget{classAndExp_a26390e42318a13aa0f03a4e5ccbb0270}\label{classAndExp_a26390e42318a13aa0f03a4e5ccbb0270}} 
+\index{And\+Exp@{And\+Exp}!Infer@{Infer}}
+\index{Infer@{Infer}!And\+Exp@{And\+Exp}}
+\subsubsection{\texorpdfstring{Infer()}{Infer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structBoolReturn}{Bool\+Return}} And\+Exp\+::\+Infer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Make an inference from this \mbox{\hyperlink{classAndExp}{And\+Exp}} \begin{DoxyReturn}{Returns}
+returns a \mbox{\hyperlink{structBoolReturn}{Bool\+Return}} with both operands set to the operands of this \mbox{\hyperlink{classAndExp}{And\+Exp}} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classBoolExp_a0e5d4a241332ae72d083645e4b71e0e6}{Bool\+Exp}}.
+
+\mbox{\Hypertarget{classAndExp_ac930ab2d9098904596aea6b2b6429d90}\label{classAndExp_ac930ab2d9098904596aea6b2b6429d90}} 
+\index{And\+Exp@{And\+Exp}!Name@{Name}}
+\index{Name@{Name}!And\+Exp@{And\+Exp}}
+\subsubsection{\texorpdfstring{Name()}{Name()}}
+{\footnotesize\ttfamily string And\+Exp\+::\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Recursively retrieves and returns a string representation of the \mbox{\hyperlink{classAndExp}{And\+Exp}} \begin{DoxyReturn}{Returns}
+returns the name of this \mbox{\hyperlink{classAndExp}{And\+Exp}} as a string 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classBoolExp_a3fdb64a9b8fd54e33d755ff4a577d11a}{Bool\+Exp}}.
+
+\mbox{\Hypertarget{classAndExp_ac6176c316c96da57f587fe7731fc414b}\label{classAndExp_ac6176c316c96da57f587fe7731fc414b}} 
+\index{And\+Exp@{And\+Exp}!Replace@{Replace}}
+\index{Replace@{Replace}!And\+Exp@{And\+Exp}}
+\subsubsection{\texorpdfstring{Replace()}{Replace()}}
+{\footnotesize\ttfamily shared\+\_\+ptr$<$ \mbox{\hyperlink{classBoolExp}{Bool\+Exp}} $>$ And\+Exp\+::\+Replace (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{\mbox{\hyperlink{classBoolExp}{Bool\+Exp}} \&}]{exp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Left in for possible future usage see \mbox{\hyperlink{classBoolExp}{Bool\+Exp}} explanation 
+\begin{DoxyParams}{Parameters}
+{\em name} & the name to use for replacement \\
+\hline
+{\em exp} & the expression to use for replacement \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns the new \mbox{\hyperlink{classBoolExp}{Bool\+Exp}} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classBoolExp_a6448b7121c238759cc9cc8e48d6f8773}{Bool\+Exp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{andexp_8h}{andexp.\+h}}\item 
+\mbox{\hyperlink{andexp_8cpp}{andexp.\+cpp}}\end{DoxyCompactItemize}
