@@ -1,9 +1,0 @@
-./translator <<-ENDOFMESSAGE
-C
-p
-((((G&(C&A))&~(B->A))vG)&F)
-p
-~~~D
-c
-(GvE)
-ENDOFMESSAGE
