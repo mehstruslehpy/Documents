@@ -1,0 +1,42 @@
+\section*{The Proof Translator}
+
+The proof translator is a tool to turn lists of well formed formulas in the language of propositional logic into here documents that you can run on the prover. The proof translator outputs lines such as {\itshape F\+I\+LE\+:$<$some output goes here$>$} as a way of showing the user what specifically gets output to the here document being created. The proof translator will prompt the user after each formula as to whether the next formula is a conclusion or a premise, if the formula to be entered next is a conclusion the prover accepts that formula as the last formula before exitting \section*{An Example Session}
+
+Note\+: User input has been marked with a \textquotesingle{}user$>$\textquotesingle{} symbol and \textquotesingle{}F\+I\+LE\+:\textquotesingle{} statements have been omitted ~\newline
+ ~\newline
+ {\itshape  {\ttfamily  Please Enter a formula\+:~\newline
+ user$>$ ((A-\/$>$B)\&(B-\/$>$A))~\newline
+ Premise or conclusion?(c/p)~\newline
+ user$>$ ((AvB)-\/$>$C)~\newline
+ Premise or conclusion?(c/p)~\newline
+ user$>$ p~\newline
+ Please Enter a formula\+:~\newline
+ user$>$ ((AvB)-\/$>$C)~\newline
+ Premise or conclusion?(c/p)~\newline
+ user$>$ c~\newline
+ Please Enter a conclusion\+:~\newline
+ user$>$ C~\newline
+ } } ~\newline
+ After the translator is completed you may need to give the newly generated here document execute permissions since it is effectively a script. On my system I do that with the command \textquotesingle{}chmod +x output\+\_\+heredoc.\+txt\textquotesingle{}
+
+As you can probably guess the above input represents the invalid argument\+: ~\newline
+ ~\newline
+ {\itshape  {\ttfamily  ((A -\/$>$ B) \& (B -\/$>$ A))~\newline
+ ((A v B) -\/$>$ C)~\newline
+ {$\therefore$}C~\newline
+ } }
+
+And when run on the prover produces the following counter argument\+:
+
+{\ttfamily  {\itshape  Counter-\/argument\+:~\newline
+ A=0~\newline
+ B=0~\newline
+ C=0~\newline
+}}
+
+{\ttfamily {\itshape Evaluation\+:~\newline
+ ((A -\/$>$ B) \& (B -\/$>$ A))=1~\newline
+ ((A v B) -\/$>$ C)=1~\newline
+ $\sim$C=1~\newline
+ } } ~\newline
+ Which is the correct output. 

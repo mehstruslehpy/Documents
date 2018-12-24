@@ -1,0 +1,154 @@
+\hypertarget{classOrExp}{}\section{Or\+Exp Class Reference}
+\label{classOrExp}\index{Or\+Exp@{Or\+Exp}}
+
+
+{\ttfamily \#include $<$orexp.\+h$>$}
+
+
+
+Inheritance diagram for Or\+Exp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=154pt]{classOrExp__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Or\+Exp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=154pt]{classOrExp__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classOrExp_a600a2b33932bd7e8ea4011180a9ae791}{Or\+Exp}} (shared\+\_\+ptr$<$ \mbox{\hyperlink{classBoolExp}{Bool\+Exp}} $>$, shared\+\_\+ptr$<$ \mbox{\hyperlink{classBoolExp}{Bool\+Exp}} $>$)
+\item 
+virtual \mbox{\hyperlink{classOrExp_a13e824ccc65f06421b506a3428d73ca5}{$\sim$\+Or\+Exp}} ()
+\item 
+virtual string \mbox{\hyperlink{classOrExp_a8e535ae2da801bf5a4e8c9fbf3426a8b}{Name}} () const
+\item 
+virtual bool \mbox{\hyperlink{classOrExp_a2056a325b87621e2a3d0afff79c4163e}{Evaluate}} (\mbox{\hyperlink{classContext}{Context}} \&)
+\item 
+virtual shared\+\_\+ptr$<$ \mbox{\hyperlink{classBoolExp}{Bool\+Exp}} $>$ \mbox{\hyperlink{classOrExp_a256171f2cf3d3165745d6df9390d9ab7}{Replace}} (string, \mbox{\hyperlink{classBoolExp}{Bool\+Exp}} \&)
+\item 
+virtual shared\+\_\+ptr$<$ \mbox{\hyperlink{classBoolExp}{Bool\+Exp}} $>$ \mbox{\hyperlink{classOrExp_a142f557d9b95c4464dbd9167dbb9fe51}{Copy}} () const
+\item 
+virtual \mbox{\hyperlink{structBoolReturn}{Bool\+Return}} \mbox{\hyperlink{classOrExp_aa3b98be68c00bc0c43a9eec5a47cdec9}{Infer}} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{classOrExp}{Or\+Exp}}\textquotesingle{}s are derived from \mbox{\hyperlink{classBoolExp}{Bool\+Exp}}\textquotesingle{}s they implement the logical proposition (AvB) 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classOrExp_a600a2b33932bd7e8ea4011180a9ae791}\label{classOrExp_a600a2b33932bd7e8ea4011180a9ae791}} 
+\index{Or\+Exp@{Or\+Exp}!Or\+Exp@{Or\+Exp}}
+\index{Or\+Exp@{Or\+Exp}!Or\+Exp@{Or\+Exp}}
+\subsubsection{\texorpdfstring{Or\+Exp()}{OrExp()}}
+{\footnotesize\ttfamily Or\+Exp\+::\+Or\+Exp (\begin{DoxyParamCaption}\item[{shared\+\_\+ptr$<$ \mbox{\hyperlink{classBoolExp}{Bool\+Exp}} $>$}]{op1,  }\item[{shared\+\_\+ptr$<$ \mbox{\hyperlink{classBoolExp}{Bool\+Exp}} $>$}]{op2 }\end{DoxyParamCaption})}
+
+Constructs the specified \mbox{\hyperlink{classOrExp}{Or\+Exp}} 
+\begin{DoxyParams}{Parameters}
+{\em op1} & becomes the left hand operand \\
+\hline
+{\em op2} & becomes the right hand operand \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classOrExp_a13e824ccc65f06421b506a3428d73ca5}\label{classOrExp_a13e824ccc65f06421b506a3428d73ca5}} 
+\index{Or\+Exp@{Or\+Exp}!````~Or\+Exp@{$\sim$\+Or\+Exp}}
+\index{````~Or\+Exp@{$\sim$\+Or\+Exp}!Or\+Exp@{Or\+Exp}}
+\subsubsection{\texorpdfstring{$\sim$\+Or\+Exp()}{~OrExp()}}
+{\footnotesize\ttfamily Or\+Exp\+::$\sim$\+Or\+Exp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+The \mbox{\hyperlink{classOrExp}{Or\+Exp}} destructor 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classOrExp_a142f557d9b95c4464dbd9167dbb9fe51}\label{classOrExp_a142f557d9b95c4464dbd9167dbb9fe51}} 
+\index{Or\+Exp@{Or\+Exp}!Copy@{Copy}}
+\index{Copy@{Copy}!Or\+Exp@{Or\+Exp}}
+\subsubsection{\texorpdfstring{Copy()}{Copy()}}
+{\footnotesize\ttfamily shared\+\_\+ptr$<$ \mbox{\hyperlink{classBoolExp}{Bool\+Exp}} $>$ Or\+Exp\+::\+Copy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Create a copy of this \mbox{\hyperlink{classOrExp}{Or\+Exp}} \begin{DoxyReturn}{Returns}
+returns the copy of this \mbox{\hyperlink{classOrExp}{Or\+Exp}} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classBoolExp_a846c30d1730cf645a040978a4cf7cdbb}{Bool\+Exp}}.
+
+\mbox{\Hypertarget{classOrExp_a2056a325b87621e2a3d0afff79c4163e}\label{classOrExp_a2056a325b87621e2a3d0afff79c4163e}} 
+\index{Or\+Exp@{Or\+Exp}!Evaluate@{Evaluate}}
+\index{Evaluate@{Evaluate}!Or\+Exp@{Or\+Exp}}
+\subsubsection{\texorpdfstring{Evaluate()}{Evaluate()}}
+{\footnotesize\ttfamily bool Or\+Exp\+::\+Evaluate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classContext}{Context}} \&}]{con }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Recursively evaluates the \mbox{\hyperlink{classOrExp}{Or\+Exp}} via (op1.\+Evaluate() $\vert$$\vert$ op2.\+Evaluate()) 
+\begin{DoxyParams}{Parameters}
+{\em con} & is the \mbox{\hyperlink{classContext}{Context}} class which maps variables to values \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns the evaluation of the \mbox{\hyperlink{classBoolExp}{Bool\+Exp}} as a boolean 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classBoolExp_a591fb5f9cb849e0f56e596406a9a10d0}{Bool\+Exp}}.
+
+\mbox{\Hypertarget{classOrExp_aa3b98be68c00bc0c43a9eec5a47cdec9}\label{classOrExp_aa3b98be68c00bc0c43a9eec5a47cdec9}} 
+\index{Or\+Exp@{Or\+Exp}!Infer@{Infer}}
+\index{Infer@{Infer}!Or\+Exp@{Or\+Exp}}
+\subsubsection{\texorpdfstring{Infer()}{Infer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structBoolReturn}{Bool\+Return}} Or\+Exp\+::\+Infer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Make an inference from this \mbox{\hyperlink{classOrExp}{Or\+Exp}} \begin{DoxyReturn}{Returns}
+returns a \mbox{\hyperlink{structBoolReturn}{Bool\+Return}} with both operands set to the operands of this \mbox{\hyperlink{classOrExp}{Or\+Exp}} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classBoolExp_a0e5d4a241332ae72d083645e4b71e0e6}{Bool\+Exp}}.
+
+\mbox{\Hypertarget{classOrExp_a8e535ae2da801bf5a4e8c9fbf3426a8b}\label{classOrExp_a8e535ae2da801bf5a4e8c9fbf3426a8b}} 
+\index{Or\+Exp@{Or\+Exp}!Name@{Name}}
+\index{Name@{Name}!Or\+Exp@{Or\+Exp}}
+\subsubsection{\texorpdfstring{Name()}{Name()}}
+{\footnotesize\ttfamily string Or\+Exp\+::\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Recursively retrieves and returns a string representation of the \mbox{\hyperlink{classOrExp}{Or\+Exp}} \begin{DoxyReturn}{Returns}
+returns the name of this \mbox{\hyperlink{classOrExp}{Or\+Exp}} as a string 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classBoolExp_a3fdb64a9b8fd54e33d755ff4a577d11a}{Bool\+Exp}}.
+
+\mbox{\Hypertarget{classOrExp_a256171f2cf3d3165745d6df9390d9ab7}\label{classOrExp_a256171f2cf3d3165745d6df9390d9ab7}} 
+\index{Or\+Exp@{Or\+Exp}!Replace@{Replace}}
+\index{Replace@{Replace}!Or\+Exp@{Or\+Exp}}
+\subsubsection{\texorpdfstring{Replace()}{Replace()}}
+{\footnotesize\ttfamily shared\+\_\+ptr$<$ \mbox{\hyperlink{classBoolExp}{Bool\+Exp}} $>$ Or\+Exp\+::\+Replace (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{\mbox{\hyperlink{classBoolExp}{Bool\+Exp}} \&}]{exp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Left in for possible future usage see \mbox{\hyperlink{classBoolExp}{Bool\+Exp}} explanation 
+\begin{DoxyParams}{Parameters}
+{\em name} & the name to use for replacement \\
+\hline
+{\em exp} & the expression to use for replacement \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns the new \mbox{\hyperlink{classBoolExp}{Bool\+Exp}} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classBoolExp_a6448b7121c238759cc9cc8e48d6f8773}{Bool\+Exp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{orexp_8h}{orexp.\+h}}\item 
+\mbox{\hyperlink{orexp_8cpp}{orexp.\+cpp}}\end{DoxyCompactItemize}

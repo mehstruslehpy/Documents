@@ -1,0 +1,64 @@
+../main <<-ENDOFMESSAGE
+	p #this program is always prove mode
+	u
+	v
+	C
+	c #proposition 0
+
+	b
+	a
+	b
+	o
+	b
+	a
+	b
+	a
+	u
+	v
+	G
+	b
+	a
+	u
+	v
+	C
+	u
+	v
+	A
+	u
+	n
+	b
+	c
+	u
+	v
+	B
+	u
+	v
+	A
+	u
+	v
+	G
+	u
+	v
+	F
+	c #proposition 1
+
+	u
+	n
+	u
+	n
+	u
+	n
+	u
+	v
+	D
+	q #conclusion follows
+
+	b
+	o
+	u
+	v
+	G
+	u
+	v
+	E
+ENDOFMESSAGE

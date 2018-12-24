@@ -1,0 +1,130 @@
+\hypertarget{classContext}{}\section{Context Class Reference}
+\label{classContext}\index{Context@{Context}}
+
+
+{\ttfamily \#include $<$context.\+h$>$}
+
+
+
+Collaboration diagram for Context\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{classContext__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classContext_adb549e858c14fd20ea21d12df224034b}{Lookup}} (string str) const
+\item 
+void \mbox{\hyperlink{classContext_abbc623520a3b4ec31c55ade44fddc953}{Default\+Assign}} (string str)
+\item 
+void \mbox{\hyperlink{classContext_a223eb7768e091ed328ac50cd7955a198}{Assign}} (shared\+\_\+ptr$<$ \mbox{\hyperlink{classVarExp}{Var\+Exp}} $>$ var, bool trf)
+\item 
+void \mbox{\hyperlink{classContext_a45f69da87ee7bc8843f6f99808e6686e}{Assign\+Values}} ()
+\item 
+void \mbox{\hyperlink{classContext_aa7bdd4c9b4aa512ac7d08dd58f5e13c0}{Assign\+By\+Str}} (string str, bool trf)
+\item 
+void \mbox{\hyperlink{classContext_abec0d3806d24c62690deb56803a70712}{Assign\+Combination}} (vector$<$ bool $>$ \&combination)
+\item 
+int \mbox{\hyperlink{classContext_a548788d37239de4a5e8a85a128c9a570}{Var\+Count}} ()
+\item 
+void \mbox{\hyperlink{classContext_ab61f6ccce5943b4aab6dac8cfdc9513c}{Dump\+Context}} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \mbox{\hyperlink{classContext}{Context}} class is mainly used for mapping variables to values 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classContext_a223eb7768e091ed328ac50cd7955a198}\label{classContext_a223eb7768e091ed328ac50cd7955a198}} 
+\index{Context@{Context}!Assign@{Assign}}
+\index{Assign@{Assign}!Context@{Context}}
+\subsubsection{\texorpdfstring{Assign()}{Assign()}}
+{\footnotesize\ttfamily void Context\+::\+Assign (\begin{DoxyParamCaption}\item[{shared\+\_\+ptr$<$ \mbox{\hyperlink{classVarExp}{Var\+Exp}} $>$}]{var,  }\item[{bool}]{trf }\end{DoxyParamCaption})}
+
+insert the \mbox{\hyperlink{classVarExp}{Var\+Exp}} var with the bool value of trf into the map 
+\begin{DoxyParams}{Parameters}
+{\em var} & the variable being inserted \\
+\hline
+{\em trf} & the value that var will receive \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classContext_aa7bdd4c9b4aa512ac7d08dd58f5e13c0}\label{classContext_aa7bdd4c9b4aa512ac7d08dd58f5e13c0}} 
+\index{Context@{Context}!Assign\+By\+Str@{Assign\+By\+Str}}
+\index{Assign\+By\+Str@{Assign\+By\+Str}!Context@{Context}}
+\subsubsection{\texorpdfstring{Assign\+By\+Str()}{AssignByStr()}}
+{\footnotesize\ttfamily void Context\+::\+Assign\+By\+Str (\begin{DoxyParamCaption}\item[{string}]{str,  }\item[{bool}]{trf }\end{DoxyParamCaption})}
+
+Assign a value to the selected string if it exists in the map 
+\begin{DoxyParams}{Parameters}
+{\em str} & the string to be looked up and assigned to \\
+\hline
+{\em trf} & the boolean value to assign to str \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classContext_abec0d3806d24c62690deb56803a70712}\label{classContext_abec0d3806d24c62690deb56803a70712}} 
+\index{Context@{Context}!Assign\+Combination@{Assign\+Combination}}
+\index{Assign\+Combination@{Assign\+Combination}!Context@{Context}}
+\subsubsection{\texorpdfstring{Assign\+Combination()}{AssignCombination()}}
+{\footnotesize\ttfamily void Context\+::\+Assign\+Combination (\begin{DoxyParamCaption}\item[{vector$<$ bool $>$ \&}]{combination }\end{DoxyParamCaption})}
+
+assign to each variable a value from combination linearly this is useful bruteforcing counterarguments 
+\begin{DoxyParams}{Parameters}
+{\em combination} & the vector of boolean values to map to variables \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classContext_a45f69da87ee7bc8843f6f99808e6686e}\label{classContext_a45f69da87ee7bc8843f6f99808e6686e}} 
+\index{Context@{Context}!Assign\+Values@{Assign\+Values}}
+\index{Assign\+Values@{Assign\+Values}!Context@{Context}}
+\subsubsection{\texorpdfstring{Assign\+Values()}{AssignValues()}}
+{\footnotesize\ttfamily void Context\+::\+Assign\+Values (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Assign a value to every variable in the map via user input \mbox{\Hypertarget{classContext_abbc623520a3b4ec31c55ade44fddc953}\label{classContext_abbc623520a3b4ec31c55ade44fddc953}} 
+\index{Context@{Context}!Default\+Assign@{Default\+Assign}}
+\index{Default\+Assign@{Default\+Assign}!Context@{Context}}
+\subsubsection{\texorpdfstring{Default\+Assign()}{DefaultAssign()}}
+{\footnotesize\ttfamily void Context\+::\+Default\+Assign (\begin{DoxyParamCaption}\item[{string}]{str }\end{DoxyParamCaption})}
+
+assign the value true to the variable referred to by str 
+\begin{DoxyParams}{Parameters}
+{\em str} & is the variable being assigned to \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classContext_ab61f6ccce5943b4aab6dac8cfdc9513c}\label{classContext_ab61f6ccce5943b4aab6dac8cfdc9513c}} 
+\index{Context@{Context}!Dump\+Context@{Dump\+Context}}
+\index{Dump\+Context@{Dump\+Context}!Context@{Context}}
+\subsubsection{\texorpdfstring{Dump\+Context()}{DumpContext()}}
+{\footnotesize\ttfamily void Context\+::\+Dump\+Context (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+print what each variable is mapped to in the map \mbox{\Hypertarget{classContext_adb549e858c14fd20ea21d12df224034b}\label{classContext_adb549e858c14fd20ea21d12df224034b}} 
+\index{Context@{Context}!Lookup@{Lookup}}
+\index{Lookup@{Lookup}!Context@{Context}}
+\subsubsection{\texorpdfstring{Lookup()}{Lookup()}}
+{\footnotesize\ttfamily bool Context\+::\+Lookup (\begin{DoxyParamCaption}\item[{string}]{str }\end{DoxyParamCaption}) const}
+
+lookup and return the boolean value of the input string in the map 
+\begin{DoxyParams}{Parameters}
+{\em str} & is the variable being looked up \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns the value of the selected string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classContext_a548788d37239de4a5e8a85a128c9a570}\label{classContext_a548788d37239de4a5e8a85a128c9a570}} 
+\index{Context@{Context}!Var\+Count@{Var\+Count}}
+\index{Var\+Count@{Var\+Count}!Context@{Context}}
+\subsubsection{\texorpdfstring{Var\+Count()}{VarCount()}}
+{\footnotesize\ttfamily int Context\+::\+Var\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+return a count of all the variables in the map \begin{DoxyReturn}{Returns}
+returns a count of all the variables in the map 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{context_8h}{context.\+h}}\item 
+\mbox{\hyperlink{context_8cpp}{context.\+cpp}}\end{DoxyCompactItemize}
