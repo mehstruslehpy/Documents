@@ -64,3 +64,22 @@ function handleInput()
     div.insertAdjacentHTML( 'beforeend', outstring ); //append the content to the page
     MathJax.Hub.Queue(["Typeset",MathJax.Hub,document.getElementById('appendhere')]); //retypeset new stuff
 }
+function handleInputNoMarkupNoWolfram()
+{
+    //chomp up the user input into some vars
+    var depth = document.getElementById("depth").value;
+    var min = document.getElementById("minimum").value;
+    var max = document.getElementById("maximum").value;
+    var text = document.getElementById("expression").value;
+    var outstring = document.getElementById("seed").value; //the initial string
+    var solutionstring = "";
+    var splitbysemi = text.split(';'); //split the user expressions into an array of expresssions
+    console.log(splitbysemi); //some debugging info
+    outstring=buildExpr(outstring,splitbysemi,depth,min,max);
+    console.log("output expression:"+outstring); //some debugging info
+
+	div = document.getElementById( 'outputexpressions' );
+	outstring = "&emsp; "+outstring+";<br>"+solutionstring;
+    console.log("final string:"+outstring); //debugging info
+    div.insertAdjacentHTML( 'beforeend', outstring ); //append the content to the page
+}
